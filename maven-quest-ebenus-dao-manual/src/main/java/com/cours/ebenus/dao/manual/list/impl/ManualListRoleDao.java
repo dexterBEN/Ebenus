@@ -80,14 +80,14 @@ public class ManualListRoleDao /*extends AbstractListDao<Role>*/ implements IRol
     @Override
     public Role createRole(Role role) {
         rolesListDataSource = dataSource.getRolesListDataSource();
-        /*int maxId = rolesListDataSource.size();
+        int maxId = rolesListDataSource.size();
         for (Role rol : rolesListDataSource) {
             if (rol.getIdRole() >= maxId) {
                 maxId = rol.getIdRole() + 1;
             }
         }
         role.setIdRole(maxId);
-        List<Role> Tab = new ArrayList<>();*/
+        List<Role> Tab = new ArrayList<>();
         Tab.add(role);
         Collections.copy(rolesListDataSource, Tab);
         return role;

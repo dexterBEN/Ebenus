@@ -5,10 +5,16 @@
  */
 package com.cours.ebenus.dao.manual.map.impl;
 
+import com.cours.ebenus.dao.DataSource;
 import com.cours.ebenus.dao.IRoleDao;
 import com.cours.ebenus.dao.entities.Role;
-import java.util.List;
-import java.util.Map;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+
+import com.cours.ebenus.dao.manual.array.impl.ManualArrayRoleDao;
+import com.cours.ebenus.dao.manual.list.impl.ManualListRoleDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -20,6 +26,10 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
 
     private static final Log log = LogFactory.getLog(ManualMapRoleDao.class);
     private Map<Integer, Role> rolesListDataSource = null;
+    private DataSource dataSource = DataSource.getInstance();
+    private static final String GETID = "getIdRole";
+    private static final String GETIDENTIFICATION = "getIdentifiant";
+    private static final String GETDESCRIPTION = "getDescription";
 
     //public ManualMapRoleDao() {
     //    super(Role.class, DataSource.getInstance().getRolesMapDataSource());
@@ -32,7 +42,8 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
      */
     @Override
     public List<Role> findAllRoles() {
-        return null;
+        rolesListDataSource = dataSource.getRolesMapDataSource();
+        return (List<Role>) rolesListDataSource.values();
     }
 
     /**
@@ -44,7 +55,7 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
      */
     @Override
     public Role findRoleById(int idRole) {
-        return null;
+        return getRoleByCriteria(getCriteria.ID.field, idRole);
     }
 
     /**
@@ -57,7 +68,7 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
      */
     @Override
     public List<Role> findRoleByIdentifiant(String identifiantRole) {
-        return null;
+        return getRolesByCriteria(getCriteria.IDENTIFIANT.field, identifiantRole);
     }
 
     /**
@@ -69,7 +80,16 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
      */
     @Override
     public Role createRole(Role role) {
-        return null;
+        rolesListDataSource = dataSource.getRolesMapDataSource();
+        int maxId = rolesListDataSource.size();
+        for (Role rol : rolesListDataSource.values()) {
+            if (rol.getIdRole() >= maxId) {
+                maxId = rol.getIdRole() + 1;
+            }
+        }
+        role.setIdRole(maxId);
+        dataSource.getRolesMapDataSource().put(maxId,role);
+        return role;
     }
 
     /**
@@ -82,7 +102,20 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
      */
     @Override
     public Role updateRole(Role role) {
-        return null;
+        boolean isFound = false;
+        rolesListDataSource = dataSource.getRolesMapDataSource();
+        int cursor = 0;
+        Role current = null;
+        while (!isFound && cursor < rolesListDataSource.size()) {
+            current = rolesListDataSource.get(cursor);
+            isFound = current.equals(role);
+            if (isFound) {
+                dataSource.getRolesMapDataSource().remove(cursor);
+                dataSource.getRolesMapDataSource().put(cursor, role);
+            }
+            cursor++;
+        }
+        return role;
     }
 
     /**
@@ -94,7 +127,118 @@ public class ManualMapRoleDao /*extends AbstractMapDao<Role>*/ implements IRoleD
      */
     @Override
     public boolean deleteRole(Role role) {
-        return false;
+        boolean isFound = false;
+        rolesListDataSource = dataSource.getRolesMapDataSource();
+        int cursor = 0;
+        Role current = null;
+        while (!isFound && cursor < rolesListDataSource.size()) {
+            current = rolesListDataSource.get(cursor);
+            isFound = current.equals(role);
+            if (isFound) {
+                dataSource.getRolesMapDataSource().remove(current);
+            }
+            cursor++;
+        }
+        return isFound;
+    }
+
+    private enum getCriteria {
+        ID("id"),
+        IDENTIFIANT("identifiant"),
+        DESCRIPTION("description");
+
+        String field;
+
+
+        getCriteria(String field) {
+            this.field = field;
+        }
+
+        public String getField() {
+            return field;
+        }
+    }
+
+    private Method getMethodToInvoke(String field) {
+
+        Method method = null;
+        if (field.equals(getCriteria.ID.field)) {
+            try {
+                method = Role.class.getMethod(GETID);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        } else if (field.equals(getCriteria.DESCRIPTION.field)) {
+            try {
+                method = Role.class.getMethod(GETDESCRIPTION);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        } else if (field.equals(getCriteria.IDENTIFIANT.field)) {
+            try {
+                method = Role.class.getMethod(GETIDENTIFICATION);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+        return method;
+    }
+
+    private Role getRoleByCriteria(String criteria, Object value) {
+        rolesListDataSource = dataSource.getRolesMapDataSource();
+        Role roleToFound = null;
+        boolean isFound = false;
+        int cursor = 0;
+        while (!isFound && cursor < rolesListDataSource.size()) {
+            Role current = rolesListDataSource.get(cursor);
+            isFound = isget(criteria, value, current);
+            if (isFound) {
+                roleToFound = current;
+            }
+            cursor++;
+        }
+        return roleToFound;
+    }
+
+    private boolean isget(String criteria, Object value, Role current) {
+        boolean isFound = false;
+        if (value instanceof String) {
+            Method method = getMethodToInvoke(criteria);
+            try {
+                isFound = method.invoke(current.getClass()).equals(criteria);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        } else if (value instanceof Integer) {
+            Method method = getMethodToInvoke(criteria);
+            try {
+                isFound = method.invoke(current.getClass()) == value;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        return isFound;
+    }
+
+    private List<Role> getRolesByCriteria(String criteria, Object value) {
+        rolesListDataSource = dataSource.getRolesMapDataSource();
+        List<Role> rolesToFound = new ArrayList<>();
+        int cursor = 0;
+        boolean isFound = false;
+        while (cursor < rolesListDataSource.size()) {
+            Role current = rolesListDataSource.get(cursor);
+            isFound = isget(criteria, value, current);
+            if (isFound) {
+                rolesToFound.add(current);
+                isFound = false;
+            }
+            cursor++;
+        }
+        return rolesToFound;
     }
 
 }

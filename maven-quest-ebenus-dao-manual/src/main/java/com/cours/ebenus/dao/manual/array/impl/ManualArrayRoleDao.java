@@ -114,6 +114,7 @@ public class ManualArrayRoleDao /*extends AbstractArrayDao<Role>*/ implements IR
             if (isFound) {
                 Tab[cursor] = role;
             }
+            cursor++;
         }
         System.arraycopy(rolesArrayDataSource, 0, Tab, 0, 0);
         return current;
@@ -139,6 +140,7 @@ public class ManualArrayRoleDao /*extends AbstractArrayDao<Role>*/ implements IR
             if (isFound) {
                 Tab[cursor] = null;
             }
+            cursor++;
         }
         System.arraycopy(rolesArrayDataSource, 0, Tab, 0, 0);
         return isFound;

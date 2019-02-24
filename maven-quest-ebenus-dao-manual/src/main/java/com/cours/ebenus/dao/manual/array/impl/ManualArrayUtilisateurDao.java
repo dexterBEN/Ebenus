@@ -186,6 +186,7 @@ public class ManualArrayUtilisateurDao /*extends AbstractArrayDao<Utilisateur>*/
             if(isFound){
                 userTab[cursor] = user;
             }
+            cursor++;
         }
         System.arraycopy(utilisateursArrayDataSource, 0, userTab, 0, 0);
         return current;
@@ -211,6 +212,7 @@ public class ManualArrayUtilisateurDao /*extends AbstractArrayDao<Utilisateur>*/
             if(isFound){
                 userTab[cursor] = null;
             }
+            cursor++;
         }
         System.arraycopy(utilisateursArrayDataSource, 0, userTab, 0, 0);
         return isFound;
