@@ -101,6 +101,58 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public Utilisateur findUtilisateurById(int idUtilisateur) {
+		Connection conn = null;
+		Statement stmt = null;
+
+		try {
+
+			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			TimeZone.setDefault(timezone);
+
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// STEP 4: Connect to specific DB
+			System.out.println("Connecting to DB base_quest_ebenus...");
+			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur WHERE idUtilisateur = " + idUtilisateur);
+
+			if (rs.next()) {
+
+				String name = rs.getString("nom");
+				String firstName = rs.getString("prenom");
+				String gender = rs.getString("civilite");
+				String mail = rs.getString("identifiant");
+				String password = rs.getString("motPasse");
+				Date birthDate = rs.getDate("dateNaissance");
+				Date createDate = rs.getDate("dateCreation");
+				Date updateDate = rs.getDate("dateModification");
+				Boolean activityState = rs.getBoolean("actif");
+				Boolean markAsErased = rs.getBoolean("marquerEffacer");
+				int idUser = rs.getInt("idUtilisateur");
+				int version = rs.getInt("version");
+
+				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
+						createDate, updateDate, activityState, markAsErased, version, null);
+
+				System.out.print("id: " + user.getIdUtilisateur() + "\n civilité: " + user.getCivilite() + "\n prénom: "
+						+ user.getPrenom());
+			}
+
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 

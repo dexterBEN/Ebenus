@@ -34,15 +34,22 @@ public class Main {
 		System.out.print("Your choice: ");
 		Scanner inputUser = new Scanner(System.in);
 		int choiceUser = inputUser.nextInt();
+		UtilisateurDao utilisateurDao = new UtilisateurDao();
 
 		switch (choiceUser) {
 
 		case 1:
-			UtilisateurDao utilisateurDao = new UtilisateurDao();
 			List<Utilisateur> users = utilisateurDao.findAllUtilisateurs();
 			for (Utilisateur user : users) {
 				System.out.println(user);
 			}
+			break;
+
+		case 2:
+			System.out.print("The id you search: ");
+			int idToFind;
+			idToFind = inputUser.nextInt();
+			utilisateurDao.findUtilisateurById(idToFind);
 			break;
 
 		default:
