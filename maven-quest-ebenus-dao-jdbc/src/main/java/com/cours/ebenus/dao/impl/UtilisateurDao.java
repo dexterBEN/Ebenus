@@ -5,83 +5,155 @@
  */
 package com.cours.ebenus.dao.impl;
 
-import com.cours.ebenus.dao.IUtilisateurDao;
-import com.cours.ebenus.dao.entities.Utilisateur;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.cours.ebenus.dao.IUtilisateurDao;
+import com.cours.ebenus.dao.entities.Utilisateur;
 
 /**
  *
  * @author ElHadji
  */
-public class UtilisateurDao /*extends AbstractDao<Utilisateur>*/ implements IUtilisateurDao {
+public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IUtilisateurDao {
 
-    private static final Log log = LogFactory.getLog(UtilisateurDao.class);
+	private static final Log log = LogFactory.getLog(UtilisateurDao.class);
 
-    //public UtilisateurDao() {
-    //    super(Utilisateur.class);
-    //}
-    @Override
-    public List<Utilisateur> findAllUtilisateurs() {
-        return null;
-    }
+	// JDBC driver name and database URL
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost/";
+	static final String DB_EBENUS_URL = "jdbc:mysql://localhost/base_quest_ebenus";
 
-    @Override
-    public Utilisateur findUtilisateurById(int idUtilisateur) {
-        return null;
-    }
+	// Database credentials
+	static final String USER = "root";
+	static final String PASS = "";
 
-    @Override
-    public List<Utilisateur> findUtilisateursByPrenom(String prenom) {
-        return null;
-    }
+	// public UtilisateurDao() {
+	// super(Utilisateur.class);
+	// }
+	@Override
+	public List<Utilisateur> findAllUtilisateurs() {
+		Connection conn = null;
+		Statement stmt = null;
 
-    @Override
-    public List<Utilisateur> findUtilisateursByNom(String nom) {
-        return null;
-    }
+		List<Utilisateur> users = new ArrayList<Utilisateur>();
 
-    @Override
-    public List<Utilisateur> findUtilisateurByIdentifiant(String identifiant) {
-        return null;
-    }
+		try {
 
-    @Override
-    public List<Utilisateur> findUtilisateursByIdRole(int idRole) {
-        return null;
-    }
+			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			TimeZone.setDefault(timezone);
 
-    @Override
-    public List<Utilisateur> findUtilisateursByIdentifiantRole(String identifiantRole) {
-        return null;
-    }
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
 
-    @Override
-    public Utilisateur createUtilisateur(Utilisateur user) {
-        return null;
-    }
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-    @Override
-    public Utilisateur updateUtilisateur(Utilisateur user) {
-        return null;
-    }
+			// STEP 4: Connect to specific DB
+			System.out.println("Connecting to DB base_quest_ebenus...");
+			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			stmt = conn.createStatement();
+			// SQL request for table user
+			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur");
 
-    @Override
-    public boolean deleteUtilisateur(Utilisateur user) {
-        return false;
-    }
+			while (rs.next()) {
 
-    /**
-     * Méthode qui vérifie les logs email / password d'un utilisateur dans la
-     * base de données
-     *
-     * @param email L'email de l'utilisateur
-     * @param password Le password de l'utilisateur
-     * @return L'utilisateur qui tente de se logger si trouvé, null sinon
-     */
-    @Override
-    public Utilisateur authenticate(String email, String password) {
-        return null;
-    }
+				String name = rs.getString("nom");
+				String firstName = rs.getString("prenom");
+				String gender = rs.getString("civilite");
+				String mail = rs.getString("identifiant");
+				String password = rs.getString("motPasse");
+				Date birthDate = rs.getDate("dateNaissance");
+				Date createDate = rs.getDate("dateCreation");
+				Date updateDate = rs.getDate("dateModification");
+				Boolean activityState = rs.getBoolean("actif");
+				Boolean markAsErased = rs.getBoolean("marquerEffacer");
+				int idUser = rs.getInt("idUtilisateur");
+				int version = rs.getInt("version");
+
+				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
+						createDate, updateDate, activityState, markAsErased, version, null);
+
+				users.add(user);
+			}
+
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		}
+
+		return users;
+	}
+
+	@Override
+	public Utilisateur findUtilisateurById(int idUtilisateur) {
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> findUtilisateursByPrenom(String prenom) {
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> findUtilisateursByNom(String nom) {
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> findUtilisateurByIdentifiant(String identifiant) {
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> findUtilisateursByIdRole(int idRole) {
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> findUtilisateursByIdentifiantRole(String identifiantRole) {
+		return null;
+	}
+
+	@Override
+	public Utilisateur createUtilisateur(Utilisateur user) {
+		return null;
+	}
+
+	@Override
+	public Utilisateur updateUtilisateur(Utilisateur user) {
+		return null;
+	}
+
+	@Override
+	public boolean deleteUtilisateur(Utilisateur user) {
+		return false;
+	}
+
+	/**
+	 * Méthode qui vérifie les logs email / password d'un utilisateur dans la base
+	 * de données
+	 *
+	 * @param email    L'email de l'utilisateur
+	 * @param password Le password de l'utilisateur
+	 * @return L'utilisateur qui tente de se logger si trouvé, null sinon
+	 */
+	@Override
+	public Utilisateur authenticate(String email, String password) {
+		return null;
+	}
 }
