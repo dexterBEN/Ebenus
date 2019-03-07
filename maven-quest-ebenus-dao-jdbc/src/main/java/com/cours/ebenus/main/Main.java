@@ -7,6 +7,7 @@
 package com.cours.ebenus.main;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -28,12 +29,26 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO code application logic here
 
-		UtilisateurDao utilisateurDao = new UtilisateurDao();
+		System.out.println("What you want to do?");
+		System.out.println("To see the list of user write 1");
+		System.out.print("Your choice: ");
+		Scanner inputUser = new Scanner(System.in);
+		int choiceUser = inputUser.nextInt();
 
-		List<Utilisateur> users = utilisateurDao.findAllUtilisateurs();
+		switch (choiceUser) {
 
-		for (Utilisateur user : users) {
-			System.out.println(user);
+		case 1:
+			UtilisateurDao utilisateurDao = new UtilisateurDao();
+			List<Utilisateur> users = utilisateurDao.findAllUtilisateurs();
+			for (Utilisateur user : users) {
+				System.out.println(user);
+			}
+			break;
+
+		default:
+			System.out.println("the commande does not exist");
+			break;
+
 		}
 	}
 }
