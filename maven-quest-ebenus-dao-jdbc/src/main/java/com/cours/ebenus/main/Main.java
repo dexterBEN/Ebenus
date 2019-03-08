@@ -31,6 +31,8 @@ public class Main {
 
 		System.out.println("What you want to do?");
 		System.out.println("To see the list of user write 1");
+		System.out.println("To get specific user by id write 2");
+		System.out.println("To get specific user by prenom write 3");
 		System.out.print("Your choice: ");
 		Scanner inputUser = new Scanner(System.in);
 		int choiceUser = inputUser.nextInt();
@@ -50,6 +52,13 @@ public class Main {
 			int idToFind;
 			idToFind = inputUser.nextInt();
 			utilisateurDao.findUtilisateurById(idToFind);
+			break;
+
+		case 3:
+			System.out.print("The name you search: ");
+			String firstNameResearch;
+			firstNameResearch = inputUser.next();
+			utilisateurDao.findUtilisateursByPrenom(firstNameResearch);
 			break;
 
 		default:
