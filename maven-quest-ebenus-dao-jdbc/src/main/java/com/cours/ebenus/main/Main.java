@@ -33,6 +33,9 @@ public class Main {
 		System.out.println("To see the list of user write 1");
 		System.out.println("To get specific user by id write 2");
 		System.out.println("To get specific user by prenom write 3");
+		System.out.println("To get specific user by nom write 4");
+		System.out.println("To get specific user by mail write 5");
+
 		System.out.print("Your choice: ");
 		Scanner inputUser = new Scanner(System.in);
 		int choiceUser = inputUser.nextInt();
@@ -66,6 +69,13 @@ public class Main {
 			String nameResearch;
 			nameResearch = inputUser.next();
 			utilisateurDao.findUtilisateursByNom(nameResearch);
+			break;
+
+		case 5:
+			System.out.print("Type the identifiant: ");
+			String mailResearch;
+			mailResearch = inputUser.next();
+			utilisateurDao.findUtilisateurByIdentifiant(mailResearch);
 			break;
 
 		default:
