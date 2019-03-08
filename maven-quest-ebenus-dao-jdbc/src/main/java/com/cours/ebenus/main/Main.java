@@ -55,10 +55,17 @@ public class Main {
 			break;
 
 		case 3:
-			System.out.print("The name you search: ");
+			System.out.print("The firstname you search: ");
 			String firstNameResearch;
 			firstNameResearch = inputUser.next();
 			utilisateurDao.findUtilisateursByPrenom(firstNameResearch);
+			break;
+
+		case 4:
+			System.out.print("The name you search: ");
+			String nameResearch;
+			nameResearch = inputUser.next();
+			utilisateurDao.findUtilisateursByNom(nameResearch);
 			break;
 
 		default:
