@@ -78,6 +78,36 @@ public class Main {
 			utilisateurDao.findUtilisateurByIdentifiant(mailResearch);
 			break;
 
+		case 6:
+			String name, firstName, gender, mail, password;
+			Boolean isActif, markAsErased;
+			int version;
+
+			System.out.print("Give the prenom of the new user: ");
+			firstName = inputUser.next();
+
+			System.out.print("Give the name of the new user: ");
+			name = inputUser.next();
+
+			System.out.print("Give the gender of the new user: ");
+			gender = inputUser.next();
+
+			System.out.print("Give the mail of the new user: ");
+			mail = inputUser.next();
+
+			System.out.print("Give the password of the new user: ");
+			password = inputUser.next();
+
+			System.out.print("Give the status of the new user: ");
+			isActif = inputUser.nextBoolean();
+
+			System.out.print("The markAsErased of the new user: ");
+			markAsErased = inputUser.nextBoolean();
+
+			System.out.print("Give the version of the new user: ");
+			version = inputUser.nextInt();
+			break;
+
 		default:
 			System.out.println("the commande does not exist");
 			break;

@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.TimeZone;
 
 import org.apache.commons.logging.Log;
@@ -342,6 +343,36 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public Utilisateur createUtilisateur(Utilisateur user) {
+		Connection conn = null;
+		Statement stmt = null;
+		Scanner inputUser = new Scanner(System.in);
+		int idUtilisateur, version;
+		String gender, name, firstName, mail, password;
+		Date birthDate, createdDate, updatedDate;
+		Boolean activityState, markAsErased;
+
+		try {
+
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// STEP 4: Connect to specific DB
+			System.out.println("Connecting to DB base_quest_ebenus...");
+			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery(
+					"INSERT INTO `utilisateur` (`idUtilisateur`, `idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('555', '1', 'Mr', 'ElHadji', 'Gaye', 'elhadjigaye', 'monpass', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', '0', '1');");
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 
