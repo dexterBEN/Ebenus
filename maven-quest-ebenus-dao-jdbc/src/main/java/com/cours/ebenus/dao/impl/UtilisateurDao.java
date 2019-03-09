@@ -7,6 +7,7 @@ package com.cours.ebenus.dao.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +19,9 @@ import java.util.TimeZone;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.cours.ebenus.dao.ConnectionHelper;
 import com.cours.ebenus.dao.IUtilisateurDao;
+import com.cours.ebenus.dao.entities.Role;
 import com.cours.ebenus.dao.entities.Utilisateur;
 
 /**
@@ -332,7 +335,42 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateursByIdRole(int idRole) {
-		return null;
+		PreparedStatement statement = null;
+		Connection connection = null;
+		ResultSet result = null;
+
+		List<Utilisateur> users = new ArrayList<Utilisateur>();
+
+		try {
+
+			statement = connection.prepareStatement(
+					"SELECT * FROM utilisateur INNER JOIN role r ON r.idRole = u.idRole WHERE u.idRole = ? ");
+			statement.setInt(1, idRole);
+
+			result = statement.executeQuery();
+
+			while (result.next()) {
+
+				Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
+						result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
+						result.getString("u.motPasse"), result.getDate("u.dateNaissance"),
+						result.getDate("u.dateCreation"), result.getDate("u.dateModification"),
+						result.getBoolean("u.actif"), result.getBoolean("u.marquerEffacer"), result.getInt("u.version"),
+						new Role(result.getInt("r.idRole"), result.getString("r.identifiant"),
+								result.getString("r.description"), result.getInt("r.version")));
+
+				users.add(user);
+
+			}
+
+		} catch (Throwable e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionHelper.closeSqlResources(statement, result);
+		}
+
+		return users;
 	}
 
 	@Override
