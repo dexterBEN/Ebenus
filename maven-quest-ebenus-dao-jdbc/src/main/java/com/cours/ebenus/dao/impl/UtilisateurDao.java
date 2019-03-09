@@ -103,7 +103,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 	public Utilisateur findUtilisateurById(int idUtilisateur) {
 		Connection conn = null;
 		Statement stmt = null;
-
+		Utilisateur user = null;
 		try {
 
 			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
@@ -138,8 +138,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 				int idUser = rs.getInt("idUtilisateur");
 				int version = rs.getInt("version");
 
-				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
-						createDate, updateDate, activityState, markAsErased, version, null);
+				user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate, createDate,
+						updateDate, activityState, markAsErased, version, null);
 
 				System.out.print("id: " + user.getIdUtilisateur() + "\n civilité: " + user.getCivilite() + "\n prénom: "
 						+ user.getPrenom());
@@ -153,7 +153,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			e.printStackTrace();
 		}
 
-		return null;
+		return user;
 	}
 
 	@Override
@@ -384,6 +384,29 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public boolean deleteUtilisateur(Utilisateur user) {
+		Connection conn = null;
+		Statement stmt = null;
+
+		try {
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			// STEP 4: Connect to specific DB
+			System.out.println("Connecting to DB base_quest_ebenus...");
+			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			stmt = conn.createStatement();
+
+			int rs = stmt
+					.executeUpdate("DELETE FROM `utilisateur` WHERE `idUtilisateur`=" + user.getIdUtilisateur() + "");
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

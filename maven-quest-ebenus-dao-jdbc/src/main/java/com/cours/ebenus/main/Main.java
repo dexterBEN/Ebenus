@@ -36,6 +36,7 @@ public class Main {
 		System.out.println("To get specific user by nom write 4");
 		System.out.println("To get specific user by mail write 5");
 		System.out.println("To create user write 6");
+		System.out.println("To delete user write 7");
 
 		System.out.print("Your choice: ");
 		Scanner inputUser = new Scanner(System.in);
@@ -113,8 +114,16 @@ public class Main {
 			utilisateurDao.createUtilisateur(user);
 			break;
 
+		case 7:
+			System.out.print("Give the id of the user you wanted to delete: ");
+			int idToDelete;
+			idToDelete = inputUser.nextInt();
+			Utilisateur userTodelete = utilisateurDao.findUtilisateurById(idToDelete);
+			utilisateurDao.deleteUtilisateur(userTodelete);
+			break;
+
 		default:
-			System.out.println("the commande does not exist");
+			System.out.println("the command does not exist");
 			break;
 
 		}
