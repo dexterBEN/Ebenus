@@ -375,7 +375,41 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateursByIdentifiantRole(String identifiantRole) {
-		return null;
+		PreparedStatement statement = null;
+		Connection connection = null;
+		ResultSet result = null;
+		List<Utilisateur> users = new ArrayList<>();
+
+		try {
+
+			statement = connection.prepareStatement(
+					"SELECT * FROM utilisateur u INNER JOIN role r ON r.idRole = u.idRole WHERE r.identifiant = ?");
+			statement.setString(1, identifiantRole);
+
+			result = statement.executeQuery();
+
+			while (result.next()) {
+
+				Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
+						result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
+						result.getString("u.motPasse"), result.getDate("u.dateNaissance"),
+						result.getDate("u.dateCreation"), result.getDate("u.dateModification"),
+						result.getBoolean("u.actif"), result.getBoolean("u.marquerEffacer"), result.getInt("u.version"),
+						new Role(result.getInt("r.idRole"), result.getString("r.identifiant"),
+								result.getString("r.description"), result.getInt("r.version")));
+
+				users.add(user);
+
+			}
+
+		} catch (Throwable e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionHelper.closeSqlResources(statement, null);
+		}
+
+		return users;
 	}
 
 	@Override
