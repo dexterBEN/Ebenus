@@ -115,7 +115,7 @@ public class Main {
 			break;
 
 		case 7:
-			System.out.print("Give the id of the user you wanted to delete: ");
+			System.out.print("Give the id of the user you wanted to erased: ");
 			int idToDelete;
 			idToDelete = inputUser.nextInt();
 			Utilisateur userTodelete = utilisateurDao.findUtilisateurById(idToDelete);
