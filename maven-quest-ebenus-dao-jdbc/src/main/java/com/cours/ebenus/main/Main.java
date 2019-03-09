@@ -35,6 +35,7 @@ public class Main {
 		System.out.println("To get specific user by prenom write 3");
 		System.out.println("To get specific user by nom write 4");
 		System.out.println("To get specific user by mail write 5");
+		System.out.println("To create user write 6");
 
 		System.out.print("Your choice: ");
 		Scanner inputUser = new Scanner(System.in);
@@ -106,6 +107,10 @@ public class Main {
 
 			System.out.print("Give the version of the new user: ");
 			version = inputUser.nextInt();
+			Utilisateur user = new Utilisateur(null, gender, firstName, name, mail, password, null, null, null, isActif,
+					markAsErased, version, null);
+
+			utilisateurDao.createUtilisateur(user);
 			break;
 
 		default:

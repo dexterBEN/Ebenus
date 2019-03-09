@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.TimeZone;
 
 import org.apache.commons.logging.Log;
@@ -345,11 +344,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 	public Utilisateur createUtilisateur(Utilisateur user) {
 		Connection conn = null;
 		Statement stmt = null;
-		Scanner inputUser = new Scanner(System.in);
-		int idUtilisateur, version;
-		String gender, name, firstName, mail, password;
-		Date birthDate, createdDate, updatedDate;
-		Boolean activityState, markAsErased;
 
 		try {
 
@@ -364,16 +358,23 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			System.out.println("Connecting to DB base_quest_ebenus...");
 			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
 			stmt = conn.createStatement();
+			String isActif = user.isActif() ? "1" : "0";
+			String isErased = user.isMarquerEffacer() ? "1" : "0";
 
-			ResultSet rs = stmt.executeQuery(
-					"INSERT INTO `utilisateur` (`idUtilisateur`, `idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('555', '1', 'Mr', 'ElHadji', 'Gaye', 'elhadjigaye', 'monpass', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1', '0', '1');");
+			int rs = stmt.executeUpdate(
+					"INSERT INTO `utilisateur` (`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('1', '"
+							+ user.getCivilite() + "', '" + user.getPrenom() + "', '" + user.getNom() + "', '"
+							+ user.getIdentifiant() + "', '" + user.getMotPasse()
+							+ "', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '" + isActif + "', '"
+							+ isErased + "', '" + user.getVersion() + "');");
+
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		return user;
 	}
 
 	@Override
