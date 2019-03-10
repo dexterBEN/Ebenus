@@ -5,10 +5,11 @@
  */
 package com.cours.ebenus.factory;
 
-import com.cours.ebenus.dao.IRoleDao;
-import com.cours.ebenus.dao.IUtilisateurDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.cours.ebenus.dao.IRoleDao;
+import com.cours.ebenus.dao.IUtilisateurDao;
 
 /**
  *
@@ -16,25 +17,25 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class AbstractDaoFactory {
 
-    public static String className = AbstractDaoFactory.class.getName();
-    private static final Log log = LogFactory.getLog(AbstractDaoFactory.class);
+	public static String className = AbstractDaoFactory.class.getName();
+	private static final Log log = LogFactory.getLog(AbstractDaoFactory.class);
 
-    public enum FactoryDaoType {
+	public enum FactoryDaoType {
 
-        JDBC_DAO_FACTORY;
-    }
+		JDBC_DAO_FACTORY;
+	}
 
-    public abstract IUtilisateurDao getUtilisateurDao();
+	public abstract IUtilisateurDao getUtilisateurDao();
 
-    public abstract IRoleDao getRoleDao();
+	public abstract IRoleDao getRoleDao();
 
-    /**
-     * Méthode pour récupérer une factory de DAO
-     *
-     * @param daoType
-     * @return AbstractDaoFactory
-     */
-    public static AbstractDaoFactory getFactory(FactoryDaoType daoType) {
-        return null;
-    }
+	/**
+	 * Méthode pour récupérer une factory de DAO
+	 *
+	 * @param daoType
+	 * @return AbstractDaoFactory
+	 */
+	public static AbstractDaoFactory getFactory(FactoryDaoType daoType) {
+		return new DaoFactory();
+	}
 }
