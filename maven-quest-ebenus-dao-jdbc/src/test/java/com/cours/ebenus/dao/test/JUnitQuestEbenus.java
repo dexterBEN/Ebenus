@@ -1,11 +1,11 @@
 package com.cours.ebenus.dao.test;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.cours.ebenus.dao.DriverManagerSingleton;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -72,18 +73,18 @@ public class JUnitQuestEbenus {
 	private static List<Utilisateur> utilisateurs = null;
 	private static List<Role> roles = null;
 
+	private static Connection conn = null;
+
 	@BeforeClass
 	public static void init() throws Exception {
 		// Configuration de l'application
-
 		serviceFacade = new ServiceFacade();
-
+		utilisateurs = serviceFacade.getUtilisateurDao().findAllUtilisateurs();
+		roles = serviceFacade.getRoleDao().findAllRoles();
 	}
 
 	@BeforeClass
 	public static void initDataBase() throws FileNotFoundException, IOException, SQLException {
-		String scriptSqlPath = Constants.SQL_JUNIT_PATH_FILE;
-		Connection connection = null;
 
 		try {
 
@@ -92,31 +93,44 @@ public class JUnitQuestEbenus {
 
 			// STEP 3: Open a connection
 			System.out.println("Connecting to database...");
-			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManagerSingleton.getConnectionInstance().getConnection();
 
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			connection = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			File file = new File(Constants.SQL_JUNIT_PATH_FILE);
+			if (conn != null) {
+
+				try {
+					FileReader fr = new FileReader(file);
+					BufferedReader reader = new BufferedReader(fr);
+					System.out.println("n'est pas null");
+					ScriptRunner runner = new ScriptRunner(conn, false, true);
+
+					runner.runScript(reader);
+
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+
+			}
 
 			// Reader reader = Resources.getResourceAsReader(scriptSqlPath);
-			InputStream inputStream = JUnitQuestEbenus.class.getResourceAsStream(scriptSqlPath);
-			ScriptRunner myScript = new ScriptRunner(connection, false, true);
-			myScript.runScript(new InputStreamReader(inputStream));
-
+			/**
+			 * InputStream inputStream =
+			 * JUnitQuestEbenus.class.getResourceAsStream(scriptSqlPath); if (inputStream ==
+			 * null) { System.out.println("is null"); } ScriptRunner myScript = new
+			 * ScriptRunner(connection, false, true);
+			 * 
+			 * myScript.runScript(new InputStreamReader(inputStream));
+			 */
 			// connection.commit();
 			// reader.close();
-		} catch (SQLException se) {
+		} catch (Exception se) {
 			// Handle errors for JDBC
 			se.printStackTrace();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.printStackTrace();
 		}
 	}
 
 	public void verifyRoleData(Role role) {
 		log.debug("Entree de la methode");
-		log.debug("test: " + role.getIdentifiant());
 		if (role != null) {
 			log.debug("idRole : " + role.getIdRole());
 			Assert.assertNotNull(role.getIdRole());

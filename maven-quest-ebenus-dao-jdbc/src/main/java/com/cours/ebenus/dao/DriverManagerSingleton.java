@@ -5,6 +5,11 @@
  */
 package com.cours.ebenus.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.TimeZone;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -33,9 +38,36 @@ public class DriverManagerSingleton {
 
 	private static DriverManagerSingleton uniqueInstance = null;
 
+	private Connection conn = null;
+
 	// constructor:
 	private DriverManagerSingleton() {
 
+		// PreparedStatement stmt = null;
+		try {
+
+			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			TimeZone.setDefault(timezone);
+
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// STEP 4: Connect to DB
+			System.out.println("Connecting to DB base_quest_ebenus...");
+			conn = DriverManager.getConnection(url, user, password);
+			// stmt = conn.prepareStatement(sql);
+
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		}
+	}
+
+	public Connection getConnection() {
+		return conn;
 	}
 
 	synchronized public static DriverManagerSingleton getConnectionInstance() {

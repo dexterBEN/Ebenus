@@ -6,23 +6,22 @@
 package com.cours.ebenus.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.cours.ebenus.dao.ConnectionHelper;
+import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IUtilisateurDao;
 import com.cours.ebenus.dao.entities.Role;
 import com.cours.ebenus.dao.entities.Utilisateur;
+import com.cours.ebenus.utils.Constants;
 
 /**
  *
@@ -35,40 +34,49 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 	// JDBC driver name and database URL
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/";
-	static final String DB_EBENUS_URL = "jdbc:mysql://localhost/base_quest_ebenus";
+	// static final String DB_EBENUS_URL =
+	// "jdbc:mysql://localhost/base_quest_ebenus";
+	static final String DB_EBENUS_URL = Constants.DATABASE_URL;
 
 	// Database credentials
 	static final String USER = "root";
 	static final String PASS = "";
 
-	// public UtilisateurDao() {
-	// super(Utilisateur.class);
-	// }
+	Connection conn = null;
+	PreparedStatement statement = null;
+	ResultSet result = null;
+
+	public UtilisateurDao() {
+		// super(Utilisateur.class);
+		try {
+			conn = DriverManagerSingleton.getConnectionInstance().getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public List<Utilisateur> findAllUtilisateurs() {
-		Connection conn = null;
-		Statement stmt = null;
 
 		List<Utilisateur> users = new ArrayList<Utilisateur>();
 
 		try {
 
-			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-			TimeZone.setDefault(timezone);
-
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
+			/*
+			 * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			 * TimeZone.setDefault(timezone);
+			 * 
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+			statement = conn.prepareStatement("SELECT * FROM utilisateur");
 			// SQL request for table user
-			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur");
+			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
 
@@ -104,27 +112,25 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public Utilisateur findUtilisateurById(int idUtilisateur) {
-		Connection conn = null;
-		Statement stmt = null;
 		Utilisateur user = null;
 		try {
 
-			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-			TimeZone.setDefault(timezone);
+			/*
+			 * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			 * TimeZone.setDefault(timezone);
+			 * 
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+			statement = conn.prepareStatement("SELECT * FROM utilisateur WHERE idUtilisateur = " + idUtilisateur);
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
-
-			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur WHERE idUtilisateur = " + idUtilisateur);
+			ResultSet rs = statement.executeQuery();
 
 			if (rs.next()) {
 
@@ -161,28 +167,26 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateursByPrenom(String prenom) {
-		Connection conn = null;
-		Statement stmt = null;
 		List<Utilisateur> users = new ArrayList<Utilisateur>();
 
 		try {
 
-			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-			TimeZone.setDefault(timezone);
+			/*
+			 * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			 * TimeZone.setDefault(timezone);
+			 * 
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+			statement = conn.prepareStatement("SELECT * FROM utilisateur WHERE prenom = '" + prenom + "'");
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
-
-			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur WHERE prenom = '" + prenom + "'");
+			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
 				String name = rs.getString("nom");
@@ -220,28 +224,26 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateursByNom(String nom) {
-		Connection conn = null;
-		Statement stmt = null;
 		List<Utilisateur> users = new ArrayList<Utilisateur>();
 
 		try {
 
-			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-			TimeZone.setDefault(timezone);
+			/*
+			 * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			 * TimeZone.setDefault(timezone);
+			 * 
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+			statement = conn.prepareStatement("SELECT * FROM utilisateur WHERE nom = '" + nom + "'");
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
-
-			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur WHERE nom = '" + nom + "'");
+			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
 				String name = rs.getString("nom");
@@ -277,28 +279,26 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateurByIdentifiant(String identifiant) {
-		Connection conn = null;
-		Statement stmt = null;
 		List<Utilisateur> users = new ArrayList<Utilisateur>();
 
 		try {
 
-			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-			TimeZone.setDefault(timezone);
+			/*
+			 * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			 * TimeZone.setDefault(timezone);
+			 * 
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+			statement = conn.prepareStatement("SELECT * FROM utilisateur WHERE identifiant = '" + identifiant + "'");
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
-
-			ResultSet rs = stmt.executeQuery("SELECT * FROM utilisateur WHERE identifiant = '" + identifiant + "'");
+			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
 				String name = rs.getString("nom");
@@ -335,15 +335,26 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateursByIdRole(int idRole) {
-		PreparedStatement statement = null;
-		Connection connection = null;
 		ResultSet result = null;
 
 		List<Utilisateur> users = new ArrayList<Utilisateur>();
 
 		try {
 
-			statement = connection.prepareStatement(
+			/*
+			 * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			 * TimeZone.setDefault(timezone);
+			 * 
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+
+			statement = conn.prepareStatement(
 					"SELECT * FROM utilisateur INNER JOIN role r ON r.idRole = u.idRole WHERE u.idRole = ? ");
 			statement.setInt(1, idRole);
 
@@ -375,14 +386,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public List<Utilisateur> findUtilisateursByIdentifiantRole(String identifiantRole) {
-		PreparedStatement statement = null;
-		Connection connection = null;
-		ResultSet result = null;
 		List<Utilisateur> users = new ArrayList<>();
 
 		try {
 
-			statement = connection.prepareStatement(
+			statement = conn.prepareStatement(
 					"SELECT * FROM utilisateur u INNER JOIN role r ON r.idRole = u.idRole WHERE r.identifiant = ?");
 			statement.setString(1, identifiantRole);
 
@@ -414,31 +422,22 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public Utilisateur createUtilisateur(Utilisateur user) {
-		Connection conn = null;
-		Statement stmt = null;
 
 		try {
+			int isErased = user.isMarquerEffacer() ? 1 : 0;
+			int isActif = user.isActif() ? 1 : 0;
 
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
-			String isActif = user.isActif() ? "1" : "0";
-			String isErased = user.isMarquerEffacer() ? "1" : "0";
-
-			int rs = stmt.executeUpdate(
+			statement = conn.prepareStatement(
 					"INSERT INTO `utilisateur` (`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('1', '"
 							+ user.getCivilite() + "', '" + user.getPrenom() + "', '" + user.getNom() + "', '"
 							+ user.getIdentifiant() + "', '" + user.getMotPasse()
-							+ "', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '" + isActif + "', '"
-							+ isErased + "', '" + user.getVersion() + "');");
+							+ "', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, " + isActif + ", " + isErased
+							+ ", '" + user.getVersion() + "');");
+
+			int rs = statement.executeUpdate();
 
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -451,29 +450,50 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
 	@Override
 	public Utilisateur updateUtilisateur(Utilisateur user) {
+		String requete = "UPDATE Utilisateur SET idRole = " + user.getRole().getIdRole() + ", civilite = '"
+				+ user.getCivilite() + "', prenom = '" + user.getPrenom() + "', " + "nom = '" + user.getNom()
+				+ "', identifiant = '" + user.getIdentifiant() + "', motPasse = '" + user.getMotPasse() + "', actif = "
+				+ parseBooleanToInteger(user.isActif()) + ", marquerEffacer = "
+				+ parseBooleanToInteger(user.isMarquerEffacer()) + ", version = " + user.getVersion()
+				+ " WHERE idUtilisateur = " + user.getIdUtilisateur() + ";";
+		try {
+			statement = conn.prepareStatement(requete);
+
+			if (statement.executeUpdate() > 0) {
+				return findUtilisateurByIdentifiant(user.getIdentifiant()).get(0);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
+	}
+
+	private Integer parseBooleanToInteger(Boolean isActif) {
+		return (isActif) ? 1 : 0;
 	}
 
 	@Override
 	public boolean deleteUtilisateur(Utilisateur user) {
-		Connection conn = null;
-		Statement stmt = null;
 
 		try {
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
+			/*
+			 * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
+			 * 
+			 * // STEP 3: Open a connection System.out.println("Connecting to database...");
+			 * conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			 * 
+			 * // STEP 4: Connect to specific DB
+			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
+			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
+			 */
+			statement = conn.prepareStatement(
+					"DELETE FROM `utilisateur` WHERE `idUtilisateur`=" + user.getIdUtilisateur() + "");
 
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			// STEP 4: Connect to specific DB
-			System.out.println("Connecting to DB base_quest_ebenus...");
-			conn = DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-			stmt = conn.createStatement();
-
-			int rs = stmt
-					.executeUpdate("DELETE FROM `utilisateur` WHERE `idUtilisateur`=" + user.getIdUtilisateur() + "");
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
