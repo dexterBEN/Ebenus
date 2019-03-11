@@ -131,6 +131,11 @@ public class Main {
 			for (Role role : roles) {
 				System.out.println(role);
 			}
+			break;
+
+		case 9:
+			System.out.print("Coming soon");
+			break;
 		default:
 			System.out.println("the command does not exist");
 			break;

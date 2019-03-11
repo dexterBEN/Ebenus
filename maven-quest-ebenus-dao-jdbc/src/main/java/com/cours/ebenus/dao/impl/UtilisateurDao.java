@@ -22,6 +22,7 @@ import com.cours.ebenus.dao.IUtilisateurDao;
 import com.cours.ebenus.dao.entities.Role;
 import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.utils.Constants;
+import com.mysql.jdbc.Statement;
 
 /**
  *
@@ -419,16 +420,13 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 								result.getString("r.description"), result.getInt("r.version")));
 
 				users.add(user);
-
 			}
 
 		} catch (Throwable e) {
 			e.printStackTrace();
-
 		} finally {
 			ConnectionHelper.closeSqlResources(statement, null);
 		}
-
 		return users;
 	}
 
@@ -438,18 +436,27 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 		try {
 			int isErased = user.isMarquerEffacer() ? 1 : 0;
 			int isActif = user.isActif() ? 1 : 0;
-
+			Date currentTime = new Date(System.currentTimeMillis());
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
 			statement = conn.prepareStatement(
-					"INSERT INTO `utilisateur` (`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('1', '"
-							+ user.getCivilite() + "', '" + user.getPrenom() + "', '" + user.getNom() + "', '"
-							+ user.getIdentifiant() + "', '" + user.getMotPasse()
-							+ "', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, " + isActif + ", " + isErased
-							+ ", '" + user.getVersion() + "');");
+					"INSERT INTO `utilisateur` (`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('"
+							+ user.getRole().getIdRole() + "', '" + user.getCivilite() + "', '" + user.getPrenom()
+							+ "', '" + user.getNom() + "', '" + user.getIdentifiant() + "', '" + user.getMotPasse()
+							+ "', " + user.getDateNaissance() + ", " + currentTime + ", " + currentTime + ", " + isActif
+							+ ", " + isErased + ", '" + user.getVersion() + "');",
+					Statement.RETURN_GENERATED_KEYS);
 
-			int rs = statement.executeUpdate();
+			statement.executeUpdate();
+			ResultSet rs = statement.getGeneratedKeys();
+
+			if (rs.next()) {
+				int idUser = rs.getInt(1);
+				user.setIdUtilisateur(idUser);
+				user.setDateCreation(currentTime);
+				user.setDateModification(currentTime);
+			}
 
 		} catch (SQLException se) {
 			se.printStackTrace();

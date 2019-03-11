@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IRoleDao;
 import com.cours.ebenus.dao.entities.Role;
+import com.mysql.jdbc.Statement;
 
 /**
  *
@@ -147,13 +148,22 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			System.out.print("INSERT INTO `role` (identifiant, description, version) VALUES (" + role.getIdentifiant()
-					+ ", " + role.getDescription() + ", " + role.getVersion() + ")");
+			System.out.print("INSERT INTO `role` (identifiant, description, version) VALUES ('" + role.getIdentifiant()
+					+ "', '" + role.getDescription() + "', " + role.getVersion() + ")");
 
-			statement = conn.prepareStatement("INSERT INTO `role` (identifiant, description, version) VALUES ('"
-					+ role.getIdentifiant() + "', '" + role.getDescription() + "', " + role.getVersion() + ")");
+			statement = conn
+					.prepareStatement(
+							"INSERT INTO `role` (identifiant, description, version) VALUES ('" + role.getIdentifiant()
+									+ "', '" + role.getDescription() + "', " + role.getVersion() + ")",
+							Statement.RETURN_GENERATED_KEYS);
 
 			statement.executeUpdate();
+			ResultSet rs = statement.getGeneratedKeys();
+			if (rs.next()) {
+				int id = rs.getInt(1);
+				System.out.println("Inserted ID " + id); // display inserted record
+				role.setIdRole(id);
+			}
 
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -166,7 +176,22 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 
 	@Override
 	public Role updateRole(Role role) {
-		return null;
+		try {
+
+			// STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			statement = conn.prepareStatement("UPDATE `role` SET `identifiant`='" + role.getIdentifiant()
+					+ "', `description`='" + role.getDescription() + "' WHERE idRole=" + role.getIdRole());
+
+			statement.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return role;
 	}
 
 	@Override
@@ -176,9 +201,9 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			statement = conn.prepareStatement("DELETE FROM `role` WHERE `idRole`=" + role.getIdRole() + "");
-
-			statement.executeUpdate();
+			statement = conn.prepareStatement("DELETE FROM `role` WHERE `idRole`=" + role.getIdRole());
+			int rs = statement.executeUpdate();
+			return (rs >= 1);// return boolean of comparaison
 
 		} catch (SQLException se) {
 			se.printStackTrace();

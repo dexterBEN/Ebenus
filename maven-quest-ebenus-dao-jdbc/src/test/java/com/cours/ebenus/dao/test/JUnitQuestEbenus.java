@@ -369,12 +369,15 @@ public class JUnitQuestEbenus {
 		roleCRUD.setIdentifiant("Superviseur Bis");
 		roleCRUD.setDescription("Le rôle superviseur Bis");
 		roleCRUD = serviceFacade.getRoleDao().updateRole(roleCRUD);
+
 		Assert.assertNotNull(roleCRUD);
 		roleCRUD = serviceFacade.getRoleDao().findRoleById(roleCRUD.getIdRole());
 		log.debug("Updated roleCRUD : " + roleCRUD);
 		Assert.assertEquals("Superviseur Bis", roleCRUD.getIdentifiant());
 		Assert.assertEquals("Le rôle superviseur Bis", roleCRUD.getDescription());
 		Assert.assertTrue(serviceFacade.getRoleDao().deleteRole(roleCRUD));
+		log.debug("At this moment:" + roleCRUD);
+
 		roleCRUD = serviceFacade.getRoleDao().findRoleById(roleCRUD.getIdRole());
 		Assert.assertNull(roleCRUD);
 		List<Role> rolesFinal = serviceFacade.getRoleDao().findAllRoles();
