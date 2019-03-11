@@ -94,8 +94,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 				int idUser = rs.getInt("idUtilisateur");
 				int version = rs.getInt("version");
 
+				int idRole = rs.getInt("idRole");
+				Role role = roleDao.findRoleById(idRole);
+
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
-						createDate, updateDate, activityState, markAsErased, version, null);
+						createDate, updateDate, activityState, markAsErased, version, role);
 
 				users.add(user);
 			}
