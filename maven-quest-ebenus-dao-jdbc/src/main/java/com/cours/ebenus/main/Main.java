@@ -12,7 +12,9 @@ import java.util.Scanner;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.cours.ebenus.dao.entities.Role;
 import com.cours.ebenus.dao.entities.Utilisateur;
+import com.cours.ebenus.dao.impl.RoleDao;
 import com.cours.ebenus.dao.impl.UtilisateurDao;
 
 /**
@@ -37,11 +39,13 @@ public class Main {
 		System.out.println("To get specific user by mail write 5");
 		System.out.println("To create user write 6");
 		System.out.println("To delete user write 7");
+		System.out.println();
 
 		System.out.print("Your choice: ");
 		Scanner inputUser = new Scanner(System.in);
 		int choiceUser = inputUser.nextInt();
 		UtilisateurDao utilisateurDao = new UtilisateurDao();
+		RoleDao roleDao = new RoleDao();
 
 		switch (choiceUser) {
 
@@ -122,6 +126,11 @@ public class Main {
 			utilisateurDao.deleteUtilisateur(userTodelete);
 			break;
 
+		case 8:
+			List<Role> roles = roleDao.findAllRoles();
+			for (Role role : roles) {
+				System.out.println(role);
+			}
 		default:
 			System.out.println("the command does not exist");
 			break;

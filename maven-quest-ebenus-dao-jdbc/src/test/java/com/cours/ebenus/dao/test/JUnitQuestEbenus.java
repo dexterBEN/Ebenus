@@ -146,6 +146,7 @@ public class JUnitQuestEbenus {
 		log.debug("Entree de la methode");
 		if (user != null) {
 			log.debug("idUtilisateur : " + user.getIdUtilisateur());
+			log.debug("idrole : " + user.getRole());// Delete at end
 			Assert.assertNotNull(user.getIdUtilisateur());
 			Assert.assertNotNull(user.getPrenom());
 			Assert.assertNotNull(user.getNom());

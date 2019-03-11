@@ -45,6 +45,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 	Connection conn = null;
 	PreparedStatement statement = null;
 	ResultSet result = null;
+	final RoleDao roleDao = new RoleDao();
 
 	public UtilisateurDao() {
 		// super(Utilisateur.class);
@@ -146,9 +147,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 				Boolean markAsErased = rs.getBoolean("marquerEffacer");
 				int idUser = rs.getInt("idUtilisateur");
 				int version = rs.getInt("version");
+				int idRole = rs.getInt("idRole");
+				Role role = roleDao.findRoleById(idRole);
 
 				user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate, createDate,
-						updateDate, activityState, markAsErased, version, null);
+						updateDate, activityState, markAsErased, version, role);
 
 				System.out.print("id: " + user.getIdUtilisateur() + "\n civilité: " + user.getCivilite() + "\n prénom: "
 						+ user.getPrenom());
@@ -201,9 +204,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 				Boolean markAsErased = rs.getBoolean("marquerEffacer");
 				int idUser = rs.getInt("idUtilisateur");
 				int version = rs.getInt("version");
+				int idRole = rs.getInt("idRole");
+				Role role = roleDao.findRoleById(idRole);
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
-						createDate, updateDate, activityState, markAsErased, version, null);
+						createDate, updateDate, activityState, markAsErased, version, role);
 
 				users.add(user);
 
@@ -258,9 +263,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 				Boolean markAsErased = rs.getBoolean("marquerEffacer");
 				int idUser = rs.getInt("idUtilisateur");
 				int version = rs.getInt("version");
+				int idRole = rs.getInt("idRole");
+				Role role = roleDao.findRoleById(idRole);
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
-						createDate, updateDate, activityState, markAsErased, version, null);
+						createDate, updateDate, activityState, markAsErased, version, role);
 
 				users.add(user);
 			}
@@ -313,9 +320,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 				Boolean markAsErased = rs.getBoolean("marquerEffacer");
 				int idUser = rs.getInt("idUtilisateur");
 				int version = rs.getInt("version");
+				int idRole = rs.getInt("idRole");
+				Role role = roleDao.findRoleById(idRole);
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
-						createDate, updateDate, activityState, markAsErased, version, null);
+						createDate, updateDate, activityState, markAsErased, version, role);
 
 				users.add(user);
 			}

@@ -110,7 +110,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 		List<Role> roles = new ArrayList<Role>();
 
 		try {
-			statement = conn.prepareStatement("SELECT * FROM role WHERE identifiant = " + identifiantRole);
+			statement = conn.prepareStatement("SELECT * FROM role WHERE identifiant = '" + identifiantRole + "'");
 			ResultSet rs = statement.executeQuery();
 
 			int idRole;
@@ -147,8 +147,11 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			statement = conn.prepareStatement("INSERT INTO `role` (identifiant, description, version) VALUES ("
-					+ role.getIdentifiant() + ", " + role.getDescription() + ", " + role.getVersion() + ")");
+			System.out.print("INSERT INTO `role` (identifiant, description, version) VALUES (" + role.getIdentifiant()
+					+ ", " + role.getDescription() + ", " + role.getVersion() + ")");
+
+			statement = conn.prepareStatement("INSERT INTO `role` (identifiant, description, version) VALUES ('"
+					+ role.getIdentifiant() + "', '" + role.getDescription() + "', " + role.getVersion() + ")");
 
 			statement.executeUpdate();
 
