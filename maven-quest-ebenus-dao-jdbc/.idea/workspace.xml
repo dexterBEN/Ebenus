@@ -2,44 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59566f93-631e-4d5e-8f50-fb9aa62c1ee0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_ibatis_ibatis2_common_2_1_7_597.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_apache_log4j_extras_1_2_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_41.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/DriverManagerSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/DriverManagerSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ReadMe.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/ConnectionHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/ConnectionHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/DriverManagerSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/DriverManagerSingleton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/IDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/IDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/IRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/IRoleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/IUtilisateurDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/IUtilisateurDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/entities/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/entities/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/entities/Utilisateur.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/entities/Utilisateur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/exception/EbenusException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/exception/EbenusException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/impl/AbstractDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/impl/AbstractDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/impl/RoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/impl/RoleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/impl/UtilisateurDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/dao/impl/UtilisateurDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/factory/AbstractDaoFactory$FactoryDaoType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/factory/AbstractDaoFactory$FactoryDaoType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/factory/AbstractDaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/factory/AbstractDaoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/factory/DaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/factory/DaoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/service/IServiceFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/service/IServiceFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/service/ServiceFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/service/ServiceFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/utils/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/cours/ebenus/dao/test/JUnitQuestEbenus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/cours/ebenus/dao/test/JUnitQuestEbenus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/cours/ebenus/dao/test/script_base_test_junit_quest_ebenus.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="44" column="40" lean-forward="true" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
+            <state relative-caret-position="424">
+              <caret line="194" column="61" selection-start-line="194" selection-start-column="61" selection-end-line="194" selection-end-column="61" />
               <folding>
                 <element signature="e#1172#1178#0" expanded="true" />
               </folding>
@@ -87,11 +52,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1875">
-              <caret line="320" column="59" selection-start-line="320" selection-start-column="59" selection-end-line="320" selection-end-column="59" />
+            <state relative-caret-position="437">
+              <caret line="75" column="39" lean-forward="true" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
               <folding>
-                <element signature="e#17642#17643#0" expanded="true" />
-                <element signature="e#17660#17661#0" expanded="true" />
+                <element signature="e#14041#14042#0" expanded="true" />
+                <element signature="e#15434#15435#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,10 +65,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="54" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="54" />
+            <state relative-caret-position="590">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#629#630#0" expanded="true" />
                 <element signature="e#670#671#0" expanded="true" />
                 <element signature="e#707#708#0" expanded="true" />
@@ -149,6 +113,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/DriverManagerSingleton.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" />
       </list>
     </option>
@@ -264,7 +229,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552337073143" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552340991059" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -311,17 +276,17 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.249501" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.249501" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Educational.CheckDetails" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" sideWeight="0.49966735" weight="0.3297587" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.50033265" side_tool="true" weight="0.8002681" />
       <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.26675603" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49966735" weight="0.8002681" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -335,21 +300,43 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>statement.</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>statement</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="44" column="40" lean-forward="true" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
-          <folding>
-            <element signature="e#1172#1178#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -402,10 +389,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="54" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="54" />
+        <state relative-caret-position="590">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#629#630#0" expanded="true" />
             <element signature="e#670#671#0" expanded="true" />
             <element signature="e#707#708#0" expanded="true" />
@@ -414,13 +400,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="194" column="61" selection-start-line="194" selection-start-column="61" selection-end-line="194" selection-end-column="61" />
+          <folding>
+            <element signature="e#1172#1178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1875">
-          <caret line="320" column="59" selection-start-line="320" selection-start-column="59" selection-end-line="320" selection-end-column="59" />
+        <state relative-caret-position="437">
+          <caret line="75" column="39" lean-forward="true" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
           <folding>
-            <element signature="e#17642#17643#0" expanded="true" />
-            <element signature="e#17660#17661#0" expanded="true" />
+            <element signature="e#14041#14042#0" expanded="true" />
+            <element signature="e#15434#15435#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -46,7 +46,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 
 		try {
 
-			statement = conn.prepareStatement("SELECT * FROM role");
+			statement = conn.prepareStatement("SELECT * FROM Role");
 			// SQL request for table user
 			ResultSet rs = statement.executeQuery();
 			int idRole;
@@ -80,7 +80,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 		Role role = null;
 		try {
 
-			statement = conn.prepareStatement("SELECT * FROM role WHERE idRole = " + idRole);
+			statement = conn.prepareStatement("SELECT * FROM Role WHERE idRole = " + idRole);
 
 			ResultSet rs = statement.executeQuery();
 			int version;
@@ -111,7 +111,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 		List<Role> roles = new ArrayList<Role>();
 
 		try {
-			statement = conn.prepareStatement("SELECT * FROM role WHERE identifiant = '" + identifiantRole + "'");
+			statement = conn.prepareStatement("SELECT * FROM Role WHERE identifiant = '" + identifiantRole + "'");
 			ResultSet rs = statement.executeQuery();
 
 			int idRole;
@@ -145,15 +145,12 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 
 		try {
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			System.out.print("INSERT INTO `role` (identifiant, description, version) VALUES ('" + role.getIdentifiant()
+			System.out.print("INSERT INTO `Role` (identifiant, description, version) VALUES ('" + role.getIdentifiant()
 					+ "', '" + role.getDescription() + "', " + role.getVersion() + ")");
 
 			statement = conn
 					.prepareStatement(
-							"INSERT INTO `role` (identifiant, description, version) VALUES ('" + role.getIdentifiant()
+							"INSERT INTO `Role` (identifiant, description, version) VALUES ('" + role.getIdentifiant()
 									+ "', '" + role.getDescription() + "', " + role.getVersion() + ")",
 							Statement.RETURN_GENERATED_KEYS);
 
@@ -178,10 +175,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 	public Role updateRole(Role role) {
 		try {
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			statement = conn.prepareStatement("UPDATE `role` SET `identifiant`='" + role.getIdentifiant()
+			statement = conn.prepareStatement("UPDATE `Role` SET `identifiant`='" + role.getIdentifiant()
 					+ "', `description`='" + role.getDescription() + "' WHERE idRole=" + role.getIdRole());
 
 			statement.executeUpdate();
@@ -198,10 +192,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 	public boolean deleteRole(Role role) {
 		try {
 
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			statement = conn.prepareStatement("DELETE FROM `role` WHERE `idRole`=" + role.getIdRole());
+			statement = conn.prepareStatement("DELETE FROM `Role` WHERE `idRole`=" + role.getIdRole());
 			int rs = statement.executeUpdate();
 			return (rs >= 1);// return boolean of comparaison
 
