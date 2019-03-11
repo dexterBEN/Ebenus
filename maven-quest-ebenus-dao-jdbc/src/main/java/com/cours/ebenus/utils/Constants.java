@@ -23,5 +23,7 @@ public class Constants {
 
 	public static String SQL_JUNIT_PATH_FILE = "script_base_test_junit_quest_ebenus.sql";
 
+	public static String TIME_ZONE = "Europe/Paris";
+
 	public static int EXCEPTION_CODE_USER_ALREADY_EXIST = -1;
 }

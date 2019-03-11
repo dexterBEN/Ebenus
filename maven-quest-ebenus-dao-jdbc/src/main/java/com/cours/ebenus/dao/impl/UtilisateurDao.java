@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.cours.ebenus.utils.UserUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -24,6 +25,9 @@ import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.utils.Constants;
 import com.mysql.jdbc.Statement;
 
+import static com.cours.ebenus.utils.UserUtils.*;
+import static com.cours.ebenus.utils.UserUtils.UserLib.ID_ROLE;
+
 /**
  *
  * @author ElHadji
@@ -31,17 +35,7 @@ import com.mysql.jdbc.Statement;
 public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IUtilisateurDao {
 
 	private static final Log log = LogFactory.getLog(UtilisateurDao.class);
-
-	// JDBC driver name and database URL
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/";
-	// static final String DB_EBENUS_URL =
-	// "jdbc:mysql://localhost/base_quest_ebenus";
-	static final String DB_EBENUS_URL = Constants.DATABASE_URL;
-
-	// Database credentials
-	static final String USER = "root";
-	static final String PASS = "";
+	private static final String queryEnd = "'";
 
 	Connection conn = null;
 	PreparedStatement statement = null;
@@ -60,7 +54,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 	@Override
 	public List<Utilisateur> findAllUtilisateurs() {
 
-		List<Utilisateur> users = new ArrayList<Utilisateur>();
+		List<Utilisateur> users = new ArrayList<>();
 
 		try {
 
@@ -76,26 +70,26 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
 			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
 			 */
-			statement = conn.prepareStatement("SELECT * FROM utilisateur");
+			statement = conn.prepareStatement(getAllUserQuery);
 			// SQL request for table user
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
 
-				String name = rs.getString("nom");
-				String firstName = rs.getString("prenom");
-				String gender = rs.getString("civilite");
-				String mail = rs.getString("identifiant");
-				String password = rs.getString("motPasse");
-				Date birthDate = rs.getDate("dateNaissance");
-				Date createDate = rs.getDate("dateCreation");
-				Date updateDate = rs.getDate("dateModification");
-				Boolean activityState = rs.getBoolean("actif");
-				Boolean markAsErased = rs.getBoolean("marquerEffacer");
-				int idUser = rs.getInt("idUtilisateur");
-				int version = rs.getInt("version");
+				String name = rs.getString(UserUtils.UserLib.NOM.getField());
+				String firstName = rs.getString(UserUtils.UserLib.PRENOM.getField());
+				String gender = rs.getString(UserUtils.UserLib.CIVILITE.getField());
+				String mail = rs.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+				String password = rs.getString(UserUtils.UserLib.MOT_PASSE.getField());
+				Date birthDate = rs.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+				Date createDate = rs.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+				Date updateDate = rs.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+				Boolean activityState = rs.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+				Boolean markAsErased = rs.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+				int idUser = rs.getInt(UserUtils.UserLib.ID.getField());
+				int version = rs.getInt(UserUtils.UserLib.VERSION.getField());
 
-				int idRole = rs.getInt("idRole");
+				int idRole = rs.getInt(ID_ROLE.getField());//todo don't use RoleDAO as teacher said in the topic, have to make a query
 				Role role = roleDao.findRoleById(idRole);
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
@@ -133,26 +127,26 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
 			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
 			 */
-			statement = conn.prepareStatement("SELECT * FROM utilisateur WHERE idUtilisateur = " + idUtilisateur);
+			statement = conn.prepareStatement(getUserByIDQuery + idUtilisateur);
 
 			ResultSet rs = statement.executeQuery();
 
 			if (rs.next()) {
 
-				String name = rs.getString("nom");
-				String firstName = rs.getString("prenom");
-				String gender = rs.getString("civilite");
-				String mail = rs.getString("identifiant");
-				String password = rs.getString("motPasse");
-				Date birthDate = rs.getDate("dateNaissance");
-				Date createDate = rs.getDate("dateCreation");
-				Date updateDate = rs.getDate("dateModification");
-				Boolean activityState = rs.getBoolean("actif");
-				Boolean markAsErased = rs.getBoolean("marquerEffacer");
-				int idUser = rs.getInt("idUtilisateur");
-				int version = rs.getInt("version");
-				int idRole = rs.getInt("idRole");
-				Role role = roleDao.findRoleById(idRole);
+				String name = rs.getString(UserUtils.UserLib.NOM.getField());
+				String firstName = rs.getString(UserUtils.UserLib.PRENOM.getField());
+				String gender = rs.getString(UserUtils.UserLib.CIVILITE.getField());
+				String mail = rs.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+				String password = rs.getString(UserUtils.UserLib.MOT_PASSE.getField());
+				Date birthDate = rs.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+				Date createDate = rs.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+				Date updateDate = rs.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+				Boolean activityState = rs.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+				Boolean markAsErased = rs.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+				int idUser = rs.getInt(UserUtils.UserLib.ID.getField());
+				int version = rs.getInt(UserUtils.UserLib.VERSION.getField());
+				int idRole = rs.getInt(ID_ROLE.getField());
+				Role role = roleDao.findRoleById(idRole);//todo have to make query
 
 				user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate, createDate,
 						updateDate, activityState, markAsErased, version, role);
@@ -191,25 +185,25 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			 * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
 			 * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
 			 */
-			statement = conn.prepareStatement("SELECT * FROM utilisateur WHERE prenom = '" + prenom + "'");
+			statement = conn.prepareStatement(getUserByFirstNameQuery + prenom + queryEnd);
 
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				String name = rs.getString("nom");
-				String firstName = rs.getString("prenom");
-				String gender = rs.getString("civilite");
-				String mail = rs.getString("identifiant");
-				String password = rs.getString("motPasse");
-				Date birthDate = rs.getDate("dateNaissance");
-				Date createDate = rs.getDate("dateCreation");
-				Date updateDate = rs.getDate("dateModification");
-				Boolean activityState = rs.getBoolean("actif");
-				Boolean markAsErased = rs.getBoolean("marquerEffacer");
-				int idUser = rs.getInt("idUtilisateur");
-				int version = rs.getInt("version");
-				int idRole = rs.getInt("idRole");
-				Role role = roleDao.findRoleById(idRole);
+				String name = rs.getString(UserUtils.UserLib.NOM.getField());
+				String firstName = rs.getString(UserUtils.UserLib.PRENOM.getField());
+				String gender = rs.getString(UserUtils.UserLib.CIVILITE.getField());
+				String mail = rs.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+				String password = rs.getString(UserUtils.UserLib.MOT_PASSE.getField());
+				Date birthDate = rs.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+				Date createDate = rs.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+				Date updateDate = rs.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+				Boolean activityState = rs.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+				Boolean markAsErased = rs.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+				int idUser = rs.getInt(UserUtils.UserLib.ID.getField());
+				int version = rs.getInt(UserUtils.UserLib.VERSION.getField());
+				int idRole = rs.getInt(ID_ROLE.getField());
+				Role role = roleDao.findRoleById(idRole);//todo have to make query
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
 						createDate, updateDate, activityState, markAsErased, version, role);
@@ -255,20 +249,20 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				String name = rs.getString("nom");
-				String firstName = rs.getString("prenom");
-				String gender = rs.getString("civilite");
-				String mail = rs.getString("identifiant");
-				String password = rs.getString("motPasse");
-				Date birthDate = rs.getDate("dateNaissance");
-				Date createDate = rs.getDate("dateCreation");
-				Date updateDate = rs.getDate("dateModification");
-				Boolean activityState = rs.getBoolean("actif");
-				Boolean markAsErased = rs.getBoolean("marquerEffacer");
-				int idUser = rs.getInt("idUtilisateur");
-				int version = rs.getInt("version");
-				int idRole = rs.getInt("idRole");
-				Role role = roleDao.findRoleById(idRole);
+				String name = rs.getString(UserUtils.UserLib.NOM.getField());
+				String firstName = rs.getString(UserUtils.UserLib.PRENOM.getField());
+				String gender = rs.getString(UserUtils.UserLib.CIVILITE.getField());
+				String mail = rs.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+				String password = rs.getString(UserUtils.UserLib.MOT_PASSE.getField());
+				Date birthDate = rs.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+				Date createDate = rs.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+				Date updateDate = rs.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+				Boolean activityState = rs.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+				Boolean markAsErased = rs.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+				int idUser = rs.getInt(UserUtils.UserLib.ID.getField());
+				int version = rs.getInt(UserUtils.UserLib.VERSION.getField());
+				int idRole = rs.getInt(ID_ROLE.getField());
+				Role role = roleDao.findRoleById(idRole);//todo have to make query
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
 						createDate, updateDate, activityState, markAsErased, version, role);
@@ -312,20 +306,20 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				String name = rs.getString("nom");
-				String firstName = rs.getString("prenom");
-				String gender = rs.getString("civilite");
-				String mail = rs.getString("identifiant");
-				String password = rs.getString("motPasse");
-				Date birthDate = rs.getDate("dateNaissance");
-				Date createDate = rs.getDate("dateCreation");
-				Date updateDate = rs.getDate("dateModification");
-				Boolean activityState = rs.getBoolean("actif");
-				Boolean markAsErased = rs.getBoolean("marquerEffacer");
-				int idUser = rs.getInt("idUtilisateur");
-				int version = rs.getInt("version");
-				int idRole = rs.getInt("idRole");
-				Role role = roleDao.findRoleById(idRole);
+				String name = rs.getString(UserUtils.UserLib.NOM.getField());
+				String firstName = rs.getString(UserUtils.UserLib.PRENOM.getField());
+				String gender = rs.getString(UserUtils.UserLib.CIVILITE.getField());
+				String mail = rs.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+				String password = rs.getString(UserUtils.UserLib.MOT_PASSE.getField());
+				Date birthDate = rs.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+				Date createDate = rs.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+				Date updateDate = rs.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+				Boolean activityState = rs.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+				Boolean markAsErased = rs.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+				int idUser = rs.getInt(UserUtils.UserLib.ID.getField());
+				int version = rs.getInt(UserUtils.UserLib.VERSION.getField());
+				int idRole = rs.getInt(ID_ROLE.getField());
+				Role role = roleDao.findRoleById(idRole);//todo have to make query
 
 				Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
 						createDate, updateDate, activityState, markAsErased, version, role);

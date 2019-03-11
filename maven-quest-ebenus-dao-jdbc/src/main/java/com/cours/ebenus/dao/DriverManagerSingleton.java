@@ -15,6 +15,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.cours.ebenus.utils.Constants;
 
+import static com.cours.ebenus.utils.Constants.TIME_ZONE;
+
 /**
  *
  * @author ElHadji
@@ -46,16 +48,15 @@ public class DriverManagerSingleton {
 		// PreparedStatement stmt = null;
 		try {
 
-			TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+			TimeZone timezone = TimeZone.getTimeZone(TIME_ZONE);
 			TimeZone.setDefault(timezone);
 
 			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(jdbcDriver);
 
 			// STEP 4: Connect to DB
 			System.out.println("Connecting to DB base_quest_ebenus...");
 			conn = DriverManager.getConnection(url, user, password);
-			// stmt = conn.prepareStatement(sql);
 
 		} catch (SQLException se) {
 			// Handle errors for JDBC
