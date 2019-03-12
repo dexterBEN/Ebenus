@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cours.ebenus.controllers.LoginController">
+    <children>
+       <Label fx:id="label" layoutX="447.0" layoutY="45.0" minHeight="16" minWidth="69" text="Connectez-vous" />
+      <Label layoutX="320.0" layoutY="123.0" text="Identifiant" />
+      <TextField fx:id="identifiant" layoutX="432.0" layoutY="123.0" />
+      <PasswordField fx:id="motPasse" layoutX="432.0" layoutY="184.0" />
+      <Label layoutX="309.0" layoutY="184.0" text="Mot de passe" />
+      <Button layoutX="501.0" layoutY="300.0" mnemonicParsing="false" onAction="#authenticate" text="Valider" />
+    </children>
+</AnchorPane>
