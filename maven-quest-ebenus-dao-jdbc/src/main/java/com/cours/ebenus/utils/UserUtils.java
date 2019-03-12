@@ -10,7 +10,7 @@ public class UserUtils {
     public static final String getUserIdentifaintQuery = "SELECT * FROM Utilisateur WHERE identifiant = '";
     public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur INNER JOIN Role r ON r.idRole = u.idRole WHERE u.idRole = ? ";
     public static final String getUserByIdentifiantRoleQuery = "SELECT * FROM Utilisateur u INNER JOIN Role r ON r.idRole = u.idRole WHERE r.identifiant = ?";
-    public static final String createUserQuery = "INSERT INTO `Utilisateur` (`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `dateNaissance`, `dateCreation`, `dateModification`, `actif`, `marquerEffacer`, `version`) VALUES ('";
+    public static final String createUserQuery = "INSERT INTO `Utilisateur`(`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `actif`, `marquerEffacer`, `version`) VALUES (";
     public static final String uateUserQuery = "UPDATE Utilisateur SET idRole =";
     public static final String deleteUserQuery = "DELETE FROM `Utilisateur` WHERE `idUtilisateur`=";
 

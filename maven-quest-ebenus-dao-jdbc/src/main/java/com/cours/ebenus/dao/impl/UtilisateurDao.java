@@ -35,6 +35,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
     private static final Log log = LogFactory.getLog(UtilisateurDao.class);
     private static final String queryEnd = "'";
+    private static final String queryComaString = "', '";
+    private static final String queryComa = ",";
 
     Connection conn = null;
     PreparedStatement statement = null;
@@ -74,7 +76,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             ResultSet rs = statement.executeQuery();
 
             users.addAll(setUsers(rs));
-            for (Utilisateur user: users) {
+            for (Utilisateur user : users) {
                 System.out.println(user.toString());
             }
 
@@ -322,33 +324,39 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     @Override
     public Utilisateur createUtilisateur(Utilisateur user) {
 
-        try {
-            int isErased = user.isMarquerEffacer() ? 1 : 0;
-            int isActif = user.isActif() ? 1 : 0;
-            Date currentTime = new Date(System.currentTimeMillis());
-
-            statement = conn.prepareStatement(
-                    createUserQuery
-                            + user.getRole().getIdRole() + "', '" + user.getCivilite() + "', '" + user.getPrenom()
-                            + "', '" + user.getNom() + "', '" + user.getIdentifiant() + "', '" + user.getMotPasse()
-                            + "', " + user.getDateNaissance() + ", " + currentTime + ", " + currentTime + ", " + isActif
-                            + ", " + isErased + ", '" + user.getVersion() + "');",
-                    Statement.RETURN_GENERATED_KEYS);
-
-            statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-
-            if (rs.next()) {
-                int idUser = rs.getInt(1);
-                user.setIdUtilisateur(idUser);
+        if (user != null) {
+            try {
+                int idRoleStandard = 3;
+                int isErased = user.isMarquerEffacer() ? 1 : 0;
+                int isActif = user.isActif() ? 1 : 0;
+                Date currentTime = new Date(System.currentTimeMillis());
+                if (user.getDateNaissance() == null) {
+                    user.setDateNaissance(currentTime);
+                }
                 user.setDateCreation(currentTime);
                 user.setDateModification(currentTime);
-            }
 
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+                statement = conn.prepareStatement(
+                        createUserQuery
+                        + idRoleStandard + queryComa + queryEnd + user.getCivilite() + queryComaString + user.getPrenom()
+                                + queryComaString + user.getNom() + queryComaString + user.getIdentifiant() + queryComaString + user.getMotPasse()
+                                + queryEnd +queryComa + isActif + queryComa + isErased + queryComa + user.getVersion() + ")" ,
+                        Statement.RETURN_GENERATED_KEYS);
+
+
+                statement.executeUpdate();
+                ResultSet rs = statement.getGeneratedKeys();
+
+                if (rs.next()) {
+                    int idUser = rs.getInt(1);
+                    user.setIdUtilisateur(idUser);
+                }
+
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return user;
@@ -424,31 +432,31 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     private ArrayList<Utilisateur> setUsers(ResultSet result) {
         ArrayList<Utilisateur> returnList = new ArrayList<>();
         if (result != null) {
-                try {
-                    while (result.next()) {
-                        String name = result.getString(UserUtils.UserLib.NOM.getField());
-                        String firstName = result.getString(UserUtils.UserLib.PRENOM.getField());
-                        String gender = result.getString(UserUtils.UserLib.CIVILITE.getField());
-                        String mail = result.getString(UserUtils.UserLib.IDENTIFIANT.getField());
-                        String password = result.getString(UserUtils.UserLib.MOT_PASSE.getField());
-                        Date birthDate = result.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
-                        Date createDate = result.getDate(UserUtils.UserLib.DATE_CREATION.getField());
-                        Date updateDate = result.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
-                        Boolean activityState = result.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
-                        Boolean markAsErased = result.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
-                        int idUser = result.getInt(UserUtils.UserLib.ID.getField());
-                        int version = result.getInt(UserUtils.UserLib.VERSION.getField());
-                        int idRole = result.getInt(ID_ROLE.getField());
-                        Role role = roleDao.findRoleById(idRole);//todo have to make query
+            try {
+                while (result.next()) {
+                    String name = result.getString(UserUtils.UserLib.NOM.getField());
+                    String firstName = result.getString(UserUtils.UserLib.PRENOM.getField());
+                    String gender = result.getString(UserUtils.UserLib.CIVILITE.getField());
+                    String mail = result.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+                    String password = result.getString(UserUtils.UserLib.MOT_PASSE.getField());
+                    Date birthDate = result.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+                    Date createDate = result.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+                    Date updateDate = result.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+                    Boolean activityState = result.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+                    Boolean markAsErased = result.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+                    int idUser = result.getInt(UserUtils.UserLib.ID.getField());
+                    int version = result.getInt(UserUtils.UserLib.VERSION.getField());
+                    int idRole = result.getInt(ID_ROLE.getField());
+                    Role role = roleDao.findRoleById(idRole);//todo have to make query
 
-                        Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
-                                createDate, updateDate, activityState, markAsErased, version, role);
+                    Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
+                            createDate, updateDate, activityState, markAsErased, version, role);
 
-                        returnList.add(user);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                    returnList.add(user);
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return returnList;
     }
