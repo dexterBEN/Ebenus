@@ -26,4 +26,9 @@ public class Constants {
 	public static String TIME_ZONE = "Europe/Paris";
 
 	public static int EXCEPTION_CODE_USER_ALREADY_EXIST = -1;
+
+	public static final String cote = "'";
+	public static final String comaString = "', '";
+	public static final String coma = ",";
+	public static final String equal = "=";
 }

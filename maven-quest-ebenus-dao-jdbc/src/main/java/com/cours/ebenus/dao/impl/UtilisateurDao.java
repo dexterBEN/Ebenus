@@ -25,18 +25,16 @@ import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.utils.Constants;
 import com.mysql.jdbc.Statement;
 
+import static com.cours.ebenus.utils.Constants.*;
 import static com.cours.ebenus.utils.UserUtils.*;
-import static com.cours.ebenus.utils.UserUtils.UserLib.ID_ROLE;
+import static com.cours.ebenus.utils.UserUtils.UserLib.*;
 
 /**
  * @author ElHadji
  */
 public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IUtilisateurDao {
 
-    private static final Log log = LogFactory.getLog(UtilisateurDao.class);
-    private static final String queryEnd = "'";
-    private static final String queryComaString = "', '";
-    private static final String queryComa = ",";
+    public static final Log log = LogFactory.getLog(UtilisateurDao.class);
 
     Connection conn = null;
     PreparedStatement statement = null;
@@ -58,19 +56,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<>();
 
         try {
-
-            /*
-             * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-             * TimeZone.setDefault(timezone);
-             *
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
             statement = conn.prepareStatement(getAllUserQuery);
             // SQL request for table user
             ResultSet rs = statement.executeQuery();
@@ -95,20 +80,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     public Utilisateur findUtilisateurById(int idUtilisateur) {
         Utilisateur user = null;
         try {
-
-            /*
-             * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-             * TimeZone.setDefault(timezone);
-             *
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             * conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
             statement = conn.prepareStatement(getUserByIDQuery + idUtilisateur);
 
             ResultSet rs = statement.executeQuery();
@@ -132,21 +103,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
         try {
-
-            /*
-             * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-             * TimeZone.setDefault(timezone);
-             *
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             * conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
-            statement = conn.prepareStatement(getUserByFirstNameQuery + prenom + queryEnd);
+            statement = conn.prepareStatement(getUserByFirstNameQuery + prenom + cote);
 
             ResultSet rs = statement.executeQuery();
 
@@ -170,21 +127,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
         try {
-
-            /*
-             * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-             * TimeZone.setDefault(timezone);
-             *
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             * conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
-            statement = conn.prepareStatement(getUserByNameQuery + nom + queryEnd);
+            statement = conn.prepareStatement(getUserByNameQuery + nom + cote);
 
             ResultSet rs = statement.executeQuery();
 
@@ -207,21 +150,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
         try {
-
-            /*
-             * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-             * TimeZone.setDefault(timezone);
-             *
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             * conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
-            statement = conn.prepareStatement(getUserIdentifaintQuery + identifiant + queryEnd);
+            statement = conn.prepareStatement(getUserIdentifaintQuery + identifiant + cote);
 
             ResultSet rs = statement.executeQuery();
             users.addAll(setUsers(rs));
@@ -246,25 +175,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
         try {
 
-            /*
-             * TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
-             * TimeZone.setDefault(timezone);
-             *
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
-
             statement = conn.prepareStatement(getUserByIdRoleQuery);
             statement.setInt(1, idRole);
 
             result = statement.executeQuery();
 
-            while (result.next()) {//todo (so complicate) just a simple join
+            while (result.next()) {//todo (so complicate) just a simple query
 
                 Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
                         result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
@@ -300,7 +216,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
             result = statement.executeQuery();
 
-            while (result.next()) {//todo (so complicate) just a simple join
+            while (result.next()) {//todo (so complicate) just a simple query
 
                 Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
                         result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
@@ -338,9 +254,9 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
                 statement = conn.prepareStatement(
                         createUserQuery
-                        + idRoleStandard + queryComa + queryEnd + user.getCivilite() + queryComaString + user.getPrenom()
-                                + queryComaString + user.getNom() + queryComaString + user.getIdentifiant() + queryComaString + user.getMotPasse()
-                                + queryEnd +queryComa + isActif + queryComa + isErased + queryComa + user.getVersion() + ")" ,
+                        + idRoleStandard + coma + cote + user.getCivilite() + comaString + user.getPrenom()
+                                + comaString + user.getNom() + comaString + user.getIdentifiant() + comaString + user.getMotPasse()
+                                + cote +coma + isActif + coma + isErased + coma + user.getVersion() + ")" ,
                         Statement.RETURN_GENERATED_KEYS);
 
 
@@ -363,25 +279,30 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     }
 
     @Override
-    public Utilisateur updateUtilisateur(Utilisateur user) {//todo query complicate have to simplify it
-        String requete = uateUserQuery + user.getRole().getIdRole() + ", civilite = '"
-                + user.getCivilite() + "', prenom = '" + user.getPrenom() + "', " + "nom = '" + user.getNom()
-                + "', identifiant = '" + user.getIdentifiant() + "', motPasse = '" + user.getMotPasse() + "', actif = "
-                + parseBooleanToInteger(user.isActif()) + ", marquerEffacer = "
-                + parseBooleanToInteger(user.isMarquerEffacer()) + ", version = " + user.getVersion()
-                + " WHERE idUtilisateur = " + user.getIdUtilisateur() + ";";
-        try {
-            statement = conn.prepareStatement(requete);
+    public Utilisateur updateUtilisateur(Utilisateur user) {
+        if(user != null){
+            String requete = updateUserQuery + ID_ROLE.getField() + equal + user.getRole().getIdRole() + coma +
+                    CIVILITE.getField() + equal + cote
+                    + user.getCivilite() + cote + coma  +  PRENOM.getField() + equal + cote + user.getPrenom() + cote
+                    + coma + NOM.getField() + equal + cote + user.getNom() + cote + coma
+                    +  IDENTIFIANT.getField() + equal + cote + user.getIdentifiant() + cote + coma
+                    + MOT_PASSE.getField() + equal + cote + user.getMotPasse() + cote + coma + IS_ACTIF.getField() + equal
+                    + parseBooleanToInteger(user.isActif()) + coma + IS_DELETED + equal
+                    + parseBooleanToInteger(user.isMarquerEffacer()) + coma + VERSION.getField() + equal + user.getVersion()
+                    + " WHERE" + ID.getField() + equal + user.getIdUtilisateur() + ";";
+            try {
+                statement = conn.prepareStatement(requete);
 
-            if (statement.executeUpdate() > 0) {
-                return findUtilisateurByIdentifiant(user.getIdentifiant()).get(0);
+                if (statement.executeUpdate() > 0) {
+                    return findUtilisateurByIdentifiant(user.getIdentifiant()).get(0);
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
+        return user;
     }
 
     private Integer parseBooleanToInteger(Boolean isActif) {
@@ -392,16 +313,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     public boolean deleteUtilisateur(Utilisateur user) {
 
         try {
-            /*
-             * // STEP 2: Register JDBC driver Class.forName("com.mysql.jdbc.Driver");
-             *
-             * // STEP 3: Open a connection System.out.println("Connecting to database...");
-             * conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             *
-             * // STEP 4: Connect to specific DB
-             * System.out.println("Connecting to DB base_quest_ebenus..."); conn =
-             * DriverManager.getConnection(DB_EBENUS_URL, USER, PASS);
-             */
             statement = conn.prepareStatement(
                     deleteUserQuery + user.getIdUtilisateur() + "");
 
