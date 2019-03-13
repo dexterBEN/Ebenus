@@ -83,11 +83,9 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         try {
             statement = conn.prepareStatement(getUserByIDQuery + idUtilisateur);
 
-            ResultSet rs = statement.executeQuery();
-            user = !getUsers(rs).isEmpty() ? getUsers(rs).get(0) : null;
-            System.out.print("id: " + user.getIdUtilisateur() + "\n civilité: " + user.getCivilite() + "\n prénom: "
-                    + user.getPrenom());
-
+            final ResultSet rs = statement.executeQuery();
+            ArrayList<Utilisateur> results = getUsers(rs);
+            user = !results.isEmpty() ? results.get(0) : null;
         } catch (SQLException se) {
             // Handle errors for JDBC
             se.printStackTrace();
@@ -254,7 +252,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     public boolean deleteUtilisateur(Utilisateur user) {
 
         try {
-            statement = conn.prepareStatement(deleteUserQuery + user.getIdUtilisateur() + "");
+            statement = conn.prepareStatement(deleteUserQuery + user.getIdUtilisateur());
 
             if (statement.executeUpdate() > 0) {
                 return true;

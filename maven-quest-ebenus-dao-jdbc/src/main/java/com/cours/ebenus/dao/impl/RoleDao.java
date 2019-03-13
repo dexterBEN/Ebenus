@@ -49,7 +49,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
 
     @Override
     public Role findRoleById(int idRole) {
-        return getRoleByCriteria(idRole).get(0);
+        return (!getRoleByCriteria(idRole).isEmpty() ? getRoleByCriteria(idRole).get(0) : null);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
         try {
 
             statement = conn.prepareStatement(updateRoleQuery + qote + role.getIdentifiant() + qote
-                    + coma + qote + RoleLib.DESCRIPTION + qote + equal + qote + role.getDescription() + qote + " WHERE "
+                    + coma + RoleLib.DESCRIPTION.getField() + equal + qote + role.getDescription() + qote + " WHERE "
                     + RoleLib.ID.getField() + equal + role.getIdRole());
 
             statement.executeUpdate();

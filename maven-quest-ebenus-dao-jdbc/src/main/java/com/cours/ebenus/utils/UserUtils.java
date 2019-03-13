@@ -11,7 +11,7 @@ public class UserUtils {
     public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur WHERE idRole = ";
     public static final String createUserQuery = "INSERT INTO `Utilisateur`(`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `actif`, `marquerEffacer`, `version`) VALUES (";
     public static final String updateUserQuery = "UPDATE Utilisateur SET ";
-    public static final String deleteUserQuery = "DELETE FROM `Utilisateur` WHERE `idUtilisateur`=";
+    public static final String deleteUserQuery = "DELETE FROM `Utilisateur` WHERE idUtilisateur =";
 
     public enum UserLib {
 
