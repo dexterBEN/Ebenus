@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="maven-quest-ebenus-dao-jdbc:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/maven_quest_ebenus_dao_jdbc_jar</output-path>
+    <root id="archive" name="maven-quest-ebenus-dao-jdbc.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="maven-quest-ebenus-dao-jdbc" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/apache-log4j-extras/1.2.17/apache-log4j-extras-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

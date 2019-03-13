@@ -5,6 +5,16 @@
  */
 package com.cours.ebenus.dao.impl;
 
+import com.cours.ebenus.dao.ConnectionHelper;
+import com.cours.ebenus.dao.DriverManagerSingleton;
+import com.cours.ebenus.dao.IUtilisateurDao;
+import com.cours.ebenus.dao.entities.Role;
+import com.cours.ebenus.dao.entities.Utilisateur;
+import com.cours.ebenus.utils.UserUtils;
+import com.mysql.jdbc.Statement;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,21 +23,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.cours.ebenus.utils.UserUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.cours.ebenus.dao.ConnectionHelper;
-import com.cours.ebenus.dao.DriverManagerSingleton;
-import com.cours.ebenus.dao.IUtilisateurDao;
-import com.cours.ebenus.dao.entities.Role;
-import com.cours.ebenus.dao.entities.Utilisateur;
-import com.cours.ebenus.utils.Constants;
-import com.mysql.jdbc.Statement;
-
 import static com.cours.ebenus.utils.Constants.*;
-import static com.cours.ebenus.utils.UserUtils.*;
 import static com.cours.ebenus.utils.UserUtils.UserLib.*;
+import static com.cours.ebenus.utils.UserUtils.*;
 
 /**
  * @author ElHadji
@@ -169,7 +167,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
     @Override
     public List<Utilisateur> findUtilisateursByIdRole(int idRole) {
-        ResultSet result = null;
 
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
@@ -178,20 +175,23 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             statement = conn.prepareStatement(getUserByIdRoleQuery);
             statement.setInt(1, idRole);
 
+            ResultSet resultForUSers = statement.executeQuery();
+            statement = conn.prepareStatement("SELECT * FROM Role WHERE idRole =" + idRole);
             result = statement.executeQuery();
+            if (resultForUSers != null && result != null) {
+                while (result.next() && resultForUSers.next()) {//todo (so complicate) just a simple query
 
-            while (result.next()) {//todo (so complicate) just a simple query
+                    Utilisateur user = new Utilisateur(resultForUSers.getInt(ID.getField()), resultForUSers.getString(CIVILITE.getField()),
+                            resultForUSers.getString(PRENOM.getField()), resultForUSers.getString(NOM.getField()), resultForUSers.getString(IDENTIFIANT.getField()),
+                            resultForUSers.getString(MOT_PASSE.getField()), resultForUSers.getDate(DATE_NAISSANCE.getField()),
+                            resultForUSers.getDate(DATE_CREATION.getField()), resultForUSers.getDate(DATE_MODIFICATION.getField()),
+                            resultForUSers.getBoolean(IS_ACTIF.getField()), resultForUSers.getBoolean(IS_DELETED.getField()), resultForUSers.getInt(VERSION.getField()),
+                            new Role(result.getInt(ID_ROLE.getField()), result.getString("identifiant"),
+                                    result.getString("description"), result.getInt("version")));
 
-                Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
-                        result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
-                        result.getString("u.motPasse"), result.getDate("u.dateNaissance"),
-                        result.getDate("u.dateCreation"), result.getDate("u.dateModification"),
-                        result.getBoolean("u.actif"), result.getBoolean("u.marquerEffacer"), result.getInt("u.version"),
-                        new Role(result.getInt("r.idRole"), result.getString("r.identifiant"),
-                                result.getString("r.description"), result.getInt("r.version")));
+                    users.add(user);
 
-                users.add(user);
-
+                }
             }
 
         } catch (Throwable e) {
@@ -209,14 +209,14 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<>();
 
         try {
+            if (identifiantRole != null)
 
-            statement = conn.prepareStatement(
-                    getUserByIdentifiantRoleQuery);
+                statement = conn.prepareStatement(getUserByIdentifiantRoleQuery);
             statement.setString(1, identifiantRole);
 
             result = statement.executeQuery();
 
-            while (result.next()) {//todo (so complicate) just a simple query
+            while (result.next()) {
 
                 Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
                         result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
@@ -254,11 +254,10 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
                 statement = conn.prepareStatement(
                         createUserQuery
-                        + idRoleStandard + coma + cote + user.getCivilite() + comaString + user.getPrenom()
+                                + idRoleStandard + coma + cote + user.getCivilite() + comaString + user.getPrenom()
                                 + comaString + user.getNom() + comaString + user.getIdentifiant() + comaString + user.getMotPasse()
-                                + cote +coma + isActif + coma + isErased + coma + user.getVersion() + ")" ,
+                                + cote + coma + isActif + coma + isErased + coma + user.getVersion() + ")",
                         Statement.RETURN_GENERATED_KEYS);
-
 
                 statement.executeUpdate();
                 ResultSet rs = statement.getGeneratedKeys();
@@ -280,12 +279,13 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
     @Override
     public Utilisateur updateUtilisateur(Utilisateur user) {
-        if(user != null){
+        if (user != null) {
+            user.setDateModification(new Date(System.currentTimeMillis()));
             String requete = updateUserQuery + ID_ROLE.getField() + equal + user.getRole().getIdRole() + coma +
                     CIVILITE.getField() + equal + cote
-                    + user.getCivilite() + cote + coma  +  PRENOM.getField() + equal + cote + user.getPrenom() + cote
+                    + user.getCivilite() + cote + coma + PRENOM.getField() + equal + cote + user.getPrenom() + cote
                     + coma + NOM.getField() + equal + cote + user.getNom() + cote + coma
-                    +  IDENTIFIANT.getField() + equal + cote + user.getIdentifiant() + cote + coma
+                    + IDENTIFIANT.getField() + equal + cote + user.getIdentifiant() + cote + coma
                     + MOT_PASSE.getField() + equal + cote + user.getMotPasse() + cote + coma + IS_ACTIF.getField() + equal
                     + parseBooleanToInteger(user.isActif()) + coma + IS_DELETED + equal
                     + parseBooleanToInteger(user.isMarquerEffacer()) + coma + VERSION.getField() + equal + user.getVersion()
@@ -313,8 +313,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     public boolean deleteUtilisateur(Utilisateur user) {
 
         try {
-            statement = conn.prepareStatement(
-                    deleteUserQuery + user.getIdUtilisateur() + "");
+            statement = conn.prepareStatement(deleteUserQuery + user.getIdUtilisateur() + "");
 
             if (statement.executeUpdate() > 0) {
                 return true;

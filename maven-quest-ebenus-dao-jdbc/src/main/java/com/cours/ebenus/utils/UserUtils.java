@@ -8,7 +8,7 @@ public class UserUtils {
     public static final String getUserByFirstNameQuery = "SELECT * FROM Utilisateur WHERE prenom = '";
     public static final String getUserByNameQuery = "SELECT * FROM Utilisateur WHERE nom = '";
     public static final String getUserIdentifaintQuery = "SELECT * FROM Utilisateur WHERE identifiant = '";
-    public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur INNER JOIN Role r ON r.idRole = u.idRole WHERE u.idRole = ? ";
+    public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur WHERE idRole = ? ";
     public static final String getUserByIdentifiantRoleQuery = "SELECT * FROM Utilisateur u INNER JOIN Role r ON r.idRole = u.idRole WHERE r.identifiant = ?";
     public static final String createUserQuery = "INSERT INTO `Utilisateur`(`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `actif`, `marquerEffacer`, `version`) VALUES (";
     public static final String updateUserQuery = "UPDATE Utilisateur SET";
