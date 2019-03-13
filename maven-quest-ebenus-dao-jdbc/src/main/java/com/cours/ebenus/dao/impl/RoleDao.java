@@ -31,7 +31,6 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
     private static final Log log = LogFactory.getLog(RoleDao.class);
     Connection conn = null;
     PreparedStatement statement = null;
-    ResultSet result = null;
 
     public RoleDao() {
         // super(Role.class);

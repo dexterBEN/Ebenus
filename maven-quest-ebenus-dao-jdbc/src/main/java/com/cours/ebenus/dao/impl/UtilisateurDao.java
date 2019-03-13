@@ -83,7 +83,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         try {
             statement = conn.prepareStatement(getUserByIDQuery + idUtilisateur);
 
-            final ResultSet rs = statement.executeQuery();
+            ResultSet rs = statement.executeQuery();
             ArrayList<Utilisateur> results = getUsers(rs);
             user = !results.isEmpty() ? results.get(0) : null;
         } catch (SQLException se) {
