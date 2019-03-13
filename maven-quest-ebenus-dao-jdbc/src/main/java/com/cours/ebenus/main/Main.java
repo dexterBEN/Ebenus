@@ -135,7 +135,7 @@ public class Main {
                 break;
 
             case 9:
-                System.out.print("Give the id of the role :");
+                System.out.print("Give the id of the role : ");
                 int idRole = inputUser.nextInt();
                 List<Utilisateur> usersTofind = utilisateurDao.findUtilisateursByIdRole(idRole);
                 if (!usersTofind.isEmpty()) {

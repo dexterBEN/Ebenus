@@ -104,7 +104,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
         try {
-            statement = conn.prepareStatement(getUserByFirstNameQuery + prenom + cote);
+            statement = conn.prepareStatement(getUserByFirstNameQuery + prenom + qote);
 
             ResultSet rs = statement.executeQuery();
 
@@ -128,7 +128,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
         try {
-            statement = conn.prepareStatement(getUserByNameQuery + nom + cote);
+            statement = conn.prepareStatement(getUserByNameQuery + nom + qote);
 
             ResultSet rs = statement.executeQuery();
 
@@ -151,7 +151,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         List<Utilisateur> users = new ArrayList<Utilisateur>();
 
         try {
-            statement = conn.prepareStatement(getUserIdentifaintQuery + identifiant + cote);
+            statement = conn.prepareStatement(getUserIdentifaintQuery + identifiant + qote);
 
             ResultSet rs = statement.executeQuery();
             users.addAll(setUsers(rs));
@@ -195,9 +195,9 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
                 statement = conn.prepareStatement(
                         createUserQuery
-                                + idRoleStandard + coma + cote + user.getCivilite() + comaString + user.getPrenom()
+                                + idRoleStandard + coma + qote + user.getCivilite() + comaString + user.getPrenom()
                                 + comaString + user.getNom() + comaString + user.getIdentifiant() + comaString + user.getMotPasse()
-                                + cote + coma + isActif + coma + isErased + coma + user.getVersion() + ")",
+                                + qote + coma + isActif + coma + isErased + coma + user.getVersion() + ")",
                         Statement.RETURN_GENERATED_KEYS);
 
                 statement.executeUpdate();
@@ -223,11 +223,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         if (user != null) {
             user.setDateModification(new Date(System.currentTimeMillis()));
             String requete = updateUserQuery + ID_ROLE.getField() + equal + user.getRole().getIdRole() + coma +
-                    CIVILITE.getField() + equal + cote
-                    + user.getCivilite() + cote + coma + PRENOM.getField() + equal + cote + user.getPrenom() + cote
-                    + coma + NOM.getField() + equal + cote + user.getNom() + cote + coma
-                    + IDENTIFIANT.getField() + equal + cote + user.getIdentifiant() + cote + coma
-                    + MOT_PASSE.getField() + equal + cote + user.getMotPasse() + cote + coma + IS_ACTIF.getField() + equal
+                    CIVILITE.getField() + equal + qote
+                    + user.getCivilite() + qote + coma + PRENOM.getField() + equal + qote + user.getPrenom() + qote
+                    + coma + NOM.getField() + equal + qote + user.getNom() + qote + coma
+                    + IDENTIFIANT.getField() + equal + qote + user.getIdentifiant() + qote + coma
+                    + MOT_PASSE.getField() + equal + qote + user.getMotPasse() + qote + coma + IS_ACTIF.getField() + equal
                     + parseBooleanToInteger(user.isActif()) + coma + IS_DELETED + equal
                     + parseBooleanToInteger(user.isMarquerEffacer()) + coma + VERSION.getField() + equal + user.getVersion()
                     + " WHERE" + ID.getField() + equal + user.getIdUtilisateur() + ";";
@@ -318,23 +318,19 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         return returnList;
     }
 
-    private List<Utilisateur> getUsersByRoleCriteria(Object criteria){
+    private List<Utilisateur> getUsersByRoleCriteria(Object criteria) {
         List<Utilisateur> users = new ArrayList<>();
         ResultSet resultForUSers = null;
-        if(criteria instanceof String){
+        if (criteria instanceof String) {
             try {
-                statement = conn.prepareStatement(getRoleByIdentifantQuery + criteria);
+                statement = conn.prepareStatement(getRoleByIdentifantQuery + qote + criteria + qote);
                 result = statement.executeQuery();
-                statement = conn.prepareStatement(getUserByIdRoleQuery + result.getInt(RoleUtils.RoleLib.ID.getField()));
-                resultForUSers = statement.executeQuery();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-        }else if(criteria instanceof Integer){
+        } else if (criteria instanceof Integer) {
             try {
-                statement = conn.prepareStatement(getUserByIdRoleQuery + criteria);
-                resultForUSers = statement.executeQuery();
                 statement = conn.prepareStatement(getRoleByIdQuery + criteria);
                 result = statement.executeQuery();
             } catch (SQLException e) {
@@ -342,8 +338,10 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             }
         }
         try {
-            if (resultForUSers != null && result != null && result.next()) {
-                while (resultForUSers.next()) {
+            if (result != null && result.next()) {
+                statement = conn.prepareStatement(getUserByIdRoleQuery + result.getInt(ID_ROLE.getField()));
+                resultForUSers = statement.executeQuery();
+                while (resultForUSers != null && resultForUSers.next()) {
                     Utilisateur user = new Utilisateur(resultForUSers.getInt(ID.getField()), resultForUSers.getString(CIVILITE.getField()),
                             resultForUSers.getString(PRENOM.getField()), resultForUSers.getString(NOM.getField()), resultForUSers.getString(IDENTIFIANT.getField()),
                             resultForUSers.getString(MOT_PASSE.getField()), resultForUSers.getDate(DATE_NAISSANCE.getField()),
