@@ -10,6 +10,7 @@ import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IUtilisateurDao;
 import com.cours.ebenus.dao.entities.Role;
 import com.cours.ebenus.dao.entities.Utilisateur;
+import com.cours.ebenus.utils.RoleUtils;
 import com.cours.ebenus.utils.UserUtils;
 import com.mysql.jdbc.Statement;
 import org.apache.commons.logging.Log;
@@ -24,6 +25,8 @@ import java.util.Date;
 import java.util.List;
 
 import static com.cours.ebenus.utils.Constants.*;
+import static com.cours.ebenus.utils.RoleUtils.getRoleByIdQuery;
+import static com.cours.ebenus.utils.RoleUtils.getRoleByIdentifantQuery;
 import static com.cours.ebenus.utils.UserUtils.UserLib.*;
 import static com.cours.ebenus.utils.UserUtils.*;
 
@@ -167,74 +170,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
     @Override
     public List<Utilisateur> findUtilisateursByIdRole(int idRole) {
-
-        List<Utilisateur> users = new ArrayList<Utilisateur>();
-
-        try {
-
-            statement = conn.prepareStatement(getUserByIdRoleQuery);
-            statement.setInt(1, idRole);
-
-            ResultSet resultForUSers = statement.executeQuery();
-            statement = conn.prepareStatement("SELECT * FROM Role WHERE idRole =" + idRole);
-            result = statement.executeQuery();
-            if (resultForUSers != null && result != null) {
-                while (result.next() && resultForUSers.next()) {//todo (so complicate) just a simple query
-
-                    Utilisateur user = new Utilisateur(resultForUSers.getInt(ID.getField()), resultForUSers.getString(CIVILITE.getField()),
-                            resultForUSers.getString(PRENOM.getField()), resultForUSers.getString(NOM.getField()), resultForUSers.getString(IDENTIFIANT.getField()),
-                            resultForUSers.getString(MOT_PASSE.getField()), resultForUSers.getDate(DATE_NAISSANCE.getField()),
-                            resultForUSers.getDate(DATE_CREATION.getField()), resultForUSers.getDate(DATE_MODIFICATION.getField()),
-                            resultForUSers.getBoolean(IS_ACTIF.getField()), resultForUSers.getBoolean(IS_DELETED.getField()), resultForUSers.getInt(VERSION.getField()),
-                            new Role(result.getInt(ID_ROLE.getField()), result.getString("identifiant"),
-                                    result.getString("description"), result.getInt("version")));
-
-                    users.add(user);
-
-                }
-            }
-
-        } catch (Throwable e) {
-            e.printStackTrace();
-
-        } finally {
-            ConnectionHelper.closeSqlResources(statement, result);
-        }
-
-        return users;
+        return new ArrayList<>(getUsersByRoleCriteria(idRole));
     }
 
     @Override
     public List<Utilisateur> findUtilisateursByIdentifiantRole(String identifiantRole) {
-        List<Utilisateur> users = new ArrayList<>();
-
-        try {
-            if (identifiantRole != null)
-
-                statement = conn.prepareStatement(getUserByIdentifiantRoleQuery);
-            statement.setString(1, identifiantRole);
-
-            result = statement.executeQuery();
-
-            while (result.next()) {
-
-                Utilisateur user = new Utilisateur(result.getInt("u.idUtilisateur"), result.getString("u.civilite"),
-                        result.getString("u.prenom"), result.getString("u.nom"), result.getString("u.identifiant"),
-                        result.getString("u.motPasse"), result.getDate("u.dateNaissance"),
-                        result.getDate("u.dateCreation"), result.getDate("u.dateModification"),
-                        result.getBoolean("u.actif"), result.getBoolean("u.marquerEffacer"), result.getInt("u.version"),
-                        new Role(result.getInt("r.idRole"), result.getString("r.identifiant"),
-                                result.getString("r.description"), result.getInt("r.version")));
-
-                users.add(user);
-            }
-
-        } catch (Throwable e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionHelper.closeSqlResources(statement, null);
-        }
-        return users;
+        return new ArrayList<>(getUsersByRoleCriteria(identifiantRole));
     }
 
     @Override
@@ -357,8 +298,14 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
                     int idUser = result.getInt(UserUtils.UserLib.ID.getField());
                     int version = result.getInt(UserUtils.UserLib.VERSION.getField());
                     int idRole = result.getInt(ID_ROLE.getField());
-                    Role role = roleDao.findRoleById(idRole);//todo have to make query
+                    statement = conn.prepareStatement(getRoleByIdQuery + idRole);
+                    ResultSet rsRole = statement.executeQuery();
+                    Role role = null;
+                    if (rsRole != null) {
+                        role = new Role(rsRole.getInt(RoleUtils.RoleLib.ID.getField()), rsRole.getString(RoleUtils.RoleLib.IDENTIFIANT.getField()),
+                                rsRole.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), rsRole.getInt(RoleUtils.RoleLib.VERSION.getField()));
 
+                    }
                     Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
                             createDate, updateDate, activityState, markAsErased, version, role);
 
@@ -369,5 +316,54 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             }
         }
         return returnList;
+    }
+
+    private List<Utilisateur> getUsersByRoleCriteria(Object criteria){
+        List<Utilisateur> users = new ArrayList<>();
+        ResultSet resultForUSers = null;
+        if(criteria instanceof String){
+            try {
+                statement = conn.prepareStatement(getRoleByIdentifantQuery + criteria);
+                result = statement.executeQuery();
+                statement = conn.prepareStatement(getUserByIdRoleQuery + result.getInt(RoleUtils.RoleLib.ID.getField()));
+                resultForUSers = statement.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }else if(criteria instanceof Integer){
+            try {
+                statement = conn.prepareStatement(getUserByIdRoleQuery + criteria);
+                resultForUSers = statement.executeQuery();
+                statement = conn.prepareStatement(getRoleByIdQuery + criteria);
+                result = statement.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            if (resultForUSers != null && result != null && result.next()) {
+                while (resultForUSers.next()) {
+                    Utilisateur user = new Utilisateur(resultForUSers.getInt(ID.getField()), resultForUSers.getString(CIVILITE.getField()),
+                            resultForUSers.getString(PRENOM.getField()), resultForUSers.getString(NOM.getField()), resultForUSers.getString(IDENTIFIANT.getField()),
+                            resultForUSers.getString(MOT_PASSE.getField()), resultForUSers.getDate(DATE_NAISSANCE.getField()),
+                            resultForUSers.getDate(DATE_CREATION.getField()), resultForUSers.getDate(DATE_MODIFICATION.getField()),
+                            resultForUSers.getBoolean(IS_ACTIF.getField()), resultForUSers.getBoolean(IS_DELETED.getField()), resultForUSers.getInt(VERSION.getField()),
+                            new Role(result.getInt(RoleUtils.RoleLib.ID.getField()), result.getString(RoleUtils.RoleLib.IDENTIFIANT.getField()),
+                                    result.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), result.getInt(RoleUtils.RoleLib.VERSION.getField())));
+
+                    users.add(user);
+
+                }
+            }
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, result);
+            ConnectionHelper.closeSqlResources(statement, resultForUSers);
+        }
+        return users;
     }
 }
