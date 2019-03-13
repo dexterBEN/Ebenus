@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59566f93-631e-4d5e-8f50-fb9aa62c1ee0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/RoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/RoleUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-896">
-              <caret line="46" column="39" lean-forward="true" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+            <state relative-caret-position="214">
+              <caret line="120" column="50" lean-forward="true" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
               <folding>
                 <element signature="e#1340#1341#0" expanded="true" />
                 <element signature="e#1397#1398#0" expanded="true" />
@@ -54,10 +54,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/cours/ebenus/dao/test/JUnitQuestEbenus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="374" column="50" selection-start-line="374" selection-start-column="42" selection-end-line="374" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="282" column="4" lean-forward="true" selection-start-line="282" selection-start-column="4" selection-end-line="282" selection-end-column="61" />
+            <state relative-caret-position="66">
+              <caret line="85" column="52" lean-forward="true" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
               <folding>
                 <element signature="e#4525#4538#0" expanded="true" />
                 <element signature="e#3915#3928#0" expanded="true" />
@@ -74,8 +83,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+            <state relative-caret-position="78">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+              <folding>
+                <element signature="e#1674#1675#0" expanded="true" />
+                <element signature="e#1716#1717#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,23 +96,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/RoleUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="46" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="46" />
+            <state relative-caret-position="30">
+              <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
               <folding>
                 <element signature="e#570#571#0" expanded="true" />
                 <element signature="e#612#613#0" expanded="true" />
                 <element signature="e#648#649#0" expanded="true" />
                 <element signature="e#684#685#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/ConnectionHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -133,12 +137,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/DriverManagerSingleton.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/RoleUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" />
       </list>
     </option>
   </component>
@@ -171,78 +175,22 @@
               <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
               <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
               <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
               <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-quest-ebenus-dao-jdbc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-quest-ebenus-dao-jdbc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ebenus" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -273,7 +221,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552487912159" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552489342484" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -292,7 +240,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.JUnitQuestEbenus">
     <configuration name="Ebenus" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.cours.ebenus.main.Main" />
       <module name="maven-quest-ebenus-dao-jdbc" />
@@ -300,6 +248,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JUnitQuestEbenus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="maven-quest-ebenus-dao-jdbc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cours.ebenus.dao.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cours.ebenus.dao.test" />
+      <option name="MAIN_CLASS_NAME" value="com.cours.ebenus.dao.test.JUnitQuestEbenus" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Ebenus" />
+      <item itemvalue="JUnit.JUnitQuestEbenus" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JUnitQuestEbenus" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -314,15 +285,48 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 48m 01s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 48m 10s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 49m 58s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 51m 51s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 53m 00s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 54m 32s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 55m 28s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 57m 17s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 58m 16s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.13 at 15h 59m 25s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="51" y="25" width="1229" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1090448" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07354184" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Educational.CheckDetails" order="0" />
       <window_info anchor="bottom" id="Version Control" order="1" />
@@ -331,11 +335,11 @@
       <window_info anchor="bottom" id="Messages" order="4" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.49966735" visible="true" weight="0.49469966" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49966735" weight="0.49469966" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Debug" order="11" weight="0.39929327" />
+      <window_info active="true" anchor="bottom" id="Debug" order="11" visible="true" weight="0.39929327" />
       <window_info anchor="right" id="Palette" />
       <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="right" id="Maven" />
@@ -346,8 +350,36 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java</url>
+          <line>236</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java</url>
+          <line>86</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>getUsers(rs)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>statement</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>statement.executeUpdate()</expression-string>
         <language-id>JAVA</language-id>
@@ -360,11 +392,6 @@
       </expression>
       <expression>
         <expression-string>statement.execute()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>statement</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -387,20 +414,6 @@
     <entry file="file://$PROJECT_DIR$/script_base_test_junit_quest_ebenus.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-605" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/cours/ebenus/dao/test/JUnitQuestEbenus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="97" column="43" selection-start-line="97" selection-start-column="43" selection-end-line="97" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/ConnectionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/entities/Utilisateur.java">
@@ -442,17 +455,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        <state relative-caret-position="214">
+          <caret line="120" column="50" lean-forward="true" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
+          <folding>
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1809#1810#0" expanded="true" />
+            <element signature="e#1866#1867#0" expanded="true" />
+            <element signature="e#2393#2394#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/cours/ebenus/dao/test/JUnitQuestEbenus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="374" column="50" selection-start-line="374" selection-start-column="42" selection-end-line="374" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/ConnectionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/RoleUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="46" />
+        <state relative-caret-position="30">
+          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           <folding>
             <element signature="e#570#571#0" expanded="true" />
             <element signature="e#612#613#0" expanded="true" />
@@ -462,10 +497,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding>
+            <element signature="e#1674#1675#0" expanded="true" />
+            <element signature="e#1716#1717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="282" column="4" lean-forward="true" selection-start-line="282" selection-start-column="4" selection-end-line="282" selection-end-column="61" />
+        <state relative-caret-position="66">
+          <caret line="85" column="52" lean-forward="true" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
           <folding>
             <element signature="e#4525#4538#0" expanded="true" />
             <element signature="e#3915#3928#0" expanded="true" />
@@ -474,21 +520,6 @@
             <element signature="e#8538#8539#0" expanded="true" />
             <element signature="e#9368#9369#0" expanded="true" />
             <element signature="e#9395#9396#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-896">
-          <caret line="46" column="39" lean-forward="true" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
-          <folding>
-            <element signature="e#1340#1341#0" expanded="true" />
-            <element signature="e#1397#1398#0" expanded="true" />
-            <element signature="e#1809#1810#0" expanded="true" />
-            <element signature="e#1866#1867#0" expanded="true" />
-            <element signature="e#2393#2394#0" expanded="true" />
-            <element signature="e#2432#2433#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -9,9 +9,8 @@ public class UserUtils {
     public static final String getUserByNameQuery = "SELECT * FROM Utilisateur WHERE nom = '";
     public static final String getUserIdentifaintQuery = "SELECT * FROM Utilisateur WHERE identifiant = '";
     public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur WHERE idRole = ";
-    public static final String getUserByIdentifiantRoleQuery = "SELECT * FROM Utilisateur WHERE identifiant = ? ";
     public static final String createUserQuery = "INSERT INTO `Utilisateur`(`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `actif`, `marquerEffacer`, `version`) VALUES (";
-    public static final String updateUserQuery = "UPDATE Utilisateur SET";
+    public static final String updateUserQuery = "UPDATE Utilisateur SET ";
     public static final String deleteUserQuery = "DELETE FROM `Utilisateur` WHERE `idUtilisateur`=";
 
     public enum UserLib {

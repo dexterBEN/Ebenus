@@ -61,7 +61,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             // SQL request for table user
             ResultSet rs = statement.executeQuery();
 
-            users.addAll(setUsers(rs));
+            users.addAll(getUsers(rs));
             for (Utilisateur user : users) {
                 System.out.println(user.toString());
             }
@@ -84,7 +84,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             statement = conn.prepareStatement(getUserByIDQuery + idUtilisateur);
 
             ResultSet rs = statement.executeQuery();
-            user = setUsers(rs).get(0);
+            user = !getUsers(rs).isEmpty() ? getUsers(rs).get(0) : null;
             System.out.print("id: " + user.getIdUtilisateur() + "\n civilité: " + user.getCivilite() + "\n prénom: "
                     + user.getPrenom());
 
@@ -108,7 +108,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
             ResultSet rs = statement.executeQuery();
 
-            users.addAll(setUsers(rs));
+            users.addAll(getUsers(rs));
 
             for (Utilisateur user : users) {
                 System.out.println(user);
@@ -132,7 +132,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
             ResultSet rs = statement.executeQuery();
 
-            users.addAll(setUsers(rs));
+            users.addAll(getUsers(rs));
 
             for (Utilisateur user : users) {
                 System.out.println(user);
@@ -154,7 +154,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             statement = conn.prepareStatement(getUserIdentifaintQuery + identifiant + qote);
 
             ResultSet rs = statement.executeQuery();
-            users.addAll(setUsers(rs));
+            users.addAll(getUsers(rs));
             for (Utilisateur user : users) {
                 System.out.println(user);
             }
@@ -228,9 +228,9 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
                     + coma + NOM.getField() + equal + qote + user.getNom() + qote + coma
                     + IDENTIFIANT.getField() + equal + qote + user.getIdentifiant() + qote + coma
                     + MOT_PASSE.getField() + equal + qote + user.getMotPasse() + qote + coma + IS_ACTIF.getField() + equal
-                    + parseBooleanToInteger(user.isActif()) + coma + IS_DELETED + equal
+                    + parseBooleanToInteger(user.isActif()) + coma + IS_DELETED.getField() + equal
                     + parseBooleanToInteger(user.isMarquerEffacer()) + coma + VERSION.getField() + equal + user.getVersion()
-                    + " WHERE" + ID.getField() + equal + user.getIdUtilisateur() + ";";
+                    + " WHERE " + ID.getField() + equal + user.getIdUtilisateur() + ";";
             try {
                 statement = conn.prepareStatement(requete);
 
@@ -280,7 +280,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         return null;
     }
 
-    private ArrayList<Utilisateur> setUsers(ResultSet result) {
+    private ArrayList<Utilisateur> getUsers(ResultSet result) {
         ArrayList<Utilisateur> returnList = new ArrayList<>();
         if (result != null) {
             try {
@@ -301,7 +301,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
                     statement = conn.prepareStatement(getRoleByIdQuery + idRole);
                     ResultSet rsRole = statement.executeQuery();
                     Role role = null;
-                    if (rsRole != null) {
+                    if (rsRole != null && rsRole.next()) {
                         role = new Role(rsRole.getInt(RoleUtils.RoleLib.ID.getField()), rsRole.getString(RoleUtils.RoleLib.IDENTIFIANT.getField()),
                                 rsRole.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), rsRole.getInt(RoleUtils.RoleLib.VERSION.getField()));
 
