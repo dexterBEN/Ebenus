@@ -16,12 +16,14 @@ import com.mysql.jdbc.Statement;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import static com.cours.ebenus.utils.Constants.*;
@@ -40,7 +42,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     Connection conn = null;
     PreparedStatement statement = null;
     ResultSet result = null;
-    final RoleDao roleDao = new RoleDao();
 
     public UtilisateurDao() {
         // super(Utilisateur.class);
@@ -55,11 +56,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     public List<Utilisateur> findAllUtilisateurs() {
 
         List<Utilisateur> users = new ArrayList<>();
+        ResultSet rs = null;
 
         try {
             statement = conn.prepareStatement(getAllUserQuery);
             // SQL request for table user
-            ResultSet rs = statement.executeQuery();
+            rs = statement.executeQuery();
 
             users.addAll(getUsers(rs));
             for (Utilisateur user : users) {
@@ -72,6 +74,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         } catch (Exception e) {
             // Handle errors for Class.forName
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, rs);
         }
 
         return users;
@@ -80,10 +84,11 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     @Override
     public Utilisateur findUtilisateurById(int idUtilisateur) {
         Utilisateur user = null;
+        ResultSet rs = null;
         try {
             statement = conn.prepareStatement(getUserByIDQuery + idUtilisateur);
 
-            ResultSet rs = statement.executeQuery();
+            rs = statement.executeQuery();
             ArrayList<Utilisateur> results = getUsers(rs);
             user = !results.isEmpty() ? results.get(0) : null;
         } catch (SQLException se) {
@@ -92,6 +97,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         } catch (Exception e) {
             // Handle errors for Class.forName
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, rs);
         }
 
         return user;
@@ -100,11 +107,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     @Override
     public List<Utilisateur> findUtilisateursByPrenom(String prenom) {
         List<Utilisateur> users = new ArrayList<Utilisateur>();
+        ResultSet rs = null;
 
         try {
             statement = conn.prepareStatement(getUserByFirstNameQuery + prenom + qote);
 
-            ResultSet rs = statement.executeQuery();
+            rs = statement.executeQuery();
 
             users.addAll(getUsers(rs));
 
@@ -116,6 +124,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, rs);
         }
 
         return users;
@@ -124,11 +134,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     @Override
     public List<Utilisateur> findUtilisateursByNom(String nom) {
         List<Utilisateur> users = new ArrayList<Utilisateur>();
+        ResultSet rs = null;
 
         try {
             statement = conn.prepareStatement(getUserByNameQuery + nom + qote);
 
-            ResultSet rs = statement.executeQuery();
+            rs = statement.executeQuery();
 
             users.addAll(getUsers(rs));
 
@@ -140,6 +151,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, rs);
         }
         return users;
     }
@@ -147,11 +160,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     @Override
     public List<Utilisateur> findUtilisateurByIdentifiant(String identifiant) {
         List<Utilisateur> users = new ArrayList<Utilisateur>();
+        ResultSet rs = null;
 
         try {
             statement = conn.prepareStatement(getUserIdentifaintQuery + identifiant + qote);
 
-            ResultSet rs = statement.executeQuery();
+            rs = statement.executeQuery();
             users.addAll(getUsers(rs));
             for (Utilisateur user : users) {
                 System.out.println(user);
@@ -161,6 +175,8 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, rs);
         }
 
         return users;
@@ -180,36 +196,49 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     public Utilisateur createUtilisateur(Utilisateur user) {
 
         if (user != null) {
-            try {
-                int idRoleStandard = 3;
-                int isErased = user.isMarquerEffacer() ? 1 : 0;
-                int isActif = user.isActif() ? 1 : 0;
-                Date currentTime = new Date(System.currentTimeMillis());
-                if (user.getDateNaissance() == null) {
-                    user.setDateNaissance(currentTime);
+            boolean identifantAlreadyExist = false;
+            List<Utilisateur> users = findAllUtilisateurs();
+            if(!users.isEmpty()){
+                Iterator<Utilisateur> it = users.iterator();
+                while (!identifantAlreadyExist && it.hasNext()) {
+                    Utilisateur currentUser = it.next();
+                    identifantAlreadyExist = currentUser.getIdentifiant().equals(user.getIdentifiant());
                 }
-                user.setDateCreation(currentTime);
-                user.setDateModification(currentTime);
+            }
+            if(!identifantAlreadyExist){
+                try {
+                    int idRoleStandard = 3;
+                    int isErased = user.isMarquerEffacer() ? 1 : 0;
+                    int isActif = user.isActif() ? 1 : 0;
+                    Date currentTime = new Date(System.currentTimeMillis());
+                    if (user.getDateNaissance() == null) {
+                        user.setDateNaissance(currentTime);
+                    }
+                    user.setDateCreation(currentTime);
+                    user.setDateModification(currentTime);
 
-                statement = conn.prepareStatement(
-                        createUserQuery
-                                + idRoleStandard + coma + qote + user.getCivilite() + comaString + user.getPrenom()
-                                + comaString + user.getNom() + comaString + user.getIdentifiant() + comaString + user.getMotPasse()
-                                + qote + coma + isActif + coma + isErased + coma + user.getVersion() + ")",
-                        Statement.RETURN_GENERATED_KEYS);
+                    statement = conn.prepareStatement(
+                            createUserQuery
+                                    + idRoleStandard + coma + qote + user.getCivilite() + comaString + user.getPrenom()
+                                    + comaString + user.getNom() + comaString + user.getIdentifiant() + comaString + user.getMotPasse()
+                                    + qote + coma + isActif + coma + isErased + coma + user.getVersion() + ")",
+                            Statement.RETURN_GENERATED_KEYS);
 
-                statement.executeUpdate();
-                ResultSet rs = statement.getGeneratedKeys();
+                    statement.executeUpdate();
+                    result = statement.getGeneratedKeys();
 
-                if (rs.next()) {
-                    int idUser = rs.getInt(1);
-                    user.setIdUtilisateur(idUser);
+                    if (result.next()) {
+                        int idUser = result.getInt(1);
+                        user.setIdUtilisateur(idUser);
+                    }
+
+                } catch (SQLException se) {
+                    se.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    ConnectionHelper.closeSqlResources(statement, result);
                 }
-
-            } catch (SQLException se) {
-                se.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 
@@ -239,6 +268,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
                 se.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return user;
@@ -317,11 +352,14 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     }
 
     private List<Utilisateur> getUsersByRoleCriteria(Object criteria) {
+        String id = "roleID";
+        String vers = "roleVers";
+        String desc = "roleDescrpt";
+        String ident = "roleIdent";
         List<Utilisateur> users = new ArrayList<>();
-        ResultSet resultForUSers = null;
         if (criteria instanceof String) {
             try {
-                statement = conn.prepareStatement(getRoleByIdentifantQuery + qote + criteria + qote);
+                statement = conn.prepareStatement(getGetUserByIdentifiantRoleJoinQuery + qote + criteria + qote);
                 result = statement.executeQuery();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -329,24 +367,22 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
         } else if (criteria instanceof Integer) {
             try {
-                statement = conn.prepareStatement(getRoleByIdQuery + criteria);
+                statement = conn.prepareStatement(getGetUserByIdRoleJoinQuery + criteria);
                 result = statement.executeQuery();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         try {
-            if (result != null && result.next()) {
-                statement = conn.prepareStatement(getUserByIdRoleQuery + result.getInt(ID_ROLE.getField()));
-                resultForUSers = statement.executeQuery();
-                while (resultForUSers != null && resultForUSers.next()) {
-                    Utilisateur user = new Utilisateur(resultForUSers.getInt(ID.getField()), resultForUSers.getString(CIVILITE.getField()),
-                            resultForUSers.getString(PRENOM.getField()), resultForUSers.getString(NOM.getField()), resultForUSers.getString(IDENTIFIANT.getField()),
-                            resultForUSers.getString(MOT_PASSE.getField()), resultForUSers.getDate(DATE_NAISSANCE.getField()),
-                            resultForUSers.getDate(DATE_CREATION.getField()), resultForUSers.getDate(DATE_MODIFICATION.getField()),
-                            resultForUSers.getBoolean(IS_ACTIF.getField()), resultForUSers.getBoolean(IS_DELETED.getField()), resultForUSers.getInt(VERSION.getField()),
-                            new Role(result.getInt(RoleUtils.RoleLib.ID.getField()), result.getString(RoleUtils.RoleLib.IDENTIFIANT.getField()),
-                                    result.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), result.getInt(RoleUtils.RoleLib.VERSION.getField())));
+            if (result != null) {
+                while (result != null && result.next()) {
+                    Utilisateur user = new Utilisateur(result.getInt(ID.getField()), result.getString(CIVILITE.getField()),
+                            result.getString(PRENOM.getField()), result.getString(NOM.getField()), result.getString(IDENTIFIANT.getField()),
+                            result.getString(MOT_PASSE.getField()), result.getDate(DATE_NAISSANCE.getField()),
+                            result.getDate(DATE_CREATION.getField()), result.getDate(DATE_MODIFICATION.getField()),
+                            result.getBoolean(IS_ACTIF.getField()), result.getBoolean(IS_DELETED.getField()), result.getInt(VERSION.getField()),
+                            new Role(result.getInt(id), result.getString(ident),
+                                    result.getString(desc), result.getInt(vers)));
 
                     users.add(user);
 
@@ -358,7 +394,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
 
         } finally {
             ConnectionHelper.closeSqlResources(statement, result);
-            ConnectionHelper.closeSqlResources(statement, resultForUSers);
         }
         return users;
     }

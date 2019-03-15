@@ -5,6 +5,7 @@
  */
 package com.cours.ebenus.dao.impl;
 
+import com.cours.ebenus.dao.ConnectionHelper;
 import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IRoleDao;
 import com.cours.ebenus.dao.entities.Role;
@@ -31,6 +32,7 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
     private static final Log log = LogFactory.getLog(RoleDao.class);
     Connection conn = null;
     PreparedStatement statement = null;
+    ResultSet result = null;
 
     public RoleDao() {
         // super(Role.class);
@@ -66,9 +68,9 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
                         Statement.RETURN_GENERATED_KEYS);
 
                 statement.executeUpdate();
-                ResultSet rs = statement.getGeneratedKeys();
-                if (rs.next()) {
-                    int id = rs.getInt(1);
+                result = statement.getGeneratedKeys();
+                if (result.next()) {
+                    int id = result.getInt(1);
                     role.setIdRole(id);
                 }
 
@@ -76,6 +78,8 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
                 se.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                ConnectionHelper.closeSqlResources(statement, result);
             }
         }
 
@@ -95,6 +99,8 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, result);
         }
 
         return role;
@@ -112,6 +118,8 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, result);
         }
         return false;
     }
@@ -157,15 +165,17 @@ public class RoleDao /* extends AbstractDao<Role> */ implements IRoleDao {
             } else {
                 statement = conn.prepareStatement(getAllRoleQuery);
             }
-            ResultSet rs = statement.executeQuery();
-            if (rs != null)
-                roles = new ArrayList<>(getRoles(rs));
+            result = statement.executeQuery();
+            if (result != null)
+                roles = new ArrayList<>(getRoles(result));
         } catch (SQLException se) {
             // Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
             // Handle errors for Class.forName
             e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, result);
         }
 
         return roles;
