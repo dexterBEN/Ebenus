@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59566f93-631e-4d5e-8f50-fb9aa62c1ee0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/utils/UserUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,15 +54,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-618">
-              <caret line="209" column="38" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="38" />
+            <state relative-caret-position="-626">
+              <caret line="315" column="29" lean-forward="true" selection-start-line="315" selection-start-column="29" selection-end-line="315" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3329#3342#0" expanded="true" />
                 <element signature="e#3948#3961#0" expanded="true" />
                 <element signature="e#4573#4586#0" expanded="true" />
-                <element signature="e#9925#9926#0" expanded="true" />
-                <element signature="e#10777#10778#0" expanded="true" />
+                <element signature="e#9817#9818#0" expanded="true" />
+                <element signature="e#10669#10670#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -282,12 +280,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="JUnitQuestEbenus - 2019.03.15 at 04h 11m 20s.xml">
-      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JUnitQuestEbenus - 2019.03.15 at 04h 11m 43s.xml">
-      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="JUnitQuestEbenus - 2019.03.15 at 04h 13m 12s.xml">
       <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
     </history-entry>
@@ -312,9 +304,16 @@
     <history-entry file="JUnitQuestEbenus - 2019.03.15 at 04h 35m 32s.xml">
       <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.15 at 04h 39m 38s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JUnitQuestEbenus - 2019.03.15 at 04h 41m 08s.xml">
+      <configuration name="JUnitQuestEbenus" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="25" width="1549" height="875" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07318696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -490,15 +489,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-618">
-          <caret line="209" column="38" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="38" />
+        <state relative-caret-position="-626">
+          <caret line="315" column="29" lean-forward="true" selection-start-line="315" selection-start-column="29" selection-end-line="315" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3329#3342#0" expanded="true" />
             <element signature="e#3948#3961#0" expanded="true" />
             <element signature="e#4573#4586#0" expanded="true" />
-            <element signature="e#9925#9926#0" expanded="true" />
-            <element signature="e#10777#10778#0" expanded="true" />
+            <element signature="e#9817#9818#0" expanded="true" />
+            <element signature="e#10669#10670#0" expanded="true" />
           </folding>
         </state>
       </provider>

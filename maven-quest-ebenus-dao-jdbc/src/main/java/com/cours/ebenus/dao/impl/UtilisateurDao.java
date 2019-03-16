@@ -16,7 +16,6 @@ import com.mysql.jdbc.Statement;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +27,6 @@ import java.util.List;
 
 import static com.cours.ebenus.utils.Constants.*;
 import static com.cours.ebenus.utils.RoleUtils.getRoleByIdQuery;
-import static com.cours.ebenus.utils.RoleUtils.getRoleByIdentifantQuery;
 import static com.cours.ebenus.utils.UserUtils.UserLib.*;
 import static com.cours.ebenus.utils.UserUtils.*;
 
