@@ -5,8 +5,6 @@
  */
 package com.cours.ebenus.controllers;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -14,10 +12,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,6 +30,7 @@ public class LoginController implements Initializable {
 
 	private static final Log logger = LogFactory.getLog(LoginController.class);
 
+	@FXML
 	private TextField identifiant;
 
 	private PasswordField motPasse;
@@ -41,17 +44,23 @@ public class LoginController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		String loginFxmlPath = "C:\\Users\\benoni.d\\eclipse-workspace\\maven-quest-ebenus-java-fx\\src\\main\\resources\\views\\login.fxml";
-		FXMLLoader loader = new FXMLLoader();
-		try {
-			FileInputStream fxmlStream = new FileInputStream(loginFxmlPath);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		/*
+		 * IServiceFacade service = null;
+		 * 
+		 * service.getUtilisateurDao().findAllUtilisateurs();
+		 */
 	}
 
-	public void authenticate(ActionEvent event) {
+	@FXML
+	public void authenticate(ActionEvent event) throws Exception {
+		if ("admin".equals(identifiant.getText()) && "admin".equals(identifiant.getText())) {
+
+			Stage stage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+
+		}
 	}
 }

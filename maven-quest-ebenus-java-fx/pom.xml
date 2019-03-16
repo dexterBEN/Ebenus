@@ -37,10 +37,10 @@
         </dependency>
         <dependency>
         	 <groupId>com.cours.ebenus</groupId>
-        	 <artifactId>maven-quest-ebenus-dao-jdbc</artifactId>
+        	 <artifactId>maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT</artifactId>
         	 <version>1.0-SNAPSHOT</version>
         	 <scope>system</scope>
-        	 <systemPath>C:\Users\benoni.d\eclipse-workspace\maven-quest-ebenus-java-fx\maven-quest-ebenus-dao-jdbc.jar</systemPath>
+        	 <systemPath>C:\Users\benoni.d\Desktop\JDBC_Ebenus\Ebenus\maven-quest-ebenus-dao-jdbc\target\maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
     <build>
