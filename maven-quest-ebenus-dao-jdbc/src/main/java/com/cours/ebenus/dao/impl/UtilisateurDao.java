@@ -38,6 +38,8 @@ import static com.cours.ebenus.utils.UserUtils.*;
 public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IUtilisateurDao {
 
     public static final Log log = LogFactory.getLog(UtilisateurDao.class);
+    public static final String ROLE_IDENTIFIANT = "identifiant";
+    public static final String ROLE_ID = "idRole";
 
     Connection conn = null;
     PreparedStatement statement = null;
@@ -198,14 +200,14 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
         if (user != null) {
             boolean identifantAlreadyExist = false;
             List<Utilisateur> users = findAllUtilisateurs();
-            if (!users.isEmpty()) {
+            if(!users.isEmpty()){
                 Iterator<Utilisateur> it = users.iterator();
                 while (!identifantAlreadyExist && it.hasNext()) {
                     Utilisateur currentUser = it.next();
                     identifantAlreadyExist = currentUser.getIdentifiant().equals(user.getIdentifiant());
                 }
             }
-            if (!identifantAlreadyExist) {
+            if(!identifantAlreadyExist){
                 try {
                     int idRoleStandard = 3;
                     int isErased = user.isMarquerEffacer() ? 1 : 0;
@@ -314,7 +316,6 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
     }
 
     private ArrayList<Utilisateur> getUsers(ResultSet result) {
-        String roleIdentifiant = "roleIdenttifiant";
         ArrayList<Utilisateur> returnList = new ArrayList<>();
         if (result != null) {
             try {
@@ -332,8 +333,12 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
                     int idUser = result.getInt(UserUtils.UserLib.ID.getField());
                     int version = result.getInt(UserUtils.UserLib.VERSION.getField());
                     int idRole = result.getInt(ID_ROLE.getField());
-                        Role role = new Role(idRole, roleIdentifiant,
+
+
+
+                       Role role = new Role(result.getInt(ROLE_ID), result.getString(ROLE_IDENTIFIANT),
                                 result.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), result.getInt(RoleUtils.RoleLib.VERSION.getField()));
+
 
                     Utilisateur user = new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
                             createDate, updateDate, activityState, markAsErased, version, role);
