@@ -3,17 +3,19 @@ package com.cours.ebenus.utils;
 public class UserUtils {
 
 
-    public static final String getAllUserQuery = "SELECT * FROM Utilisateur";
-    public static final String createUserQuery = "INSERT INTO `Utilisateur`(`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `actif`, `marquerEffacer`, `version`) VALUES (";
-    public static final String updateUserQuery = "UPDATE Utilisateur SET ";
-    public static final String deleteUserQuery = "DELETE FROM `Utilisateur` WHERE idUtilisateur =";
-    public static final String getGetUserByIdRoleJoinQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idRole =";
-    public static final String getGetUserByIdentifiantRoleJoinQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Role.identifiant =";
+    public static final String getAllUserQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole";
+
     public static final String getUserByIDQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idUtilisateur =";
     public static final String getUserByFirstNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.prenom = '";
     public static final String getUserByNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.nom = '";
     public static final String getUserIdentifaintQuery = "SELECT *, Role.identifiant AS roleIdentifiant FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.identifiant = '";
 
+    public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur WHERE idRole = ";
+    public static final String createUserQuery = "INSERT INTO `Utilisateur`(`idRole`, `civilite`, `prenom`, `nom`, `identifiant`, `motPasse`, `actif`, `marquerEffacer`, `version`) VALUES (";
+    public static final String updateUserQuery = "UPDATE Utilisateur SET ";
+    public static final String deleteUserQuery = "DELETE FROM `Utilisateur` WHERE idUtilisateur =";
+    public static final String getGetUserByIdRoleJoinQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idRole =";
+    public static final String getGetUserByIdentifiantRoleJoinQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Role.identifiant =";
 
     public enum UserLib {
 
