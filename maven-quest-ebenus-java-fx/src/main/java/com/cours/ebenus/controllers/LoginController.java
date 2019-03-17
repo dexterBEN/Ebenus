@@ -44,11 +44,12 @@ public class LoginController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+
 		/*
-		 * IServiceFacade service = null;
-		 * 
+		 * IServiceFacade service = null; System.out.println("second");
 		 * service.getUtilisateurDao().findAllUtilisateurs();
 		 */
+
 	}
 
 	@FXML
