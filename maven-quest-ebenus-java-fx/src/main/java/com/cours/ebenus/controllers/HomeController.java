@@ -10,8 +10,15 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.cours.ebenus.dao.entities.Utilisateur;
+import com.cours.ebenus.factory.AbstractDaoFactory;
+import com.cours.ebenus.service.IServiceFacade;
+import com.cours.ebenus.service.ServiceFacade;
+import javafx.fxml.FXML;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -48,8 +55,10 @@ public class HomeController implements Initializable {
 
 	private static final Log logger = LogFactory.getLog(HomeController.class);
 
+	@FXML
 	private TableView<UserModel> tableViewUsers;
 
+	@FXML
 	private TableColumn<UserModel, Boolean> actionColumn;
 
 	private TableColumn<UserModel, Integer> col_idUtilisateur;
@@ -65,8 +74,13 @@ public class HomeController implements Initializable {
 
 	private ObservableList<UserModel> observableListUserModel = null;
 
+	private List<Utilisateur> users;
+	private IServiceFacade serviceFacade = null;
+
 	public HomeController() {
 		super();
+		serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
+		users = new ArrayList<>(serviceFacade.getUtilisateurDao().findAllUtilisateurs());
 	}
 
 	/**
@@ -77,8 +91,6 @@ public class HomeController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		Connection con = DriverManagerSingleton.getConnectionInstance().getConnection();
-
 		// col_idUtilisateur.setCellValueFactory(col);
 
 	}
@@ -154,7 +166,7 @@ public class HomeController implements Initializable {
 
 	public void logout(ActionEvent event) {
 		try {
-			// Récupère la page ou ont se trouve et la cache:
+			// Récupère la page ou on se trouve et la cache:
 			((Node) event.getSource()).getScene().getWindow().hide();
 
 			Stage primaryStage = new Stage();
