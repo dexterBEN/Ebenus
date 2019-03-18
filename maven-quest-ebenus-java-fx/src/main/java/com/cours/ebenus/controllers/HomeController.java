@@ -9,11 +9,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.ihm.utils.Constants;
 import com.cours.ebenus.models.UserModel;
 
@@ -50,6 +52,17 @@ public class HomeController implements Initializable {
 
 	private TableColumn<UserModel, Boolean> actionColumn;
 
+	private TableColumn<UserModel, Integer> col_idUtilisateur;
+	private TableColumn<UserModel, String> col_civilite;
+	private TableColumn<UserModel, String> col_prenom;
+	private TableColumn<UserModel, String> col_nom;
+	private TableColumn<UserModel, String> col_identifiant;
+	private TableColumn<UserModel, String> col_password;
+	private TableColumn<UserModel, String> col_birthDate;
+	private TableColumn<UserModel, String> col_updateDate;
+	private TableColumn<UserModel, String> col_createDate;
+	private TableColumn<UserModel, String> col_role;
+
 	private ObservableList<UserModel> observableListUserModel = null;
 
 	public HomeController() {
@@ -64,6 +77,9 @@ public class HomeController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		Connection con = DriverManagerSingleton.getConnectionInstance().getConnection();
+
+		// col_idUtilisateur.setCellValueFactory(col);
 
 	}
 
