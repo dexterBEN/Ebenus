@@ -36,11 +36,16 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version> 5.1.41</version>
+        </dependency>
+        <dependency>
         	 <groupId>com.cours.ebenus</groupId>
         	 <artifactId>maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT</artifactId>
         	 <version>1.0-SNAPSHOT</version>
         	 <scope>system</scope>
-        	 <systemPath>C:\Users\benoni.d\Desktop\JDBC_Ebenus\Ebenus\maven-quest-ebenus-dao-jdbc\target\maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT.jar</systemPath>
+        	 <systemPath>/home/koumare/Documents/Tp_ETNA/dexter/Ebenus/maven-quest-ebenus-java-fx/maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
     <build>
