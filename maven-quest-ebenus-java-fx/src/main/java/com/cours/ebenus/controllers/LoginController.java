@@ -17,19 +17,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.cours.ebenus.ihm.utils.Constants.FIELDS_EMPTY;
-import static com.cours.ebenus.ihm.utils.Constants.FIELD_WRONG;
-import static com.cours.ebenus.ihm.utils.DialogUtils.dialogMessage;
+import static com.cours.ebenus.ihm.utils.Constants.*;
+import static com.cours.ebenus.ihm.utils.LibUtils.dialogMessage;
+import static com.cours.ebenus.ihm.utils.LibUtils.isExist;
 
 /**
  * FXML Controller class
@@ -44,10 +44,12 @@ public class LoginController implements Initializable {
     private TextField identifiant;
     @FXML
     private PasswordField motPasse;
+    @FXML
+    private AnchorPane anchorPane;
 
     private List<Utilisateur> usersToLoadFromDb;
 
-    // private IServiceFacade serviceFacade = null;
+    private IServiceFacade serviceFacade = null;
 
     /**
      * Initializes the controller class.
@@ -58,26 +60,29 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        IServiceFacade service = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
+        serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
         System.out.println("second");
-        if (service.getUtilisateurDao() != null) {
-            usersToLoadFromDb = new ArrayList<>(service.getUtilisateurDao().findAllUtilisateurs());
-        }
+        usersToLoadFromDb = new ArrayList<>();
     }
 
     @FXML
     public void authenticate(ActionEvent event) throws Exception {
         String identifyText = this.identifiant.getText();
         String passwordText = this.motPasse.getText();
-        if (!identifyText.isEmpty() && !passwordText.isEmpty()) {
-            if (isExist(identifyText, passwordText)) {
+        if (!identifyText.isEmpty() && !passwordText.isEmpty() && serviceFacade.getUtilisateurDao() != null) {
+            usersToLoadFromDb.addAll(serviceFacade.getUtilisateurDao().findUtilisateurByIdentifiant(identifyText));
+            if (!usersToLoadFromDb.isEmpty() && isExist(identifyText, passwordText, usersToLoadFromDb)) {
                 Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            }else {
+                Stage currentStage = (Stage) this.anchorPane.getScene().getWindow();
+                currentStage.close();
+            } else {
                 dialogMessage(FIELD_WRONG);
+                this.motPasse.setText(RESET_FIELD);
+                this.identifiant.setText(RESET_FIELD);
             }
         } else {
             System.err.println("fields empty");
@@ -85,13 +90,4 @@ public class LoginController implements Initializable {
         }
     }
 
-    private boolean isExist(String identify, String password) {
-        boolean isFound = false;
-        Iterator<Utilisateur> it = usersToLoadFromDb.iterator();
-        while (!isFound && it.hasNext()) {
-            Utilisateur currentUser = it.next();
-            isFound = identify.equals(currentUser.getIdentifiant()) && password.equals(currentUser.getMotPasse());
-        }
-        return isFound;
-    }
 }
