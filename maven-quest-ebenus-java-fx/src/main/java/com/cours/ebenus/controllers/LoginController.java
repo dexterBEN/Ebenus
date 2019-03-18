@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
@@ -72,13 +73,11 @@ public class LoginController implements Initializable {
         if (!identifyText.isEmpty() && !passwordText.isEmpty() && serviceFacade.getUtilisateurDao() != null) {
             usersToLoadFromDb.addAll(serviceFacade.getUtilisateurDao().findUtilisateurByIdentifiant(identifyText));
             if (!usersToLoadFromDb.isEmpty() && isExist(identifyText, passwordText, usersToLoadFromDb)) {
-                Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
                 Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
-                Stage currentStage = (Stage) this.anchorPane.getScene().getWindow();
-                currentStage.close();
             } else {
                 dialogMessage(FIELD_WRONG);
                 this.motPasse.setText(RESET_FIELD);
