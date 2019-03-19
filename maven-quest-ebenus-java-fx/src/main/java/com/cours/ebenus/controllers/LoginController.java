@@ -81,7 +81,6 @@ public class LoginController implements Initializable {
             } else {
                 dialogMessage(FIELD_WRONG);
                 this.motPasse.setText(RESET_FIELD);
-                this.identifiant.setText(RESET_FIELD);
             }
         } else {
             System.err.println("fields empty");

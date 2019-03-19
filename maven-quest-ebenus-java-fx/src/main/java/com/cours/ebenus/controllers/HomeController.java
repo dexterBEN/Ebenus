@@ -98,7 +98,6 @@ public class HomeController implements Initializable {
         users = new ArrayList<>(serviceFacade.getUtilisateurDao().findAllUtilisateurs());
         if(!users.isEmpty()){
             observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
-            //tableViewUsers = new TableView<UserModel>();
         }else{
             dialogMessage(DB_NOT_AVAILABLE);
         }
@@ -152,14 +151,20 @@ public class HomeController implements Initializable {
                                     updatePersonneBtn.setOnAction(new EventHandler<ActionEvent>() {
                                         @Override
                                         public void handle(ActionEvent event) {
-
+                                            UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
+                                            if(userModelSelected != null){
+                                                //todo
+                                            }
                                         }
                                     });
                                     deletePersonneBtn.setGraphic(new ImageView(delete));
                                     deletePersonneBtn.setOnAction(new EventHandler<ActionEvent>() {
                                         @Override
                                         public void handle(ActionEvent event) {
-
+                                            UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
+                                            if(userModelSelected != null){
+                                                //todo
+                                            }
                                         }
                                     });
                                     HBox pane = new HBox(updatePersonneBtn, deletePersonneBtn);

@@ -35,19 +35,37 @@ public class LibUtils {
                 UserModel userModel = new UserModel();
                 userModel.setCivilite(user.getCivilite());
                 userModel.setDateCreation(getDate(user.getDateCreation()));
-                userModel.setRole(user.getRole() != null ? user.getRole().getIdentifiant() : EMPTY);
+                userModel.setRole(user.getRole() != null ? user.getRole().getDescription() : EMPTY);
                 userModel.setPrenom(user.getPrenom());
                 userModel.setNom(user.getNom());
+                userModel.setIdentifiant(user.getIdentifiant());
+                userModel.setDateNaissance(getDate(user.getDateNaissance()));
+                userModel.setDateModification(getDate(user.getDateModification()));
 
-                userModelList.add(userModel);
+                if(!user.isMarquerEffacer()){
+                    userModelList.add(userModel);
+                }
             }
         }
         return userModelList;
     }
 
+    public static Utilisateur getUserFromUserModel(UserModel userModel, List<Utilisateur> listOfUser){
+        Utilisateur user = null;
+        boolean isFound = false;
+        Iterator<Utilisateur> it = listOfUser.iterator();
+        while(!isFound && it.hasNext()){
+            Utilisateur current = it.next();
+            isFound = userModel.getIdentifiant().equals(current.getIdentifiant());
+            if(isFound)
+                user = current;
+        }
+        return user;
+    }
+
     public static String getDate(Date date) {
         if (date != null) {
-            String pattern = "dd/MM/aaaa";
+            String pattern = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             return simpleDateFormat.format(date);
         }else{
