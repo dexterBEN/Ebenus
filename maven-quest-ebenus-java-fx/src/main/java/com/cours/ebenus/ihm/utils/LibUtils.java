@@ -28,7 +28,7 @@ public class LibUtils {
         return isFound;
     }
 
-    public static List<UserModel> setUserToUserModel(List<Utilisateur> users) {
+    public static List<UserModel> getUsersModelFromUsers(List<Utilisateur> users) {
         List<UserModel> userModelList = new ArrayList<>();
         if (!users.isEmpty()) {
             for (Utilisateur user : users) {
@@ -38,6 +38,8 @@ public class LibUtils {
                 userModel.setRole(user.getRole() != null ? user.getRole().getIdentifiant() : EMPTY);
                 userModel.setPrenom(user.getPrenom());
                 userModel.setNom(user.getNom());
+
+                userModelList.add(userModel);
             }
         }
         return userModelList;
