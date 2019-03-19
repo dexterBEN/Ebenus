@@ -112,23 +112,12 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //col_idUtilisateur.setCellValueFactory(new PropertyValueFactory<UserModel, Integer>("idUtilisateur"));
-        //col_civilite.setCellValueFactory(new PropertyValueFactory<UserModel, String>("civilite"));
-        //col_prenom.setCellValueFactory(new PropertyValueFactory<UserModel, String>("prenom"));
-        //col_nom.setCellValueFactory(new PropertyValueFactory<UserModel, String>("nom"));
-        //col_identifiant.setCellValueFactory(new PropertyValueFactory<UserModel, String>("identifiant"));
-        //col_password.setCellValueFactory(new PropertyValueFactory<UserModel, String>("motPasse"));
-        //col_birthDate.setCellValueFactory(new PropertyValueFactory<UserModel, String>("dateNaissance"));
-        //col_updateDate.setCellValueFactory(new PropertyValueFactory<UserModel, String>("dateModification"));
-        //col_createDate.setCellValueFactory(new PropertyValueFactory<UserModel, String>("dateCreation"));
-        //col_role.setCellValueFactory(new PropertyValueFactory<UserModel, String>("role"));
         initUserModels();
+        initUsersTableView();
     }
 
     private void initUserModels() {
         tableViewUsers.setItems(observableListUserModel);
-      //  tableViewUsers.getColumns().setAll(col_idUtilisateur, col_civilite, col_prenom, col_nom, col_identifiant, col_password,
-           //     col_birthDate, col_updateDate,col_createDate, col_role);
     }
 
     private void initUsersTableView() {
@@ -139,7 +128,7 @@ public class HomeController implements Initializable {
                         return new SimpleBooleanProperty(features.getValue() != null);
                     }
                 });
-        Callback<TableColumn<UserModel, Boolean>, TableCell<UserModel, Boolean>> cellFactory = //
+        Callback<TableColumn<UserModel, Boolean>, TableCell<UserModel, Boolean>> cellFactory =
                 new Callback<TableColumn<UserModel, Boolean>, TableCell<UserModel, Boolean>>() {
                     @Override
                     public TableCell call(final TableColumn<UserModel, Boolean> param) {
