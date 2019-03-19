@@ -167,7 +167,10 @@ public class HomeController implements Initializable {
                                             if(userModelSelected != null){
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
                                                 if(user != null){
-                                                    //todo
+                                                    user.setMarquerEffacer(true);
+                                                    users.remove(user);
+                                                    observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
+                                                    initUserModels();
                                                 }
                                             }
                                         }
