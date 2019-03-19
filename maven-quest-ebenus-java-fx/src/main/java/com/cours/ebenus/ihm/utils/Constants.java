@@ -16,5 +16,6 @@ public class Constants {
     public static String FIELD_WRONG = "Votre identifiant ou votre mot de passe est incorrect";
     public static  String RESET_FIELD = "";
     public static String DB_NOT_AVAILABLE = "Système en dérangement réessayez plus tard";
+    public static final String NOT_AUTHORIZED = "Vous n'avez pas les droits requis";
 
 }

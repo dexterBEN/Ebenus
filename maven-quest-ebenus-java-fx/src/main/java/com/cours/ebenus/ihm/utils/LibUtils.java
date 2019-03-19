@@ -85,6 +85,6 @@ public class LibUtils {
         }
     }
     public static boolean isAdmin(Utilisateur userToCheck){
-        return (user != null && userToCheck.getRole().getIdRole() == 1 && user.equals(userToCheck));
+        return (userToCheck.getRole().getIdRole() == 1);
     }
 }

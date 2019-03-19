@@ -51,6 +51,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import static com.cours.ebenus.ihm.utils.Constants.DB_NOT_AVAILABLE;
+import static com.cours.ebenus.ihm.utils.Constants.NOT_AUTHORIZED;
 import static com.cours.ebenus.ihm.utils.LibUtils.*;
 
 /**
@@ -167,6 +168,8 @@ public class HomeController implements Initializable {
                                                     } catch (IOException e) {
                                                         logger.info("error on loading update page");
                                                     }
+                                                }else{
+                                                    dialogMessage(NOT_AUTHORIZED);
                                                 }
                                             }
                                         }
@@ -184,6 +187,8 @@ public class HomeController implements Initializable {
                                                     users.remove(user);
                                                     observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
                                                     initUserModels();
+                                                }else{
+                                                    dialogMessage(NOT_AUTHORIZED);
                                                 }
                                             }
                                         }
