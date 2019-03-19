@@ -7,6 +7,7 @@ package com.cours.ebenus.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
@@ -20,6 +21,7 @@ import com.cours.ebenus.service.IServiceFacade;
 import com.cours.ebenus.service.ServiceFacade;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -153,8 +155,18 @@ public class HomeController implements Initializable {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
                                             if(userModelSelected != null){
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
-                                                if(user != null){
-                                                    //todo
+                                                if(user != null && isAdmin(user)){
+                                                    Parent root = null;
+                                                    try {
+                                                        setUser(user);
+                                                        root = FXMLLoader.load(getClass().getResource("/views/addUpdateUser.fxml"));
+                                                        Scene scene = new Scene(root);
+                                                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                                        stage.setScene(scene);
+                                                        stage.show();
+                                                    } catch (IOException e) {
+                                                        logger.info("error on loading update page");
+                                                    }
                                                 }
                                             }
                                         }
@@ -166,8 +178,9 @@ public class HomeController implements Initializable {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
                                             if(userModelSelected != null){
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
-                                                if(user != null){
+                                                if(user != null && isAdmin(user)){
                                                     user.setMarquerEffacer(true);
+                                                    serviceFacade.getUtilisateurDao().updateUtilisateur(user);
                                                     users.remove(user);
                                                     observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
                                                     initUserModels();

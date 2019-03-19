@@ -13,6 +13,7 @@ import java.util.List;
 public class LibUtils {
 
     private static String EMPTY = "";
+    public static Utilisateur user = null;
 
     public static void dialogMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
@@ -24,8 +25,19 @@ public class LibUtils {
         while (!isFound && it.hasNext()) {
             Utilisateur currentUser = it.next();
             isFound = identify.equals(currentUser.getIdentifiant()) && password.equals(currentUser.getMotPasse());
+            if(isFound){
+                setUser(currentUser);
+            }
         }
         return isFound;
+    }
+
+    public static void setUser(Utilisateur us){
+        user = us;
+    }
+
+    public static Utilisateur getUser(){
+        return user;
     }
 
     public static List<UserModel> getUsersModelFromUsers(List<Utilisateur> users) {
@@ -71,5 +83,8 @@ public class LibUtils {
         }else{
             return EMPTY;
         }
+    }
+    public static boolean isAdmin(Utilisateur userToCheck){
+        return (user != null && userToCheck.getRole().getIdRole() == 1 && user.equals(userToCheck));
     }
 }

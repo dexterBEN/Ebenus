@@ -29,8 +29,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.cours.ebenus.ihm.utils.Constants.*;
-import static com.cours.ebenus.ihm.utils.LibUtils.dialogMessage;
-import static com.cours.ebenus.ihm.utils.LibUtils.isExist;
+import static com.cours.ebenus.ihm.utils.LibUtils.*;
 
 /**
  * FXML Controller class
@@ -62,7 +61,6 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
-        System.out.println("second");
         usersToLoadFromDb = new ArrayList<>();
     }
 
