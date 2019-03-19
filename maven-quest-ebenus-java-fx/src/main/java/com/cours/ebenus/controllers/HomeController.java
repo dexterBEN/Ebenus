@@ -49,8 +49,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import static com.cours.ebenus.ihm.utils.Constants.DB_NOT_AVAILABLE;
-import static com.cours.ebenus.ihm.utils.LibUtils.dialogMessage;
-import static com.cours.ebenus.ihm.utils.LibUtils.getUsersModelFromUsers;
+import static com.cours.ebenus.ihm.utils.LibUtils.*;
 
 /**
  * FXML Controller class
@@ -153,7 +152,10 @@ public class HomeController implements Initializable {
                                         public void handle(ActionEvent event) {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
                                             if(userModelSelected != null){
-                                                //todo
+                                                Utilisateur user = getUserFromUserModel(userModelSelected, users);
+                                                if(user != null){
+                                                    //todo
+                                                }
                                             }
                                         }
                                     });
@@ -163,7 +165,10 @@ public class HomeController implements Initializable {
                                         public void handle(ActionEvent event) {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
                                             if(userModelSelected != null){
-                                                //todo
+                                                Utilisateur user = getUserFromUserModel(userModelSelected, users);
+                                                if(user != null){
+                                                    //todo
+                                                }
                                             }
                                         }
                                     });
