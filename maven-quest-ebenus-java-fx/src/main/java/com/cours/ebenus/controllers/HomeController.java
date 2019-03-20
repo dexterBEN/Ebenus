@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.factory.AbstractDaoFactory;
+import com.cours.ebenus.ihm.utils.Constants;
+import com.cours.ebenus.models.UserModel;
 import com.cours.ebenus.service.IServiceFacade;
 import com.cours.ebenus.service.ServiceFacade;
 import javafx.collections.FXCollections;
@@ -45,6 +47,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -56,6 +59,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import static com.cours.ebenus.ihm.utils.Constants.*;
 import static com.cours.ebenus.ihm.utils.LibUtils.*;
@@ -168,7 +182,7 @@ public class HomeController implements Initializable {
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
                                                 if (user != null && isAdmin(currentUser)) {
                                                     TAG = UPDATE_TAG;
-                                                    launchCrudView(event);
+                                                    launchCrudView(event ,user);
                                                 } else {
                                                     dialogMessage(NOT_AUTHORIZED);
                                                 }
@@ -240,8 +254,12 @@ public class HomeController implements Initializable {
     }
 
     public void addUser(ActionEvent event) {
-        TAG = CREATE_TAG;
-        launchCrudView(event);
+        if(isAdmin(currentUser)){
+            TAG = CREATE_TAG;
+            launchCrudView(event, null);
+        }else {
+            dialogMessage(NOT_AUTHORIZED);
+        }
     }
 
     public void exportCsv(ActionEvent event) {
@@ -267,6 +285,7 @@ public class HomeController implements Initializable {
 			writer = new BufferedWriter(new FileWriter(file));
 			for (UserModel userModel : observableListUserModel) {
 
+    private void launchCrudView(ActionEvent event, Utilisateur utilisateur) {
 				String text = userModel.getCivilite() + ";" + userModel.getNom() + ";" + userModel.getPrenom() + ";"
 						+ userModel.getIdUtilisateur() + ";" + userModel.getDateCreation() + ";"
 						+ userModel.getDateModification() + ";" + userModel.getDateNaissance() + ";"
@@ -287,7 +306,9 @@ public class HomeController implements Initializable {
     private void launchCrudView(ActionEvent event) {
         Parent root = null;
         try {
-            setUser(user);
+            //setUser(utilisateur);
+            CrudUserController controller = new CrudUserController();
+            controller.setUtilisateur(utilisateur);
             root = FXMLLoader.load(getClass().getResource("/views/addUpdateUser.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

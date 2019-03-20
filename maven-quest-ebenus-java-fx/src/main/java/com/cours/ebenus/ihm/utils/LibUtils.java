@@ -4,6 +4,7 @@ import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.models.UserModel;
 
 import javax.swing.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,7 @@ public class LibUtils {
 
     private static String EMPTY = "";
     public static Utilisateur user = null;
+    private static String pattern = "yyyy-MM-dd HH:mm:ss";
 
     public static void dialogMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
@@ -78,12 +80,21 @@ public class LibUtils {
 
     public static String getDate(Date date) {
         if (date != null) {
-            String pattern = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             return simpleDateFormat.format(date);
         }else{
             return EMPTY;
         }
+    }
+
+    public static Date getDateFromString(String dateInString){
+        Date date = new Date();
+        try {
+            date = new SimpleDateFormat(pattern).parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
     public static boolean isAdmin(Utilisateur userToCheck){
         return (userToCheck.getRole().getIdRole() == 1);
