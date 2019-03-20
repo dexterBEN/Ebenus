@@ -20,5 +20,9 @@ public class Constants {
     public static final String OPERATION_DENIED = "Vous ne pouvez faire cette opération";
     public static final String UPDATE_TAG = "updating";
     public static final String CREATE_TAG = "creatting";
+    public static final String FILL_ALL_FIELD = "Veuillez remplir les champs obligatoires";
+    public static final String USER_UPDATE = "Données mises à jour";
+    public static final String USER_CREATE = "Données inserées avec succès";
+    public static final String ERROR = "Erreurs lors de l'envoi des données";
 
 }
