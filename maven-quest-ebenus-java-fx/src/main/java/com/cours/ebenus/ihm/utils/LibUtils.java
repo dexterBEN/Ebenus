@@ -53,6 +53,7 @@ public class LibUtils {
                 userModel.setIdentifiant(user.getIdentifiant());
                 userModel.setDateNaissance(getDate(user.getDateNaissance()));
                 userModel.setDateModification(getDate(user.getDateModification()));
+                userModel.setMotPasse(user.getMotPasse());
 
                 if(!user.isMarquerEffacer()){
                     userModelList.add(userModel);

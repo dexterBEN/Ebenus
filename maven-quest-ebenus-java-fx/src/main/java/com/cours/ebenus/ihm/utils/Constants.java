@@ -17,5 +17,8 @@ public class Constants {
     public static  String RESET_FIELD = "";
     public static String DB_NOT_AVAILABLE = "Système en dérangement réessayez plus tard";
     public static final String NOT_AUTHORIZED = "Vous n'avez pas les droits requis";
+    public static final String OPERATION_DENIED = "Vous ne pouvez faire cette opération";
+    public static final String UPDATE_TAG = "updating";
+    public static final String CREATE_TAG = "creatting";
 
 }

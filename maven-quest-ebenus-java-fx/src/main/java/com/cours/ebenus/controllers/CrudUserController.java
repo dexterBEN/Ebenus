@@ -25,6 +25,8 @@ import javafx.scene.control.TextField;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import static com.cours.ebenus.controllers.HomeController.TAG;
+import static com.cours.ebenus.ihm.utils.Constants.UPDATE_TAG;
 import static com.cours.ebenus.ihm.utils.LibUtils.getUser;
 import static com.cours.ebenus.ihm.utils.LibUtils.getUsersModelFromUsers;
 
@@ -58,8 +60,11 @@ public class CrudUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         utilisateur = getUser();
         serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
-        initComboBox();
-
+        if(TAG.equals(UPDATE_TAG)){
+            init();
+        }else{
+            defaultValues();
+        }
     }
 
     public void addUpdateUtilisateur(ActionEvent event) {
@@ -79,7 +84,7 @@ public class CrudUserController implements Initializable {
         dateNaissance.setValue(LocalDate.MIN);
     }
 
-    private void initComboBox(){
+    private void init(){
         defaultValues();
         List<Role> roles = serviceFacade.getRoleDao().findAllRoles();
         List<Utilisateur> array = new ArrayList<>();
@@ -102,6 +107,7 @@ public class CrudUserController implements Initializable {
             Role role = serviceFacade.getRoleDao().findRoleById(utilisateur.getRole().getIdRole());
             roleIdentifiant = role.getIdentifiant();
             gender = utilisateur.getCivilite();
+            this.motPasse.setEditable(false);
         }
     }
 }

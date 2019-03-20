@@ -50,8 +50,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import static com.cours.ebenus.ihm.utils.Constants.DB_NOT_AVAILABLE;
-import static com.cours.ebenus.ihm.utils.Constants.NOT_AUTHORIZED;
+import static com.cours.ebenus.ihm.utils.Constants.*;
 import static com.cours.ebenus.ihm.utils.LibUtils.*;
 
 /**
@@ -93,11 +92,14 @@ public class HomeController implements Initializable {
 
     private List<Utilisateur> users;
     private IServiceFacade serviceFacade;
+    private static Utilisateur currentUser;
+    public static String TAG;
 
     public HomeController() {
         super();
         serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
         users = new ArrayList<>(serviceFacade.getUtilisateurDao().findAllUtilisateurs());
+        currentUser = getUser();
         if(!users.isEmpty()){
             observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
         }else{
@@ -156,9 +158,10 @@ public class HomeController implements Initializable {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
                                             if(userModelSelected != null){
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
-                                                if(user != null && isAdmin(user)){
+                                                if(user != null && isAdmin(currentUser)){
                                                     Parent root = null;
                                                     try {
+                                                        TAG = UPDATE_TAG;
                                                         setUser(user);
                                                         root = FXMLLoader.load(getClass().getResource("/views/addUpdateUser.fxml"));
                                                         Scene scene = new Scene(root);
@@ -181,12 +184,16 @@ public class HomeController implements Initializable {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
                                             if(userModelSelected != null){
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
-                                                if(user != null && isAdmin(user)){
-                                                    user.setMarquerEffacer(true);
-                                                    serviceFacade.getUtilisateurDao().updateUtilisateur(user);
-                                                    users.remove(user);
-                                                    observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
-                                                    initUserModels();
+                                                if(user != null && isAdmin(currentUser)){
+                                                    if(!user.equals(currentUser)){
+                                                        user.setMarquerEffacer(true);
+                                                        serviceFacade.getUtilisateurDao().updateUtilisateur(user);
+                                                        users.remove(user);
+                                                        observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
+                                                        initUserModels();
+                                                    }else{
+                                                        dialogMessage(OPERATION_DENIED);
+                                                    }
                                                 }else{
                                                     dialogMessage(NOT_AUTHORIZED);
                                                 }
@@ -235,7 +242,7 @@ public class HomeController implements Initializable {
     }
 
     public void addUser(ActionEvent event) {
-
+        TAG = CREATE_TAG;
     }
 
     public void exportCsv(ActionEvent event) {
