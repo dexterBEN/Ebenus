@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+  
+<GridPane id="GridPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cours.ebenus.controllers.CrudUserController">
+   
+    <padding>
+        <Insets bottom="25" left="25" right="25" top="25" />
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="147.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="73.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="Civilité" />
+        <Label text="Prenom" GridPane.rowIndex="1" />
+        <TextField fx:id="prenom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="identifiant" GridPane.rowIndex="3" />
+        <TextField fx:id="identifiant" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Mot de Passe" GridPane.columnIndex="3" />
+        <Label text="Date de naissance" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label text="Rôle" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <TextField fx:id="nom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Nom" GridPane.rowIndex="2" />
+        <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addUpdateUtilisateur" text="Valider" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <ComboBox fx:id="civilite" prefWidth="150.0" promptText="Selectionner votre civilité" GridPane.columnIndex="1" />
+      <PasswordField fx:id="motPasse" GridPane.columnIndex="4" />
+      <DatePicker fx:id="dateNaissance" prefHeight="31.0" prefWidth="134.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <ComboBox fx:id="role" prefWidth="150.0" promptText="Selectionner votre rôle" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+    </children>
+</GridPane>
