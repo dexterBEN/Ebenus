@@ -138,7 +138,7 @@ public class CrudUserController implements Initializable {
         String name = nom.getText();
         String firstName = prenom.getText();
         String email = identifiant.getText();
-        String password = motPasse.getText();
+        String git = motPasse.getText();
         Date date = Date.from(dateNaissance.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         String civ = (String) civilite.getSelectionModel().getSelectedItem();
         String status = (String) role.getSelectionModel().getSelectedItem();
@@ -152,6 +152,7 @@ public class CrudUserController implements Initializable {
             utilisateur.setCivilite(civ);
             utilisateur.setRole(status != null ? serviceFacade.getRoleDao().findRoleByIdentifiant(status).get(0) : null);
             utilisateur.setDateNaissance(date);
+            utilisateur.setMotPasse(password);
             isInsert = true;
         } else {
             dialogMessage(FILL_ALL_FIELD);
