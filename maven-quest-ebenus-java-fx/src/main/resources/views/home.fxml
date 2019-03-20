@@ -108,7 +108,7 @@
            </rowConstraints>
            <children>
                <Button alignment="TOP_CENTER" onAction="#logout" prefWidth="120.0" GridPane.columnIndex="5">Deconnecter</Button>
-               <Button alignment="TOP_CENTER" onAction="#exportJson" prefHeight="31.0" prefWidth="312.0" GridPane.columnIndex="4">Export des utilisateurs au format Csv</Button>
+               <Button alignment="TOP_CENTER" onAction="#exportCsv" prefHeight="31.0" prefWidth="312.0" GridPane.columnIndex="4">Export des utilisateurs au format Csv</Button>
                <Button alignment="TOP_CENTER" onAction="#exportXml" prefWidth="300.0" GridPane.columnIndex="3">Export des utilisateurs au format Xml</Button>
                <Button alignment="TOP_CENTER" onAction="#exportJson" prefHeight="31.0" prefWidth="286.0" GridPane.columnIndex="2">Export des utilisateurs au format Json</Button>
                <Label prefHeight="49.0" prefWidth="620.0" text="Liste des utilisateurs" GridPane.columnIndex="0">

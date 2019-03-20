@@ -5,25 +5,34 @@
  */
 package com.cours.ebenus.controllers;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.Writer;
 import java.net.URL;
-import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-import com.cours.ebenus.dao.DriverManagerSingleton;
+import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.ihm.utils.Constants;
 import com.cours.ebenus.models.UserModel;
+import com.cours.ebenus.service.ServiceFacade;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -47,21 +56,40 @@ import javafx.util.Callback;
 public class HomeController implements Initializable {
 
 	private static final Log logger = LogFactory.getLog(HomeController.class);
-
+	public static final String xmlFilePath = "C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.xml";
+	@FXML
 	private TableView<UserModel> tableViewUsers;
-
+	@FXML
 	private TableColumn<UserModel, Boolean> actionColumn;
 
-	private TableColumn<UserModel, Integer> col_idUtilisateur;
-	private TableColumn<UserModel, String> col_civilite;
-	private TableColumn<UserModel, String> col_prenom;
-	private TableColumn<UserModel, String> col_nom;
-	private TableColumn<UserModel, String> col_identifiant;
-	private TableColumn<UserModel, String> col_password;
-	private TableColumn<UserModel, String> col_birthDate;
-	private TableColumn<UserModel, String> col_updateDate;
-	private TableColumn<UserModel, String> col_createDate;
-	private TableColumn<UserModel, String> col_role;
+	/*
+	 * @FXML private TableColumn<UserModel, Integer> col_idUtilisateur;
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_civilite = new
+	 * TableColumn<>("civilite");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_prenom = new
+	 * TableColumn<>("prenom");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_nom = new
+	 * TableColumn<>("nom");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_identifiant = new
+	 * TableColumn<>("identifiant");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_password = new
+	 * TableColumn<>("password");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_birthDate = new
+	 * TableColumn<>("dateNaissance");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_updateDate = new
+	 * TableColumn<>("dateModification");
+	 * 
+	 * @FXML private TableColumn<UserModel, String> col_createDate = new
+	 * TableColumn<>("dateCreation"); private TableColumn<UserModel, String>
+	 * col_role;
+	 */
 
 	private ObservableList<UserModel> observableListUserModel = null;
 
@@ -77,14 +105,33 @@ public class HomeController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		Connection con = DriverManagerSingleton.getConnectionInstance().getConnection();
-
-		// col_idUtilisateur.setCellValueFactory(col);
-
+		// col_civilite.setCellValueFactory(new PropertyValueFactory<>("civilite"));
+		// col_prenom.setCellValueFactory(cellData -> cellData.getValue().prenom());
+		initUserModels();
+		initUsersTableView();
 	}
 
 	private void initUserModels() {
+		ServiceFacade serviceFacade = new ServiceFacade();
+		List<Utilisateur> users = new ArrayList<>();
+		users = serviceFacade.getUtilisateurDao().findAllUtilisateurs();
+		observableListUserModel = FXCollections.observableArrayList();
 
+		for (Utilisateur user : users) {
+
+			UserModel userModel = new UserModel();
+
+			userModel.setIdUtilisateur(user.getIdUtilisateur());
+			userModel.setCivilite(user.getCivilite());
+			userModel.setIdentifiant(user.getIdentifiant());
+			userModel.setNom(user.getNom());
+			userModel.setPrenom(user.getPrenom());
+			userModel.setDateCreation(user.getDateCreation().toString());
+			userModel.setDateModification(user.getDateModification().toString());
+			userModel.setDateNaissance(user.getDateNaissance().toString());
+			userModel.setRole(user.getRole().getDescription());
+			observableListUserModel.add(userModel);
+		}
 	}
 
 	private void initUsersTableView() {
@@ -139,6 +186,7 @@ public class HomeController implements Initializable {
 					}
 				};
 		actionColumn.setCellFactory(cellFactory);
+		System.out.print("SIZE THERE: " + observableListUserModel.size());
 		tableViewUsers.setItems(observableListUserModel);
 	}
 
@@ -174,15 +222,75 @@ public class HomeController implements Initializable {
 
 	}
 
-	public void exportCsv(ActionEvent event) {
+	@FXML
+	public void exportCsv(ActionEvent event) throws Exception {
+
+		Writer writer = null;
+		try {
+			File file = new File("C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.csv");
+			writer = new BufferedWriter(new FileWriter(file));
+			for (UserModel userModel : observableListUserModel) {
+
+				String text = userModel.getCivilite() + ";" + userModel.getNom() + ";" + userModel.getPrenom() + ";"
+						+ userModel.getIdUtilisateur() + ";" + userModel.getDateCreation() + ";"
+						+ userModel.getDateModification() + ";" + userModel.getDateNaissance() + ";"
+						+ userModel.getRole() + "\n";
+
+				writer.write(text);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+
+			writer.flush();
+			writer.close();
+		}
 
 	}
 
+	@FXML
 	public void exportXml(ActionEvent event) {
 
+		/*
+		 * try { DocumentBuilderFactory documentFactory =
+		 * DocumentBuilderFactory.newInstance(); DocumentBuilder documentBuilder =
+		 * documentFactory.newDocumentBuilder(); Document document =
+		 * documentBuilder.newDocument();
+		 * 
+		 * Element parent = document.createElement("userlist"); } catch
+		 * (ParserConfigurationException pce) { // TODO Auto-generated catch block
+		 * pce.printStackTrace(); } catch (TransformerException tfe) {
+		 * tfe.printStackTrace(); }
+		 */
 	}
 
+	@FXML
 	public void exportJson(ActionEvent event) {
+
+		JSONArray userList = new JSONArray();
+
+		try {
+			FileWriter file = new FileWriter(
+					"C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.json");
+
+			for (UserModel userModel : observableListUserModel) {
+				JSONObject userObject = new JSONObject();
+
+				userObject.put("idUtilisateur", userModel.getIdUtilisateur());
+				userObject.put("civilite", userModel.getCivilite());
+				userObject.put("nom", userModel.getNom());
+				userObject.put("prenom", userModel.getPrenom());
+				userObject.put("identifiant", userModel.getIdentifiant());
+
+				userList.add(userObject);
+			}
+
+			file.write(userList.toString());
+			file.flush();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -6,15 +6,25 @@
 package com.cours.ebenus.controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.cours.ebenus.dao.entities.Utilisateur;
+import com.cours.ebenus.factory.AbstractDaoFactory;
+import com.cours.ebenus.ihm.utils.Constants;
+import com.cours.ebenus.ihm.utils.LibUtils;
+import com.cours.ebenus.service.IServiceFacade;
+import com.cours.ebenus.service.ServiceFacade;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
@@ -33,7 +43,12 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField identifiant;
 
+	@FXML
 	private PasswordField motPasse;
+
+	private List<Utilisateur> usersToLoadFromDb;
+
+	private IServiceFacade serviceFacade = null;
 
 	// private IServiceFacade serviceFacade = null;
 	/**
@@ -45,23 +60,31 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
-		/*
-		 * IServiceFacade service = null; System.out.println("second");
-		 * service.getUtilisateurDao().findAllUtilisateurs();
-		 */
-
+		serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
+		System.out.println("second");
+		usersToLoadFromDb = new ArrayList<>();
 	}
 
 	@FXML
 	public void authenticate(ActionEvent event) throws Exception {
-		if ("admin".equals(identifiant.getText()) && "admin".equals(identifiant.getText())) {
-
-			Stage stage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-
+		String identifyText = this.identifiant.getText();
+		String passwordText = this.motPasse.getText();
+		if (!identifyText.isEmpty() && !passwordText.isEmpty() && serviceFacade.getUtilisateurDao() != null) {
+			usersToLoadFromDb.addAll(serviceFacade.getUtilisateurDao().findUtilisateurByIdentifiant(identifyText));
+			if (!usersToLoadFromDb.isEmpty() && LibUtils.isExist(identifyText, passwordText, usersToLoadFromDb)) {
+				Parent root = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
+				Scene scene = new Scene(root);
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.show();
+			} else {
+				LibUtils.dialogMessage(Constants.FIELD_WRONG);
+				this.motPasse.setText(Constants.RESET_FIELD);
+				this.identifiant.setText(Constants.RESET_FIELD);
+			}
+		} else {
+			System.err.println("fields empty");
+			LibUtils.dialogMessage(Constants.FIELDS_EMPTY);
 		}
 	}
 }
