@@ -56,7 +56,17 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -103,7 +113,7 @@ public class HomeController implements Initializable {
     private TableColumn<UserModel, String> col_createDate;
     @FXML
     private TableColumn<UserModel, String> col_role;
-    public static final String xmlFilePath = "C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.xml";
+    public static final String xmlFilePath = APP_PATH + "/utilisateur.xml";
 
     private ObservableList<UserModel> observableListUserModel;
 
@@ -302,18 +312,57 @@ public class HomeController implements Initializable {
     @FXML
     public void exportXml(ActionEvent event) {
 
-        /*
-         * try { DocumentBuilderFactory documentFactory =
-         * DocumentBuilderFactory.newInstance(); DocumentBuilder documentBuilder =
-         * documentFactory.newDocumentBuilder(); Document document =
-         * documentBuilder.newDocument();
-         *
-         * Element parent = document.createElement("userlist"); } catch
-         * (ParserConfigurationException pce) { // TODO Auto-generated catch block
-         * pce.printStackTrace(); } catch (TransformerException tfe) {
-         * tfe.printStackTrace(); }
-         */
+        try {
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+
+            Element parentElement = document.createElement("userlist");// create tag <userList></userList>
+            document.appendChild(parentElement);
+
+            for (UserModel userModel : observableListUserModel) {
+                // NDT: checké les cas de colonnes null
+                // Create DOM Tag:
+                Element userElement = document.createElement("user");
+                Element idUserElement = document.createElement("id");
+                Element nameUserElement = document.createElement("name");
+                Element surnameUserElement = document.createElement("surname");
+                Element emailUserElement = document.createElement("email");
+
+                nameUserElement.setTextContent(userModel.getNom());
+                surnameUserElement.setTextContent(userModel.getPrenom());
+                emailUserElement.setTextContent(userModel.getIdentifiant());
+
+                String idUser = Integer.toString(userModel.getIdUtilisateur());
+                idUserElement.setTextContent(idUser);
+
+                userElement.appendChild(nameUserElement);
+                userElement.appendChild(surnameUserElement);
+                userElement.appendChild(emailUserElement);
+                userElement.appendChild(idUserElement);
+
+                parentElement.appendChild(userElement);
+
+            }
+
+            // create the xml file
+            // transform the DOM Object to an XML File
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+
+            transformer.transform(domSource, streamResult);
+
+        } catch (ParserConfigurationException pce) {
+
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+
     }
+
 
     @FXML
     public void exportJson(ActionEvent event) {

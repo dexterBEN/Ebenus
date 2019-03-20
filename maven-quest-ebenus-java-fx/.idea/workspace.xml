@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b23c2be2-ce82-4e29-93d1-d9670079ecb9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/maven-quest-ebenus-java-fx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/maven-quest-ebenus-java-fx.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cours/ebenus/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2$1$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cours/ebenus/controllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilisateur.json" beforeDir="false" afterPath="$PROJECT_DIR$/utilisateur.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilisateur.csv" beforeDir="false" afterPath="$PROJECT_DIR$/utilisateur.csv" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/controllers/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-358">
-              <caret line="264" column="44" selection-start-line="264" selection-start-column="44" selection-end-line="264" selection-end-column="44" />
+            <state relative-caret-position="436">
+              <caret line="354" column="28" lean-forward="true" selection-start-line="354" selection-start-column="28" selection-end-line="354" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4551#4552#0" expanded="true" />
@@ -249,7 +237,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553095153622" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553096631256" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -292,7 +280,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="-2" width="1280" height="722" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2552674" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -569,10 +556,16 @@
     <entry file="file://$PROJECT_DIR$/utilisateur.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/utilisateur.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cours/ebenus/controllers/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-358">
-          <caret line="264" column="44" selection-start-line="264" selection-start-column="44" selection-end-line="264" selection-end-column="44" />
+        <state relative-caret-position="436">
+          <caret line="354" column="28" lean-forward="true" selection-start-line="354" selection-start-column="28" selection-end-line="354" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4551#4552#0" expanded="true" />
