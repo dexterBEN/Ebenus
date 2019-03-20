@@ -5,12 +5,7 @@
  */
 package com.cours.ebenus.controllers;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
+import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -108,7 +103,7 @@ public class HomeController implements Initializable {
     private TableColumn<UserModel, String> col_createDate;
     @FXML
     private TableColumn<UserModel, String> col_role;
-	public static final String xmlFilePath = "C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.xml";
+    public static final String xmlFilePath = "C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.xml";
 
     private ObservableList<UserModel> observableListUserModel;
 
@@ -182,7 +177,7 @@ public class HomeController implements Initializable {
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
                                                 if (user != null && isAdmin(currentUser)) {
                                                     TAG = UPDATE_TAG;
-                                                    launchCrudView(event ,user);
+                                                    launchCrudView(event, user);
                                                 } else {
                                                     dialogMessage(NOT_AUTHORIZED);
                                                 }
@@ -254,56 +249,41 @@ public class HomeController implements Initializable {
     }
 
     public void addUser(ActionEvent event) {
-        if(isAdmin(currentUser)){
+        if (isAdmin(currentUser)) {
             TAG = CREATE_TAG;
             launchCrudView(event, null);
-        }else {
+        } else {
             dialogMessage(NOT_AUTHORIZED);
         }
     }
 
-    public void exportCsv(ActionEvent event) {
+    @FXML
+    public void exportCsv(ActionEvent event) throws Exception {
+
+        Writer writer = null;
+        try {
+            File file = new File(APP_PATH + "/utilisateur.csv");
+            writer = new BufferedWriter(new FileWriter(file));
+            for (UserModel userModel : observableListUserModel) {
+
+                String text = userModel.getCivilite() + ";" + userModel.getNom() + ";" + userModel.getPrenom() + ";"
+                        + userModel.getIdUtilisateur() + ";" + userModel.getDateCreation() + ";"
+                        + userModel.getDateModification() + ";" + userModel.getDateNaissance() + ";"
+                        + userModel.getRole() + "\n";
+
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+
+            writer.flush();
+            writer.close();
+        }
 
     }
-
-    public void exportXml(ActionEvent event) {
-
-    }
-
-    public void exportJson(ActionEvent event) {
-
-    }
-
-    public void importCsv(ActionEvent event) {
-	@FXML
-	public void exportCsv(ActionEvent event) throws Exception {
-
-    }
-		Writer writer = null;
-		try {
-			File file = new File("C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.csv");
-			writer = new BufferedWriter(new FileWriter(file));
-			for (UserModel userModel : observableListUserModel) {
 
     private void launchCrudView(ActionEvent event, Utilisateur utilisateur) {
-				String text = userModel.getCivilite() + ";" + userModel.getNom() + ";" + userModel.getPrenom() + ";"
-						+ userModel.getIdUtilisateur() + ";" + userModel.getDateCreation() + ";"
-						+ userModel.getDateModification() + ";" + userModel.getDateNaissance() + ";"
-						+ userModel.getRole() + "\n";
-
-				writer.write(text);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-
-			writer.flush();
-			writer.close();
-		}
-
-	}
-
-    private void launchCrudView(ActionEvent event) {
         Parent root = null;
         try {
             //setUser(utilisateur);
@@ -318,53 +298,53 @@ public class HomeController implements Initializable {
             logger.info("error on loading update page");
         }
     }
-	@FXML
-	public void exportXml(ActionEvent event) {
 
-		/*
-		 * try { DocumentBuilderFactory documentFactory =
-		 * DocumentBuilderFactory.newInstance(); DocumentBuilder documentBuilder =
-		 * documentFactory.newDocumentBuilder(); Document document =
-		 * documentBuilder.newDocument();
-		 * 
-		 * Element parent = document.createElement("userlist"); } catch
-		 * (ParserConfigurationException pce) { // TODO Auto-generated catch block
-		 * pce.printStackTrace(); } catch (TransformerException tfe) {
-		 * tfe.printStackTrace(); }
-		 */
-	}
+    @FXML
+    public void exportXml(ActionEvent event) {
 
-	@FXML
-	public void exportJson(ActionEvent event) {
+        /*
+         * try { DocumentBuilderFactory documentFactory =
+         * DocumentBuilderFactory.newInstance(); DocumentBuilder documentBuilder =
+         * documentFactory.newDocumentBuilder(); Document document =
+         * documentBuilder.newDocument();
+         *
+         * Element parent = document.createElement("userlist"); } catch
+         * (ParserConfigurationException pce) { // TODO Auto-generated catch block
+         * pce.printStackTrace(); } catch (TransformerException tfe) {
+         * tfe.printStackTrace(); }
+         */
+    }
 
-		JSONArray userList = new JSONArray();
+    @FXML
+    public void exportJson(ActionEvent event) {
 
-		try {
-			FileWriter file = new FileWriter(
-					"C://Users//benoni.d//eclipse-workspace//maven-quest-ebenus-java-fx//utilisateur.json");
+        JSONArray userList = new JSONArray();
 
-			for (UserModel userModel : observableListUserModel) {
-				JSONObject userObject = new JSONObject();
+        try {
+            FileWriter file = new FileWriter(APP_PATH +"/utilisateur.json");
 
-				userObject.put("idUtilisateur", userModel.getIdUtilisateur());
-				userObject.put("civilite", userModel.getCivilite());
-				userObject.put("nom", userModel.getNom());
-				userObject.put("prenom", userModel.getPrenom());
-				userObject.put("identifiant", userModel.getIdentifiant());
+            for (UserModel userModel : observableListUserModel) {
+                JSONObject userObject = new JSONObject();
 
-				userList.add(userObject);
-			}
+                userObject.put("idUtilisateur", userModel.getIdUtilisateur());
+                userObject.put("civilite", userModel.getCivilite());
+                userObject.put("nom", userModel.getNom());
+                userObject.put("prenom", userModel.getPrenom());
+                userObject.put("identifiant", userModel.getIdentifiant());
 
-			file.write(userList.toString());
-			file.flush();
+                userList.add(userObject);
+            }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            file.write(userList.toString());
+            file.flush();
 
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	public void importCsv(ActionEvent event) {
+    }
 
-	}
+    public void importCsv(ActionEvent event) {
+
+    }
 }
