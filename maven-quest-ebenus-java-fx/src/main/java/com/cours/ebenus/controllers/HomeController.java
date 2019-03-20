@@ -100,9 +100,9 @@ public class HomeController implements Initializable {
         serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
         users = new ArrayList<>(serviceFacade.getUtilisateurDao().findAllUtilisateurs());
         currentUser = getUser();
-        if(!users.isEmpty()){
+        if (!users.isEmpty()) {
             observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
-        }else{
+        } else {
             dialogMessage(DB_NOT_AVAILABLE);
         }
     }
@@ -156,22 +156,12 @@ public class HomeController implements Initializable {
                                         @Override
                                         public void handle(ActionEvent event) {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
-                                            if(userModelSelected != null){
+                                            if (userModelSelected != null) {
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
-                                                if(user != null && isAdmin(currentUser)){
-                                                    Parent root = null;
-                                                    try {
-                                                        TAG = UPDATE_TAG;
-                                                        setUser(user);
-                                                        root = FXMLLoader.load(getClass().getResource("/views/addUpdateUser.fxml"));
-                                                        Scene scene = new Scene(root);
-                                                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                                                        stage.setScene(scene);
-                                                        stage.show();
-                                                    } catch (IOException e) {
-                                                        logger.info("error on loading update page");
-                                                    }
-                                                }else{
+                                                if (user != null && isAdmin(currentUser)) {
+                                                    TAG = UPDATE_TAG;
+                                                    launchCrudView(event);
+                                                } else {
                                                     dialogMessage(NOT_AUTHORIZED);
                                                 }
                                             }
@@ -182,19 +172,19 @@ public class HomeController implements Initializable {
                                         @Override
                                         public void handle(ActionEvent event) {
                                             UserModel userModelSelected = tableViewUsers.getSelectionModel().getSelectedItem();
-                                            if(userModelSelected != null){
+                                            if (userModelSelected != null) {
                                                 Utilisateur user = getUserFromUserModel(userModelSelected, users);
-                                                if(user != null && isAdmin(currentUser)){
-                                                    if(!user.equals(currentUser)){
+                                                if (user != null && isAdmin(currentUser)) {
+                                                    if (!user.equals(currentUser)) {
                                                         user.setMarquerEffacer(true);
                                                         serviceFacade.getUtilisateurDao().updateUtilisateur(user);
                                                         users.remove(user);
                                                         observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
                                                         initUserModels();
-                                                    }else{
+                                                    } else {
                                                         dialogMessage(OPERATION_DENIED);
                                                     }
-                                                }else{
+                                                } else {
                                                     dialogMessage(NOT_AUTHORIZED);
                                                 }
                                             }
@@ -243,6 +233,7 @@ public class HomeController implements Initializable {
 
     public void addUser(ActionEvent event) {
         TAG = CREATE_TAG;
+        launchCrudView(event);
     }
 
     public void exportCsv(ActionEvent event) {
@@ -259,5 +250,19 @@ public class HomeController implements Initializable {
 
     public void importCsv(ActionEvent event) {
 
+    }
+
+    private void launchCrudView(ActionEvent event) {
+        Parent root = null;
+        try {
+            setUser(user);
+            root = FXMLLoader.load(getClass().getResource("/views/addUpdateUser.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            logger.info("error on loading update page");
+        }
     }
 }

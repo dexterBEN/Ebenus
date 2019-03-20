@@ -26,6 +26,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import static com.cours.ebenus.controllers.HomeController.TAG;
+import static com.cours.ebenus.ihm.utils.Constants.CREATE_TAG;
 import static com.cours.ebenus.ihm.utils.Constants.UPDATE_TAG;
 import static com.cours.ebenus.ihm.utils.LibUtils.getUser;
 import static com.cours.ebenus.ihm.utils.LibUtils.getUsersModelFromUsers;
@@ -60,11 +61,12 @@ public class CrudUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         utilisateur = getUser();
         serviceFacade = new ServiceFacade(AbstractDaoFactory.FactoryDaoType.JDBC_DAO_FACTORY);
-        if(TAG.equals(UPDATE_TAG)){
+        init();
+       /* if(TAG.equals(UPDATE_TAG)){
             init();
-        }else{
+        }else if(TAG.equals(CREATE_TAG)){
             defaultValues();
-        }
+        }*/
     }
 
     public void addUpdateUtilisateur(ActionEvent event) {
@@ -96,10 +98,13 @@ public class CrudUserController implements Initializable {
         ObservableList<String> dataRoles = FXCollections.observableArrayList(rolesIdent);
         role.setItems(dataRoles);
         role.getSelectionModel().select(roleIdentifiant);
-        setUserModelToUpdate(getUsersModelFromUsers(array).get(0));
         ObservableList<String> data = FXCollections.observableArrayList("Mr", "Mme");
         civilite.setItems(data);
         civilite.getSelectionModel().select(gender);
+
+        if(TAG.equals(UPDATE_TAG)){
+            setUserModelToUpdate(getUsersModelFromUsers(array).get(0));
+        }
     }
 
     private void defaultValues(){
