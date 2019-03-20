@@ -11,9 +11,14 @@ package com.cours.ebenus.ihm.utils;
  */
 public class Constants {
 
-	public static String APP_PATH = "C:/Users/benoni.d/eclipse-workspace/maven-quest-ebenus-java-fx";
-	public static String FIELDS_EMPTY = "Vous devez remplir tous les champs obligatoires";
-	public static String FIELD_WRONG = "Votre identifiant ou votre mot de passe est incorrect";
-	public static String RESET_FIELD = "";
+    public static String APP_PATH = "/home/koumare/Documents/Tp_ETNA/dexter/Ebenus/maven-quest-ebenus-java-fx";
+    public static String FIELDS_EMPTY = "Vous devez remplir tous les champs obligatoires";
+    public static String FIELD_WRONG = "Votre identifiant ou votre mot de passe est incorrect";
+    public static  String RESET_FIELD = "";
+    public static String DB_NOT_AVAILABLE = "Système en dérangement réessayez plus tard";
+    public static final String NOT_AUTHORIZED = "Vous n'avez pas les droits requis";
+    public static final String OPERATION_DENIED = "Vous ne pouvez faire cette opération";
+    public static final String UPDATE_TAG = "updating";
+    public static final String CREATE_TAG = "creatting";
 
 }
