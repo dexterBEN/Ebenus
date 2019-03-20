@@ -5,33 +5,12 @@
  */
 package com.cours.ebenus.controllers;
 
-import java.io.*;
-import java.net.URL;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.cours.ebenus.dao.entities.Utilisateur;
 import com.cours.ebenus.factory.AbstractDaoFactory;
 import com.cours.ebenus.ihm.utils.Constants;
 import com.cours.ebenus.models.UserModel;
 import com.cours.ebenus.service.IServiceFacade;
 import com.cours.ebenus.service.ServiceFacade;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import com.cours.ebenus.dao.entities.Utilisateur;
-import com.cours.ebenus.ihm.utils.Constants;
-import com.cours.ebenus.models.UserModel;
-import com.cours.ebenus.service.ServiceFacade;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -56,6 +35,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -67,12 +48,12 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -370,7 +351,7 @@ public class HomeController implements Initializable {
         JSONArray userList = new JSONArray();
 
         try {
-            FileWriter file = new FileWriter(APP_PATH +"/utilisateur.json");
+            FileWriter file = new FileWriter(APP_PATH + "/utilisateur.json");
 
             for (UserModel userModel : observableListUserModel) {
                 JSONObject userObject = new JSONObject();
@@ -393,7 +374,46 @@ public class HomeController implements Initializable {
 
     }
 
+    @FXML
     public void importCsv(ActionEvent event) {
+        try {
+            String separator = ";";
+            String line = "";
+            List<Utilisateur> users = new ArrayList<>();
+            BufferedReader br = null;
 
+            // observableListUserModel = FXCollections.observableArrayList();
+            br = new BufferedReader(new FileReader(APP_PATH + "/utilisateur_import.csv"));
+            Date birthDate;
+            Utilisateur user;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(separator);
+                try {
+                    birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(data[6]);
+                    user = new Utilisateur(data[1], data[2], data[3], data[4], data[5], birthDate);
+                    users.add(user);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (!users.isEmpty()) {
+                // logger.info("Data user: " + users);
+                IServiceFacade serviceFacade = new ServiceFacade();
+
+                for (Utilisateur utilisateur : users) {
+                    Utilisateur ut = serviceFacade.getUtilisateurDao().createUtilisateur(utilisateur);
+                }
+                dialogMessage(USER_CREATE);
+                users = new ArrayList<>(serviceFacade.getUtilisateurDao().findAllUtilisateurs());
+                observableListUserModel = FXCollections.observableArrayList(getUsersModelFromUsers(users));
+                initUserModels();
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
