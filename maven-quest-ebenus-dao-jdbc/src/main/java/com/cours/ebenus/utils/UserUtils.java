@@ -3,7 +3,7 @@ package com.cours.ebenus.utils;
 public class UserUtils {
 
 
-    public static final String getAllUserQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole";
+    public static final String getAllUserQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole";
 
     public static final String getUserByIDQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idUtilisateur =";
     public static final String getUserByFirstNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.prenom = '";
