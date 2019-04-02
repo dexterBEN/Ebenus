@@ -391,8 +391,57 @@ public class DaoUtils {
                         + coma + qote + ((Product) module).getDescription() + qote
                         + coma + ((Product) module).getStock() + coma
                         + parseBooleanToInteger(((Product) module).isActive()) + coma
-                        + parseBooleanToInteger(((Product) module).isDeleted()) + ")"+ coma
-                + Statement.RETURN_GENERATED_KEYS;
+                        + parseBooleanToInteger(((Product) module).isDeleted()) + coma
+                        + ((Product) module).getVersion() + ")" + coma
+                        + Statement.RETURN_GENERATED_KEYS;
+            } else if (module instanceof ArticleCommande) {
+
+            } else if (module instanceof Commande) {
+
+            } else if (module instanceof Adresse) {
+
+            }
+        }
+        return query;
+    }
+
+    public static String completeUpdateQuery(Object module) {
+        String query = null;
+        if (module != null) {
+            if (module instanceof Product) {
+                query = ((Product) module).getReference() + qote
+                        + coma + ((Product) module).getPrice() + coma
+                        + qote + ((Product) module).getName() + qote
+                        + coma + qote + ((Product) module).getDescription() + qote
+                        + coma + ((Product) module).getStock() + coma
+                        + parseBooleanToInteger(((Product) module).isActive()) + coma
+                        + parseBooleanToInteger(((Product) module).isDeleted()) + coma
+                        + ((Product) module).getVersion() + ")" + coma
+                        + Statement.RETURN_GENERATED_KEYS;
+            } else if (module instanceof ArticleCommande) {
+
+            } else if (module instanceof Commande) {
+
+            } else if (module instanceof Adresse) {
+
+            }
+        }
+        return query;
+    }
+
+    public static String completeDeleteQuery(Object module) {
+        String query = null;
+        if (module != null) {
+            if (module instanceof Product) {
+                query = ((Product) module).getReference() + qote
+                        + coma + ((Product) module).getPrice() + coma
+                        + qote + ((Product) module).getName() + qote
+                        + coma + qote + ((Product) module).getDescription() + qote
+                        + coma + ((Product) module).getStock() + coma
+                        + parseBooleanToInteger(((Product) module).isActive()) + coma
+                        + parseBooleanToInteger(((Product) module).isDeleted()) + coma
+                        + ((Product) module).getVersion() + ")" + coma
+                        + Statement.RETURN_GENERATED_KEYS;
             } else if (module instanceof ArticleCommande) {
 
             } else if (module instanceof Commande) {

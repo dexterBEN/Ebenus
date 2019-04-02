@@ -54,12 +54,14 @@ public class ProductDao implements IDao<Product> {
 
     @Override
     public Product update(Product product) {
-        return null;
+        return sendQuery(createProductQuery, product) != null ? sendQuery(createProductQuery, product).get(firstIndice) : null;
+        //todo update query not ready
     }
 
     @Override
     public boolean delete(Product product) {
-        return false;
+        return sendQuery(createProductQuery, product) != null && sendQuery(createProductQuery, product).get(firstIndice) != null;
+        //todo delete query not ready
     }
 
     private List<Product> sendQuery(String query, Product product){
