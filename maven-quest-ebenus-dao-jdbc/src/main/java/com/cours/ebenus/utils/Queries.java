@@ -12,6 +12,7 @@ public class Queries {
     public static String getByProductNameQuery = "SELECT * FROM Produit WHERE Produit.nom = '";
     public static String getByProductDescriptionQuery = "SELECT * FROM Produit WHERE Produit.description LIKE '%";
     public static String createProductQuery = "INSERT INTO `Produit`(`reference`, `prix`, `nom`, `description`, `stock`, `active`, `marquerEffacer`, `version`) VALUES ('";
+    public static String updateProductQuery = "UPDATE Produit SET ";
 
     /////////////////////////////////////////////////////////////////////////////// products queries ////////////////////////////////////////////////////////////////////////////////////
 //

@@ -11,12 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.cours.ebenus.utils.Constants.coma;
-import static com.cours.ebenus.utils.Constants.qote;
+import static com.cours.ebenus.utils.Constants.*;
 
 public class DaoUtils {
 
-    enum Modules {
+    public enum Modules {
         PRODUCT("idProduct", "reference", "prix", "nom", "description", "stock", "active", "marquerEffacer", "version"),
         COMMANDE("idCommande", "totalCommande", "idUtilisateur", "idAdresse", "statut", "dateCommande", "dateModification", "version"),
         ARTICLE_COMMANDE("idArticleCommande", "idCommande", "idUtilisateur", "idAdresse", "idProduit", "totalArticleCommande", "reference", "quantite", "statut", "dateModification", "version"),
@@ -409,15 +408,15 @@ public class DaoUtils {
         String query = null;
         if (module != null) {
             if (module instanceof Product) {
-                query = ((Product) module).getReference() + qote
-                        + coma + ((Product) module).getPrice() + coma
-                        + qote + ((Product) module).getName() + qote
-                        + coma + qote + ((Product) module).getDescription() + qote
-                        + coma + ((Product) module).getStock() + coma
-                        + parseBooleanToInteger(((Product) module).isActive()) + coma
-                        + parseBooleanToInteger(((Product) module).isDeleted()) + coma
-                        + ((Product) module).getVersion() + ")" + coma
-                        + Statement.RETURN_GENERATED_KEYS;
+                query = Modules.PRODUCT.getReference() + equal + qote + ((Product) module).getReference() + qote
+                        + coma + Modules.PRODUCT.getPrix() + equal + ((Product) module).getPrice() + coma
+                        + Modules.PRODUCT.getNom() + equal + qote + ((Product) module).getName() + qote
+                        + coma + Modules.PRODUCT.getDescription() + equal + qote + ((Product) module).getDescription() + qote
+                        + coma + Modules.PRODUCT.getStock() + equal + ((Product) module).getStock() + coma
+                        + Modules.PRODUCT.getActive() + equal + parseBooleanToInteger(((Product) module).isActive()) + coma
+                        + Modules.PRODUCT.getMarquerEffacer() + equal + parseBooleanToInteger(((Product) module).isDeleted()) + coma
+                        + Modules.PRODUCT.getVersion() + equal + ((Product) module).getVersion() + " WHERE "
+                        + Modules.PRODUCT.getIdProduit() + equal + ((Product) module).getIdProduct() + ";";
             } else if (module instanceof ArticleCommande) {
 
             } else if (module instanceof Commande) {
@@ -429,7 +428,7 @@ public class DaoUtils {
         return query;
     }
 
-    public static String completeDeleteQuery(Object module) {
+  /*  public static String completeDeleteQuery(Object module) {
         String query = null;
         if (module != null) {
             if (module instanceof Product) {
@@ -451,5 +450,5 @@ public class DaoUtils {
             }
         }
         return query;
-    }
+    }*/
 }
