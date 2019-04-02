@@ -1,19 +1,16 @@
 package com.cours.ebenus.dao.impl;
 
-import com.cours.ebenus.dao.ConnectionHelper;
 import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IDao;
 import com.cours.ebenus.dao.entities.Product;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.cours.ebenus.utils.Constants.firstIndice;
-import static com.cours.ebenus.utils.DaoUtils.*;
+import static com.cours.ebenus.utils.DaoUtils.Modules;
+import static com.cours.ebenus.utils.DaoUtils.genericQuery;
 import static com.cours.ebenus.utils.Queries.*;
 
 public class ProductDao implements IDao<Product> {
