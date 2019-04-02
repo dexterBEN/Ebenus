@@ -20,8 +20,6 @@ public class ProductDao implements IDao<Product> {
 
 
     Connection connection = null;
-    PreparedStatement statement = null;
-    ResultSet result = null;
 
     public ProductDao() {
         try {
@@ -79,36 +77,13 @@ public class ProductDao implements IDao<Product> {
         return sendQuery(updateProductQuery, product) != null && sendQuery(createProductQuery, product).get(firstIndice) != null;
     }
 
-    private List<Product> sendQuery(String query, Product product) {
+    @Override
+    public List<Product> sendQuery(String query, Product product) {
         List<Product> products = new ArrayList<>();
-        try {
-            if (query.contains("CREATE") || query.contains("UPDATE") || query.contains("DELETE")) {
-                if (query.contains("CREATE")) {
-                    query = query.concat(completeCreateQuery(product));
-                } else {
-                    query = query.concat(completeUpdateQuery(product));
-                }
-                statement = connection.prepareStatement(query);
-                statement.executeUpdate();
-                result = statement.getGeneratedKeys();
-                if (result.next()) {
-                    products.add(product);
-                } else {
-                    System.err.println("Insertion Failed");
-                }
-            } else {
-                statement = connection.prepareStatement(query);
-                result = statement.executeQuery();
-                for (Object object : getModuleFormResultset(result, new Product())) {
-                    if (object instanceof Product) {
-                        products.add((Product) object);
-                    }
-                }
+        for (Object object : genericQuery(query, product, connection)) {
+            if(object instanceof Product){
+                products.add((Product) object);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionHelper.closeSqlResources(statement, result);
         }
         return products;
     }

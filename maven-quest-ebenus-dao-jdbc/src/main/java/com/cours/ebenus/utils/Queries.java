@@ -5,7 +5,6 @@ public class Queries {
 
     //////////////////////********************************************Products Queries ****************************////////////////////////////////////////////////////////////////////
     public static String getProductsAllQuery = "SELECT * FROM Produit";
-
     public static String getByProductsIDQuery = "SELECT * FROM Produit WHERE Produit.idProduit =";
     public static String getByProductReferenceQuery = "SELECT * FROM Produit WHERE Produit.reference = '";
     public static String getByProductPriceQuery = "SELECT * FROM Produit WHERE Produit.prix = ";

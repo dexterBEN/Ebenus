@@ -1,15 +1,19 @@
 package com.cours.ebenus.utils;
 
+import com.cours.ebenus.dao.ConnectionHelper;
 import com.cours.ebenus.dao.entities.Adresse;
 import com.cours.ebenus.dao.entities.ArticleCommande;
 import com.cours.ebenus.dao.entities.Commande;
 import com.cours.ebenus.dao.entities.Product;
 import com.mysql.jdbc.Statement;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static com.cours.ebenus.utils.Constants.*;
 
@@ -428,27 +432,35 @@ public class DaoUtils {
         return query;
     }
 
-  /*  public static String completeDeleteQuery(Object module) {
-        String query = null;
-        if (module != null) {
-            if (module instanceof Product) {
-                query = ((Product) module).getReference() + qote
-                        + coma + ((Product) module).getPrice() + coma
-                        + qote + ((Product) module).getName() + qote
-                        + coma + qote + ((Product) module).getDescription() + qote
-                        + coma + ((Product) module).getStock() + coma
-                        + parseBooleanToInteger(((Product) module).isActive()) + coma
-                        + parseBooleanToInteger(((Product) module).isDeleted()) + coma
-                        + ((Product) module).getVersion() + ")" + coma
-                        + Statement.RETURN_GENERATED_KEYS;
-            } else if (module instanceof ArticleCommande) {
-
-            } else if (module instanceof Commande) {
-
-            } else if (module instanceof Adresse) {
-
+    public static List<Object> genericQuery(String query, Object objectPassed, Connection connection){
+        List<Object> objects = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        try {
+            if (query.contains("CREATE") || query.contains("UPDATE") || query.contains("DELETE")) {
+                if (query.contains("CREATE")) {
+                    query = query.concat(completeCreateQuery(objectPassed));
+                } else {
+                    query = query.concat(completeUpdateQuery(objectPassed));
+                }
+                statement = connection.prepareStatement(query);
+                statement.executeUpdate();
+                result = statement.getGeneratedKeys();
+                if (result.next()) {
+                    objects.add(objectPassed);
+                } else {
+                    System.err.println("Insertion Failed");
+                }
+            } else {
+                statement = connection.prepareStatement(query);
+                result = statement.executeQuery();
+                objects.addAll(getModuleFormResultset(result, new Product()));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionHelper.closeSqlResources(statement, result);
         }
-        return query;
-    }*/
+        return objects;
+    }
 }
