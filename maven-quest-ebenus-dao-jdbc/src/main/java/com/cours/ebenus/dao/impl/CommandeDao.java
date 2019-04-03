@@ -33,7 +33,7 @@ public class CommandeDao implements IDao<Commande> {
     @Override
     public Commande findById(int id) {
         String query = getCommandByIDQuery.concat(id+";");
-        List<Commande> results = new ArrayList<>(sendQuery(getCommandByIDQuery, null));
+        List<Commande> results = new ArrayList<>(sendQuery(query, null));
         return  !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
