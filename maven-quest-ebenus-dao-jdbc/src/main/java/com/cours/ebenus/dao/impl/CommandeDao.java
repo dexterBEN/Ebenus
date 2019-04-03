@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.cours.ebenus.utils.Constants.firstIndice;
 import static com.cours.ebenus.utils.DaoUtils.genericQuery;
-import static com.cours.ebenus.utils.Queries.getAllCommandQuery;
+import static com.cours.ebenus.utils.Queries.*;
 
 public class CommandeDao implements IDao<Commande> {
 
@@ -31,7 +32,9 @@ public class CommandeDao implements IDao<Commande> {
 
     @Override
     public Commande findById(int id) {
-        return null;
+        String query = getCommandByIDQuery.concat(id+";");
+        List<Commande> results = new ArrayList<>(sendQuery(getCommandByIDQuery, null));
+        return  !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Queries {
 //    //////////////////////********************************************Commande Queries ****************************////////////////////////////////////////////////////////////////////
     public static String getAllCommandQuery = "SELECT *, Role.identifiant AS roleIdent FROM Commande LEFT JOIN Utilisateur ON Commande.idUtilisateur = Utilisateur.idUtilisateur LEFT JOIN Adresse ON Commande.idAdresse = Adresse.idAdresse LEFT JOIN Role ON Utilisateur.idRole = Role.idRole ";
 //todo WIP
-    public static String getByIDQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idUtilisateur =";
+    public static String getCommandByIDQuery = "SELECT *, Role.identifiant AS roleIdent FROM Commande LEFT JOIN Utilisateur ON Commande.idUtilisateur = Utilisateur.idUtilisateur LEFT JOIN Adresse ON Commande.idAdresse = Adresse.idAdresse LEFT JOIN Role ON Utilisateur.idRole = Role.idRole  WHERE Commande.idCommande =";
     public static String getByFirstNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.prenom = '";
     public static String getByNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.nom = '";
     public static String getIdentifaintQuery = "SELECT *, Role.identifiant AS roleIdentifiant FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.identifiant = '";

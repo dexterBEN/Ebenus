@@ -33,7 +33,9 @@ public class ProductDao implements IDao<Product> {
 
     @Override
     public Product findById(int id) {
-        return sendQuery(getByProductsIDQuery, null) != null ? sendQuery(getByProductsIDQuery, null).get(firstIndice) : null;
+        String query = getByProductsIDQuery.concat(id +";");
+        List<Product> results = new ArrayList<>(sendQuery(query, null));
+        return  !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
     @Override
