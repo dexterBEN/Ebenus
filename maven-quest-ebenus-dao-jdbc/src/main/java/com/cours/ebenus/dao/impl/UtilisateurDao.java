@@ -35,7 +35,7 @@ import static com.cours.ebenus.utils.UserUtils.*;
 public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IUtilisateurDao {
 
     public static final Log log = LogFactory.getLog(UtilisateurDao.class);
-    public static final String ROLE_IDENTIFIANT = "identifiant";
+    public static final String ROLE_IDENTIFIANT = "roleIdent";
     public static final String ROLE_ID = "idRole";
 
     Connection conn = null;
@@ -330,7 +330,7 @@ public class UtilisateurDao /* extends AbstractDao<Utilisateur> */ implements IU
                     int idUser = result.getInt(UserUtils.UserLib.ID.getField());
                     int version = result.getInt(UserUtils.UserLib.VERSION.getField());
 
-                    Role role = new Role(result.getInt(ROLE_ID), result.getString(ROLE_IDENTIFIANT),
+                    Role role = new Role(result.getInt(RoleUtils.RoleLib.ID.getField()), result.getString(ROLE_IDENTIFIANT),
                             result.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), result.getInt(RoleUtils.RoleLib.VERSION.getField()));
 
 

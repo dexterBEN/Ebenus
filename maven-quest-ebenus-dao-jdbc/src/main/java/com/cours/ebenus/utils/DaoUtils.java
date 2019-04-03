@@ -1,10 +1,11 @@
 package com.cours.ebenus.utils;
 
 import com.cours.ebenus.dao.ConnectionHelper;
-import com.cours.ebenus.dao.entities.Adresse;
-import com.cours.ebenus.dao.entities.ArticleCommande;
-import com.cours.ebenus.dao.entities.Commande;
-import com.cours.ebenus.dao.entities.Product;
+import com.cours.ebenus.dao.entities.*;
+import com.cours.ebenus.dao.impl.AdresseDao;
+import com.cours.ebenus.dao.impl.CommandeDao;
+import com.cours.ebenus.dao.impl.ProductDao;
+import com.cours.ebenus.dao.impl.UtilisateurDao;
 import com.mysql.jdbc.Statement;
 
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.cours.ebenus.dao.impl.UtilisateurDao.ROLE_ID;
+import static com.cours.ebenus.dao.impl.UtilisateurDao.ROLE_IDENTIFIANT;
 import static com.cours.ebenus.utils.Constants.*;
 
 public class DaoUtils {
@@ -302,13 +305,13 @@ public class DaoUtils {
         }
     }
 
-    public static ArrayList<Object> getModuleFormResultset(ResultSet result, Object module) {
+    public static ArrayList<Object> getModuleFromResultset(ResultSet result, Object module) {
         if (module != null) {
             ArrayList<Object> listToRetrun = new ArrayList<>();
             if (result != null) {
                 try {
                     while (result.next()) {
-                        listToRetrun.add(getObject(module, result));
+                        listToRetrun.add(getModuleType(module, result));
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -320,61 +323,16 @@ public class DaoUtils {
         }
     }
 
-    private static Object getObject(Object module, ResultSet resultSet) {
+    private static Object getModuleType(Object module, ResultSet resultSet) {
         if (module != null && resultSet != null) {
-            try {
-                if (module instanceof Product) {
-                    int id = resultSet.getInt(Modules.PRODUCT.getIdProduit());
-                    String reference = resultSet.getString(Modules.PRODUCT.getReference());
-                    double prix = resultSet.getDouble(Modules.PRODUCT.getPrix());
-                    String nom = resultSet.getString(Modules.PRODUCT.getNom());
-                    String description = resultSet.getString(Modules.PRODUCT.getDescription());
-                    int stock = resultSet.getInt(Modules.PRODUCT.stock);
-                    boolean active = resultSet.getBoolean(Modules.PRODUCT.getActive());
-                    boolean marquerEfface = resultSet.getBoolean(Modules.PRODUCT.getMarquerEffacer());
-                    int version = resultSet.getInt(Modules.PRODUCT.getVersion());
-                    module = new Product(id, reference, prix, nom, description, stock, active, marquerEfface, version);
-                } else if (module instanceof Commande) {
-                    int id = resultSet.getInt(Modules.COMMANDE.getIdCommande());
-                    double totalCommande = resultSet.getDouble(Modules.COMMANDE.getTotalCommande());
-                    int idUser = resultSet.getInt(Modules.COMMANDE.getIdUtilisateur());
-                    int idAdress = resultSet.getInt(Modules.COMMANDE.getIdAdresse());
-                    String status = resultSet.getString(Modules.COMMANDE.getStatut());
-                    Date dateCommande = resultSet.getDate(Modules.COMMANDE.getDateCommande());
-                    Date dateModification = resultSet.getDate(Modules.COMMANDE.getDateModification());
-                    int version = resultSet.getInt(Modules.COMMANDE.getVersion());
-                    // todo to make queries for get User and Address then replace into module
-                    module = new Commande(id, totalCommande, null, null, status, dateCommande, dateModification, version);
-                } else if (module instanceof ArticleCommande) {
-                    int id = resultSet.getInt(Modules.ARTICLE_COMMANDE.getIdArticleCommande());
-                    int idCommande = resultSet.getInt(Modules.ARTICLE_COMMANDE.getIdCommande());
-                    int idUtilisateur = resultSet.getInt(Modules.ARTICLE_COMMANDE.getIdUtilisateur());
-                    int idAdresse = resultSet.getInt(Modules.ARTICLE_COMMANDE.getIdAdresse());
-                    int idProduct = resultSet.getInt(Modules.ARTICLE_COMMANDE.getIdProduit());
-                    double totalArticleCommande = resultSet.getDouble(Modules.ARTICLE_COMMANDE.getTotalArticleCommande());
-                    String reference = resultSet.getString(Modules.ARTICLE_COMMANDE.getReference());
-                    int quantite = resultSet.getInt(Modules.ARTICLE_COMMANDE.getQuantite());
-                    String statut = resultSet.getString(Modules.ARTICLE_COMMANDE.getStatut());
-                    Date dateModification = resultSet.getDate(Modules.ARTICLE_COMMANDE.getDateModification());
-                    int version = resultSet.getInt(Modules.ARTICLE_COMMANDE.getVersion());
-                    // todo to make queries for get User,Address,command,product then replace into module
-                    module = new ArticleCommande(id, null, null, null, null, totalArticleCommande, reference, quantite, statut, dateModification, version);
-                } else if (module instanceof Adresse) {
-                    int id = resultSet.getInt(Modules.ADRESSE.getIdAdresse());
-                    int idUser = resultSet.getInt(Modules.ADRESSE.getIdUtilisateur());
-                    String rue = resultSet.getString(Modules.ADRESSE.getRue());
-                    String codePostal = resultSet.getString(Modules.ADRESSE.getCodePostal());
-                    String ville = resultSet.getString(Modules.ADRESSE.getVille());
-                    String pays = resultSet.getString(Modules.ADRESSE.getPays());
-                    String status = resultSet.getString(Modules.ADRESSE.getStatut());
-                    String typeAdresse = resultSet.getString(Modules.ADRESSE.getTypeAdresse());
-                    boolean principale = resultSet.getBoolean(Modules.ADRESSE.getPrincipale());
-                    int version = resultSet.getInt(Modules.ADRESSE.getVille());
-                    // todo to make queries for get User then replace into module
-                    module = new Adresse(id, null, rue, codePostal, ville, pays, status, typeAdresse, principale, version);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (module instanceof Product) {
+                module = buildProduct(resultSet);
+            } else if (module instanceof Commande) {
+                module = buildCommande(resultSet);
+            } else if (module instanceof ArticleCommande) {
+                module = buildArticleCommande(resultSet);
+            } else if (module instanceof Adresse) {
+                module = buildAdresse(resultSet);
             }
         }
         return module;
@@ -432,7 +390,7 @@ public class DaoUtils {
         return query;
     }
 
-    public static List<Object> genericQuery(String query, Object objectPassed, Connection connection){
+    public static List<Object> genericQuery(String query, Object objectPassed, Connection connection) {
         List<Object> objects = new ArrayList<>();
         PreparedStatement statement = null;
         ResultSet result = null;
@@ -454,7 +412,7 @@ public class DaoUtils {
             } else {
                 statement = connection.prepareStatement(query);
                 result = statement.executeQuery();
-                objects.addAll(getModuleFormResultset(result, new Product()));
+                objects.addAll(getModuleFromResultset(result, new Product()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -463,4 +421,111 @@ public class DaoUtils {
         }
         return objects;
     }
+
+    private static Product buildProduct(ResultSet resultSet) {
+        try {
+            int id = resultSet.getInt(Modules.PRODUCT.getIdProduit());
+            String reference = resultSet.getString(Modules.PRODUCT.getReference());
+            double prix = resultSet.getDouble(Modules.PRODUCT.getPrix());
+            String nom = resultSet.getString(Modules.PRODUCT.getNom());
+            String description = resultSet.getString(Modules.PRODUCT.getDescription());
+            int stock = resultSet.getInt(Modules.PRODUCT.stock);
+            boolean active = resultSet.getBoolean(Modules.PRODUCT.getActive());
+            boolean marquerEfface = resultSet.getBoolean(Modules.PRODUCT.getMarquerEffacer());
+            int version = resultSet.getInt(Modules.PRODUCT.getVersion());
+            return new Product(id, reference, prix, nom, description, stock, active, marquerEfface, version);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new Product();
+        }
+    }
+
+    private static Commande buildCommande(ResultSet resultSet) {
+        try {
+            int id = resultSet.getInt(Modules.COMMANDE.getIdCommande());
+            double totalCommande = resultSet.getDouble(Modules.COMMANDE.getTotalCommande());
+            String status = resultSet.getString(Modules.COMMANDE.getStatut());
+            Date dateCommande = resultSet.getDate(Modules.COMMANDE.getDateCommande());
+            Date dateModification = resultSet.getDate(Modules.COMMANDE.getDateModification());
+            int version = resultSet.getInt(Modules.COMMANDE.getVersion());
+
+            Utilisateur user = buildUtilisateur(resultSet);
+            Adresse address = buildAdresse(resultSet);
+
+            return new Commande(id, totalCommande, user, address, status, dateCommande, dateModification, version);
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return new Commande();
+        }
+    }
+
+    private static ArticleCommande buildArticleCommande(ResultSet resultSet) {
+        try {
+            int id = resultSet.getInt(Modules.ARTICLE_COMMANDE.getIdArticleCommande());
+            double totalArticleCommande = resultSet.getDouble(Modules.ARTICLE_COMMANDE.getTotalArticleCommande());
+            String reference = resultSet.getString(Modules.ARTICLE_COMMANDE.getReference());
+            int quantite = resultSet.getInt(Modules.ARTICLE_COMMANDE.getQuantite());
+            String statut = resultSet.getString(Modules.ARTICLE_COMMANDE.getStatut());
+            Date dateModification = resultSet.getDate(Modules.ARTICLE_COMMANDE.getDateModification());
+            int version = resultSet.getInt(Modules.ARTICLE_COMMANDE.getVersion());
+
+            Utilisateur user = buildUtilisateur(resultSet);
+            Adresse address = buildAdresse(resultSet);
+            Commande command = buildCommande(resultSet);
+            Product product = buildProduct(resultSet);
+
+            return new ArticleCommande(id, command, user, address, product, totalArticleCommande, reference, quantite, statut, dateModification, version);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArticleCommande();
+        }
+    }
+
+    private static Adresse buildAdresse(ResultSet resultSet) {
+        try {
+            int id = resultSet.getInt(Modules.ADRESSE.getIdAdresse());
+            String rue = resultSet.getString(Modules.ADRESSE.getRue());
+            String codePostal = resultSet.getString(Modules.ADRESSE.getCodePostal());
+            String ville = resultSet.getString(Modules.ADRESSE.getVille());
+            String pays = resultSet.getString(Modules.ADRESSE.getPays());
+            String status = resultSet.getString(Modules.ADRESSE.getStatut());
+            String typeAdresse = resultSet.getString(Modules.ADRESSE.getTypeAdresse());
+            boolean principale = resultSet.getBoolean(Modules.ADRESSE.getPrincipale());
+            int version = resultSet.getInt(Modules.ADRESSE.getVille());
+
+            Utilisateur user = buildUtilisateur(resultSet);
+
+            return new Adresse(id, user, rue, codePostal, ville, pays, status, typeAdresse, principale, version);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new Adresse();
+        }
+    }
+
+    private static Utilisateur buildUtilisateur(ResultSet resultSet) {
+        try {
+            String name = resultSet.getString(UserUtils.UserLib.NOM.getField());
+            String firstName = resultSet.getString(UserUtils.UserLib.PRENOM.getField());
+            String gender = resultSet.getString(UserUtils.UserLib.CIVILITE.getField());
+            String mail = resultSet.getString(UserUtils.UserLib.IDENTIFIANT.getField());
+            String password = resultSet.getString(UserUtils.UserLib.MOT_PASSE.getField());
+            Date birthDate = resultSet.getDate(UserUtils.UserLib.DATE_NAISSANCE.getField());
+            Date createDate = resultSet.getDate(UserUtils.UserLib.DATE_CREATION.getField());
+            Date updateDate = resultSet.getDate(UserUtils.UserLib.DATE_MODIFICATION.getField());
+            Boolean activityState = resultSet.getBoolean(UserUtils.UserLib.IS_ACTIF.getField());
+            Boolean markAsErased = resultSet.getBoolean(UserUtils.UserLib.IS_DELETED.getField());
+            int idUser = resultSet.getInt(UserUtils.UserLib.ID.getField());
+            int version = resultSet.getInt(UserUtils.UserLib.VERSION.getField());
+
+            Role role = new Role(resultSet.getInt(RoleUtils.RoleLib.ID.getField()), resultSet.getString(ROLE_IDENTIFIANT),
+                    resultSet.getString(RoleUtils.RoleLib.DESCRIPTION.getField()), resultSet.getInt(RoleUtils.RoleLib.VERSION.getField()));
+
+            return new Utilisateur(idUser, gender, firstName, name, mail, password, birthDate,
+                    createDate, updateDate, activityState, markAsErased, version, role);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new Utilisateur();
+        }
+    }
+
 }
