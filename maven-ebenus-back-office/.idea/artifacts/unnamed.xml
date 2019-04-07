@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="unnamed">
+    <output-path>$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc</output-path>
+    <root id="root" />
+  </artifact>
+</component>

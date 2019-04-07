@@ -3,6 +3,8 @@ package com.cours.ebenus.dao.impl;
 import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IDao;
 import com.cours.ebenus.dao.entities.Commande;
+import com.cours.ebenus.dao.entities.Product;
+import com.cours.ebenus.utils.DaoUtils;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -39,22 +41,41 @@ public class CommandeDao implements IDao<Commande> {
 
     @Override
     public List<Commande> findByCriteria(String criteria, Object valueCriteria) {
-        return null;
+        //todo criteria queries
+        String query = null;
+        List<Commande> commandeList = new ArrayList<>();
+        if (valueCriteria != null && !criteria.isEmpty()) {
+            if (criteria.equals(DaoUtils.Modules.COMMANDE.getIdCommande())) {
+                query = getByProductNameQuery.concat(valueCriteria + "';");
+                commandeList.addAll(sendQuery(query, null));
+            } else if (criteria.equals(DaoUtils.Modules.COMMANDE.getIdUtilisateur())) {
+                query = getByProductReferenceQuery.concat(valueCriteria + "';");
+                commandeList.addAll(sendQuery(query, null));
+            } else if (criteria.equals(DaoUtils.Modules.COMMANDE.getIdAdresse())) {
+                query = getByProductPriceQuery.concat(valueCriteria + ";");
+                commandeList.addAll(sendQuery(query, null));
+            } else if (criteria.equals(DaoUtils.Modules.COMMANDE.getDateCommande())) {
+                query = getByProductDescriptionQuery.concat(valueCriteria + "%';");
+                commandeList.addAll(sendQuery(query, null));
+            }
+        }
+        return commandeList;
     }
 
     @Override
     public Commande create(Commande commande) {
-        return null;
+        return sendQuery(createCommandeQuery, commande) != null ? sendQuery(createCommandeQuery, commande).get(firstIndice) : null;
     }
 
     @Override
     public Commande update(Commande commande) {
-        return null;
+        return sendQuery(updateCommandeQuery, commande) != null ? sendQuery(updateCommandeQuery, commande).get(firstIndice) : null;
     }
 
     @Override
     public boolean delete(Commande commande) {
-        return false;
+        return sendQuery(deleteQuery, commande) != null && sendQuery(deleteQuery, commande).get(firstIndice) != null;
+
     }
 
     @Override

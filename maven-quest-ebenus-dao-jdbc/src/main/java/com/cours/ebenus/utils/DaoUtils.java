@@ -358,7 +358,13 @@ public class DaoUtils {
             } else if (module instanceof ArticleCommande) {
 
             } else if (module instanceof Commande) {
-
+                query = ((Commande) module).getTotalCommand() +
+                        coma + ((Commande) module).getUser().getIdUtilisateur() + coma
+                        + ((Commande) module).getAdresse().getIdAdresse() + coma
+                        + qote + ((Commande) module).getStatus() + qote
+                        + coma + ((Commande) module).getCommadDate() + coma
+                        + ((Commande) module).getModificationDate() + coma + ((Commande) module).getVersion() + ")" + coma
+                        + Statement.RETURN_GENERATED_KEYS;
             } else if (module instanceof Adresse) {
 
             }
@@ -382,7 +388,14 @@ public class DaoUtils {
             } else if (module instanceof ArticleCommande) {
 
             } else if (module instanceof Commande) {
-
+                query = Modules.COMMANDE.getTotalCommande() + equal + ((Commande) module).getTotalCommand() +
+                        coma + Modules.COMMANDE.getIdUtilisateur() + equal + ((Commande) module).getUser().getIdUtilisateur() + coma
+                        + Modules.COMMANDE.getIdAdresse() + equal + ((Commande) module).getAdresse().getIdAdresse() + coma
+                        + Modules.COMMANDE.getStatut() + equal + qote + ((Commande) module).getStatus() + qote
+                        + coma + Modules.COMMANDE.getDateCommande() + equal + ((Commande) module).getCommadDate() + coma
+                        + Modules.COMMANDE.getDateModification() + equal + ((Commande) module).getModificationDate() + coma
+                        + Modules.COMMANDE.getVersion() + equal + ((Commande) module).getVersion() + " WHERE "
+                        + Modules.COMMANDE.getIdCommande() + equal + ((Commande) module).getIdCommand() + ";";
             } else if (module instanceof Adresse) {
 
             }
@@ -390,16 +403,34 @@ public class DaoUtils {
         return query;
     }
 
+    public static int completeDeleteQuery(Object module) {
+        if (module != null) {
+            if (module instanceof Product) {
+                return ((Product) module).getIdProduct();
+            } else if (module instanceof Commande) {
+                return ((Commande) module).getIdCommand();
+            } else if (module instanceof ArticleCommande) {
+                return ((ArticleCommande) module).getIdArticleCommande();
+            } else {
+                return ((Adresse) module).getIdAdresse();
+            }
+        } else {
+            return -1;
+        }
+    }
+
     public static List<Object> genericQuery(String query, Object objectPassed, Connection connection) {
         List<Object> objects = new ArrayList<>();
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
-            if (query.contains("CREATE") || query.contains("UPDATE") || query.contains("DELETE")) {
-                if (query.contains("CREATE")) {
+            if (query.contains("INSERT") || query.contains("UPDATE") || query.contains("DELETE")) {
+                if (query.contains("INSERT")) {
                     query = query.concat(completeCreateQuery(objectPassed));
-                } else {
+                } else if (query.contains("UPDATE")) {
                     query = query.concat(completeUpdateQuery(objectPassed));
+                } else {
+                    query = query.concat(completeDeleteQuery(objectPassed) + ";");
                 }
                 statement = connection.prepareStatement(query);
                 statement.executeUpdate();
