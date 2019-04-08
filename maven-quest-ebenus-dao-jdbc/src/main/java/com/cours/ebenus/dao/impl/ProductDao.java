@@ -2,6 +2,7 @@ package com.cours.ebenus.dao.impl;
 
 import com.cours.ebenus.dao.DriverManagerSingleton;
 import com.cours.ebenus.dao.IDao;
+import com.cours.ebenus.dao.entities.Commande;
 import com.cours.ebenus.dao.entities.Product;
 
 import java.sql.Connection;
@@ -16,7 +17,7 @@ import static com.cours.ebenus.utils.Queries.*;
 public class ProductDao implements IDao<Product> {
 
 
-    Connection connection = null;
+    private Connection connection = null;
 
     public ProductDao() {
         try {
@@ -33,9 +34,9 @@ public class ProductDao implements IDao<Product> {
 
     @Override
     public Product findById(int id) {
-        String query = getByProductsIDQuery.concat(id +";");
+        String query = getByProductsIDQuery.concat(id + ";");
         List<Product> results = new ArrayList<>(sendQuery(query, null));
-        return  !results.isEmpty() ? results.get(firstIndice) : null;
+        return !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
     @Override
@@ -62,25 +63,28 @@ public class ProductDao implements IDao<Product> {
 
     @Override
     public Product create(Product product) {
-        return sendQuery(createProductQuery, product) != null ? sendQuery(createProductQuery, product).get(firstIndice) : null;
+        List<Product> results = new ArrayList<>(sendQuery(createProductQuery, product));
+        return !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
     @Override
     public Product update(Product product) {
-        return sendQuery(updateProductQuery, product) != null ? sendQuery(createProductQuery, product).get(firstIndice) : null;
+        List<Product> results = new ArrayList<>(sendQuery(updateProductQuery, product));
+        return !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
     @Override
     public boolean delete(Product product) {
         product.setDeleted(true);
-        return sendQuery(updateProductQuery, product) != null && sendQuery(createProductQuery, product).get(firstIndice) != null;
+        List<Product> results = new ArrayList<>(sendQuery(updateProductQuery, product));
+        return !results.isEmpty() && results.get(firstIndice) != null;
     }
 
     @Override
     public List<Product> sendQuery(String query, Product product) {
         List<Product> products = new ArrayList<>();
         for (Object object : genericQuery(query, product, connection)) {
-            if(object instanceof Product){
+            if (object instanceof Product) {
                 products.add((Product) object);
             }
         }

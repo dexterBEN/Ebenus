@@ -17,7 +17,7 @@ import static com.cours.ebenus.utils.Queries.*;
 public class CommandeDao implements IDao<Commande> {
 
 
-    Connection connection = null;
+    private Connection connection = null;
 
     public CommandeDao() {
         try {
@@ -34,28 +34,27 @@ public class CommandeDao implements IDao<Commande> {
 
     @Override
     public Commande findById(int id) {
-        String query = getCommandByIDQuery.concat(id+";");
+        String query = getCommandByIDQuery.concat(id + ";");
         List<Commande> results = new ArrayList<>(sendQuery(query, null));
-        return  !results.isEmpty() ? results.get(firstIndice) : null;
+        return !results.isEmpty() ? results.get(firstIndice) : null;
     }
 
     @Override
     public List<Commande> findByCriteria(String criteria, Object valueCriteria) {
-        //todo criteria queries
         String query = null;
         List<Commande> commandeList = new ArrayList<>();
         if (valueCriteria != null && !criteria.isEmpty()) {
             if (criteria.equals(DaoUtils.Modules.COMMANDE.getIdCommande())) {
-                query = getByProductNameQuery.concat(valueCriteria + "';");
+                query = getByIdCommandQuery.concat(valueCriteria + ";");
                 commandeList.addAll(sendQuery(query, null));
             } else if (criteria.equals(DaoUtils.Modules.COMMANDE.getIdUtilisateur())) {
-                query = getByProductReferenceQuery.concat(valueCriteria + "';");
+                query = getByIdUserQuery.concat(valueCriteria + ";");
                 commandeList.addAll(sendQuery(query, null));
             } else if (criteria.equals(DaoUtils.Modules.COMMANDE.getIdAdresse())) {
-                query = getByProductPriceQuery.concat(valueCriteria + ";");
+                query = getByIdAdresseQuery.concat(valueCriteria + ";");
                 commandeList.addAll(sendQuery(query, null));
             } else if (criteria.equals(DaoUtils.Modules.COMMANDE.getDateCommande())) {
-                query = getByProductDescriptionQuery.concat(valueCriteria + "%';");
+                query = getByCommmadeDateQuery.concat(valueCriteria + ";");
                 commandeList.addAll(sendQuery(query, null));
             }
         }
@@ -64,25 +63,28 @@ public class CommandeDao implements IDao<Commande> {
 
     @Override
     public Commande create(Commande commande) {
-        return sendQuery(createCommandeQuery, commande) != null ? sendQuery(createCommandeQuery, commande).get(firstIndice) : null;
+        List<Commande> commandList = new ArrayList<>(sendQuery(createCommandeQuery, commande));
+        return !commandList.isEmpty() ? commandList.get(firstIndice) : null;
     }
 
     @Override
     public Commande update(Commande commande) {
-        return sendQuery(updateCommandeQuery, commande) != null ? sendQuery(updateCommandeQuery, commande).get(firstIndice) : null;
+        List<Commande> commandeList = new ArrayList<>(sendQuery(updateCommandeQuery, commande));
+        return !commandeList.isEmpty() ? commandeList.get(firstIndice) : null;
     }
 
     @Override
     public boolean delete(Commande commande) {
-        return sendQuery(deleteQuery, commande) != null && sendQuery(deleteQuery, commande).get(firstIndice) != null;
+        List<Commande> commandeList = new ArrayList<>(sendQuery(deleteQuery, commande));
+        return !commandeList.isEmpty() && commandeList.get(firstIndice) != null;
 
     }
 
     @Override
-    public List<Commande> sendQuery(String query, Commande commande){
+    public List<Commande> sendQuery(String query, Commande commande) {
         List<Commande> commandes = new ArrayList<>();
         for (Object object : genericQuery(query, commande, connection)) {
-            if(object instanceof Commande){
+            if (object instanceof Commande) {
                 commandes.add((Commande) object);
             }
         }

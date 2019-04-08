@@ -34,17 +34,15 @@ public class Queries {
 //    //////////////////////********************************************Commande Queries ****************************////////////////////////////////////////////////////////////////////
     public static String getAllCommandQuery = "SELECT *, Role.identifiant AS roleIdent FROM Commande LEFT JOIN Utilisateur ON Commande.idUtilisateur = Utilisateur.idUtilisateur LEFT JOIN Adresse ON Commande.idAdresse = Adresse.idAdresse LEFT JOIN Role ON Utilisateur.idRole = Role.idRole ";
     public static String getCommandByIDQuery = "SELECT *, Role.identifiant AS roleIdent FROM Commande LEFT JOIN Utilisateur ON Commande.idUtilisateur = Utilisateur.idUtilisateur LEFT JOIN Adresse ON Commande.idAdresse = Adresse.idAdresse LEFT JOIN Role ON Utilisateur.idRole = Role.idRole  WHERE Commande.idCommande =";
-    //todo WIP
-    public static String getByFirstNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.prenom = '";
-    public static String getByNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.nom = '";
-    public static String getIdentifaintQuery = "SELECT *, Role.identifiant AS roleIdentifiant FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.identifiant = '";
+    public static String getByCommmadeDateQuery = "SELECT * FROM Commande WHERE dateCommande = ";
+    public static String getByIdAdresseQuery = "SELECT * FROM Commande WHERE idAdresse = ";
+    public static String getByIdUserQuery = "SELECT * FROM Commande WHERE idUtilisateur = ";
 
-    public static String getByIdRoleQuery = "SELECT * FROM Utilisateur WHERE idRole = ";
+    public static String getByIdCommandQuery = "SELECT * FROM Commande WHERE idCommande = ";
     public static String createCommandeQuery = "INSERT INTO `Commande`(`totalCommande`, `idUtilisateur`, `idAdresse`, `statut`, `dateCommande`, `dateModification`, `version`) VALUES (";
     public static String updateCommandeQuery = "UPDATE `Commande` SET ";
     public static String deleteQuery = "DELETE FROM `Commande` WHERE idCommande =";
-    public static String getGetByIdRoleJoinQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idRole =";
-    public static String getGetByIdentifiantRoleJoinQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Role.identifiant =";
+    
 //    /////////////////////////////////////////////////////////////////////////////// commande queries ////////////////////////////////////////////////////////////////////////////////////
 //
 //    //////////////////////********************************************ArticleCommande Queries ****************************////////////////////////////////////////////////////////////////////
