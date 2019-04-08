@@ -36,7 +36,7 @@ public class CommandeDao implements IDao<Commande> {
     public Commande findById(int id) {
         String query = getCommandByIDQuery.concat(id + ";");
         List<Commande> results = new ArrayList<>(sendQuery(query, null));
-        return !results.isEmpty() ? results.get(firstIndice) : null;
+        return !results.isEmpty() ? results.get(firstIndice) : new Commande();
     }
 
     @Override
@@ -64,13 +64,13 @@ public class CommandeDao implements IDao<Commande> {
     @Override
     public Commande create(Commande commande) {
         List<Commande> commandList = new ArrayList<>(sendQuery(createCommandeQuery, commande));
-        return !commandList.isEmpty() ? commandList.get(firstIndice) : null;
+        return !commandList.isEmpty() ? commandList.get(firstIndice) : new Commande();
     }
 
     @Override
     public Commande update(Commande commande) {
         List<Commande> commandeList = new ArrayList<>(sendQuery(updateCommandeQuery, commande));
-        return !commandeList.isEmpty() ? commandeList.get(firstIndice) : null;
+        return !commandeList.isEmpty() ? commandeList.get(firstIndice) : new Commande();
     }
 
     @Override

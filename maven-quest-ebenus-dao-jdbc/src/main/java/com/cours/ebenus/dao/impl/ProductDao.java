@@ -36,7 +36,7 @@ public class ProductDao implements IDao<Product> {
     public Product findById(int id) {
         String query = getByProductsIDQuery.concat(id + ";");
         List<Product> results = new ArrayList<>(sendQuery(query, null));
-        return !results.isEmpty() ? results.get(firstIndice) : null;
+        return !results.isEmpty() ? results.get(firstIndice) : new Product();
     }
 
     @Override
@@ -64,13 +64,13 @@ public class ProductDao implements IDao<Product> {
     @Override
     public Product create(Product product) {
         List<Product> results = new ArrayList<>(sendQuery(createProductQuery, product));
-        return !results.isEmpty() ? results.get(firstIndice) : null;
+        return !results.isEmpty() ? results.get(firstIndice) : new Product();
     }
 
     @Override
     public Product update(Product product) {
         List<Product> results = new ArrayList<>(sendQuery(updateProductQuery, product));
-        return !results.isEmpty() ? results.get(firstIndice) : null;
+        return !results.isEmpty() ? results.get(firstIndice) : new Product();
     }
 
     @Override

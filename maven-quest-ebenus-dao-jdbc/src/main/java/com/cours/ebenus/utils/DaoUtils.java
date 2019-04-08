@@ -7,6 +7,7 @@ import com.cours.ebenus.dao.impl.CommandeDao;
 import com.cours.ebenus.dao.impl.ProductDao;
 import com.cours.ebenus.dao.impl.UtilisateurDao;
 import com.mysql.jdbc.Statement;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -366,7 +367,16 @@ public class DaoUtils {
                         + ((Commande) module).getModificationDate() + coma + ((Commande) module).getVersion() + ")" + coma
                         + Statement.RETURN_GENERATED_KEYS;
             } else if (module instanceof Adresse) {
-
+                query = ((Adresse) module).getAdressOwner() + coma
+                        + qote + ((Adresse) module).getStreet() + qote + coma
+                        + qote + ((Adresse) module).getCodePostal() + qote + coma
+                        + qote + ((Adresse) module).getTown() + qote + coma
+                        + qote + ((Adresse) module).getCountry() + qote + coma
+                        + qote + ((Adresse) module).getStatus() + qote + coma
+                        + qote + ((Adresse) module).getAdressType() + qote + coma
+                        + parseBooleanToInteger(((Adresse) module).getPrincipale()) + coma
+                        + ((Adresse) module).getVersion() + ")" + coma
+                        + Statement.RETURN_GENERATED_KEYS;
             }
         }
         return query;
@@ -397,7 +407,15 @@ public class DaoUtils {
                         + Modules.COMMANDE.getVersion() + equal + ((Commande) module).getVersion() + " WHERE "
                         + Modules.COMMANDE.getIdCommande() + equal + ((Commande) module).getIdCommand() + ";";
             } else if (module instanceof Adresse) {
-
+                query = Modules.ADRESSE.getIdUtilisateur() + equal + ((Adresse) module).getAdressOwner() + coma
+                        + Modules.ADRESSE.getRue() + equal + qote + ((Adresse) module).getStreet() + qote + coma
+                        + Modules.ADRESSE.getCodePostal() + equal + qote + ((Adresse) module).getCodePostal() + qote + coma
+                        + Modules.ADRESSE.getVille() + equal + qote + ((Adresse) module).getTown() + qote + coma
+                        + Modules.ADRESSE.getPays() + equal + qote + ((Adresse) module).getCountry() + qote + coma
+                        + Modules.ADRESSE.getStatut() + equal + qote + ((Adresse) module).getStatus() + qote + coma
+                        + Modules.ADRESSE.getTypeAdresse() + equal + qote + ((Adresse) module).getAdressType() + qote + coma
+                        + Modules.ADRESSE.getPrincipale() + equal + parseBooleanToInteger(((Adresse) module).getPrincipale()) + coma
+                        + Modules.ADRESSE.getVersion() + equal + ((Adresse) module).getVersion() + ";";
             }
         }
         return query;
