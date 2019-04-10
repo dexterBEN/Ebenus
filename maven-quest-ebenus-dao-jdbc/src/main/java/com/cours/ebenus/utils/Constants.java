@@ -31,4 +31,6 @@ public class Constants {
 	public static final String comaString = "', '";
 	public static final String coma = ",";
 	public static final String equal = "=";
+
+	public static final int firstIndice = 0;
 }

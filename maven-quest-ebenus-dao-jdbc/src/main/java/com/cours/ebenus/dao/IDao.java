@@ -24,4 +24,6 @@ public interface IDao<T> {
     public T update(T t);
 
     public boolean delete(T t);
+
+    public List<T> sendQuery(String query, T t);
 }

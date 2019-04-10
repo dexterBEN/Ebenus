@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="maven-ebenus-back-office" options="-endorseddirs C:\Users\akoumare\Documents\projetEtna\ebenus\Ebenus\maven-ebenus-back-office\target/endorsed" />
+    </option>
+  </component>
+</project>

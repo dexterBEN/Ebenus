@@ -5,9 +5,9 @@ public class UserUtils {
 
     public static final String getAllUserQuery = "SELECT *, Role.idRole AS roleId, Role.identifiant AS roleIdent, Role.description AS roleDescrpt, Role.version AS roleVers FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole";
 
-    public static final String getUserByIDQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idUtilisateur =";
-    public static final String getUserByFirstNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.prenom = '";
-    public static final String getUserByNameQuery = "SELECT * FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.nom = '";
+    public static final String getUserByIDQuery = "SELECT *,Role.identifiant AS roleIdent FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.idUtilisateur =";
+    public static final String getUserByFirstNameQuery = "SELECT *,Role.identifiant AS roleIdent FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.prenom = '";
+    public static final String getUserByNameQuery = "SELECT *,Role.identifiant AS roleIdent FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.nom = '";
     public static final String getUserIdentifaintQuery = "SELECT *, Role.identifiant AS roleIdentifiant FROM Utilisateur LEFT JOIN Role On Utilisateur.idRole = Role.idRole WHERE Utilisateur.identifiant = '";
 
     public static final String getUserByIdRoleQuery = "SELECT * FROM Utilisateur WHERE idRole = ";

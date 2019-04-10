@@ -5,6 +5,11 @@
  */
 package com.cours.ebenus.factory;
 
+import com.cours.ebenus.dao.IDao;
+import com.cours.ebenus.dao.entities.Adresse;
+import com.cours.ebenus.dao.entities.ArticleCommande;
+import com.cours.ebenus.dao.entities.Commande;
+import com.cours.ebenus.dao.entities.Product;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -28,6 +33,14 @@ public abstract class AbstractDaoFactory {
 	public abstract IUtilisateurDao getUtilisateurDao();
 
 	public abstract IRoleDao getRoleDao();
+
+	public abstract IDao<Product> getProductDao();
+
+	public abstract IDao<Adresse> getAdresseDao();
+
+	public abstract IDao<Commande> getCommandeDao();
+
+	public abstract IDao<ArticleCommande> getArticleCOmmande();
 
 	/**
 	 * Méthode pour récupérer une factory de DAO

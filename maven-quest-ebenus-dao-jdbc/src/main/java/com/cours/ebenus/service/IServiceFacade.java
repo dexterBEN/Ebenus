@@ -5,8 +5,13 @@
  */
 package com.cours.ebenus.service;
 
+import com.cours.ebenus.dao.IDao;
 import com.cours.ebenus.dao.IRoleDao;
 import com.cours.ebenus.dao.IUtilisateurDao;
+import com.cours.ebenus.dao.entities.Adresse;
+import com.cours.ebenus.dao.entities.ArticleCommande;
+import com.cours.ebenus.dao.entities.Commande;
+import com.cours.ebenus.dao.entities.Product;
 
 /**
  *
@@ -17,4 +22,12 @@ public interface IServiceFacade {
     public IUtilisateurDao getUtilisateurDao();
 
     public IRoleDao getRoleDao();
+
+    public IDao<Product> getProductDao();
+
+    public IDao<Adresse> getAdresseDao();
+
+    public IDao<Commande> getCommandeDao();
+
+    public IDao<ArticleCommande> getArticleCOmmande();
 }

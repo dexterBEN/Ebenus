@@ -5,15 +5,19 @@
  */
 package com.cours.ebenus.service;
 
+import com.cours.ebenus.dao.IDao;
 import com.cours.ebenus.dao.IRoleDao;
 import com.cours.ebenus.dao.IUtilisateurDao;
+import com.cours.ebenus.dao.entities.Adresse;
+import com.cours.ebenus.dao.entities.ArticleCommande;
+import com.cours.ebenus.dao.entities.Commande;
+import com.cours.ebenus.dao.entities.Product;
 import com.cours.ebenus.factory.AbstractDaoFactory;
 import com.cours.ebenus.factory.AbstractDaoFactory.FactoryDaoType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- *
  * @author ElHadji
  */
 public class ServiceFacade implements IServiceFacade {
@@ -26,16 +30,30 @@ public class ServiceFacade implements IServiceFacade {
 
     private IRoleDao roleDao = null;
 
+    private IDao<Product> productDao = null;
+    private IDao<Commande> commandeDao = null;
+    private IDao<ArticleCommande> articleCommandeDao = null;
+    private IDao<Adresse> adresseDao = null;
+
+
     public ServiceFacade() {
         // mettre tous les DAO
         utilisateurDao = AbstractDaoFactory.getFactory(DEFAULT_IMPLEMENTATION).getUtilisateurDao();
         roleDao = AbstractDaoFactory.getFactory(DEFAULT_IMPLEMENTATION).getRoleDao();
+        productDao = AbstractDaoFactory.getFactory(DEFAULT_IMPLEMENTATION).getProductDao();
+        commandeDao = AbstractDaoFactory.getFactory(DEFAULT_IMPLEMENTATION).getCommandeDao();
+        articleCommandeDao = AbstractDaoFactory.getFactory(DEFAULT_IMPLEMENTATION).getArticleCOmmande();
+        adresseDao = AbstractDaoFactory.getFactory(DEFAULT_IMPLEMENTATION).getAdresseDao();
     }
 
     public ServiceFacade(FactoryDaoType daoType) {
         // mettre tous les DAO
         utilisateurDao = AbstractDaoFactory.getFactory(daoType).getUtilisateurDao();
         roleDao = AbstractDaoFactory.getFactory(daoType).getRoleDao();
+        productDao = AbstractDaoFactory.getFactory(daoType).getProductDao();
+        commandeDao = AbstractDaoFactory.getFactory(daoType).getCommandeDao();
+        articleCommandeDao = AbstractDaoFactory.getFactory(daoType).getArticleCOmmande();
+        adresseDao = AbstractDaoFactory.getFactory(daoType).getAdresseDao();
     }
 
     @Override
@@ -46,5 +64,25 @@ public class ServiceFacade implements IServiceFacade {
     @Override
     public IRoleDao getRoleDao() {
         return roleDao;
+    }
+
+    @Override
+    public IDao<Product> getProductDao() {
+        return productDao;
+    }
+
+    @Override
+    public IDao<Adresse> getAdresseDao() {
+        return adresseDao;
+    }
+
+    @Override
+    public IDao<Commande> getCommandeDao() {
+        return commandeDao;
+    }
+
+    @Override
+    public IDao<ArticleCommande> getArticleCOmmande() {
+        return articleCommandeDao;
     }
 }
