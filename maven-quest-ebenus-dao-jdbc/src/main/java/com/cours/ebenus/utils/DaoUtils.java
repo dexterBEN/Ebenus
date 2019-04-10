@@ -357,7 +357,17 @@ public class DaoUtils {
                         + ((Product) module).getVersion() + ")" + coma
                         + Statement.RETURN_GENERATED_KEYS;
             } else if (module instanceof ArticleCommande) {
-
+                query = ((ArticleCommande) module).getUser().getIdUtilisateur() + coma
+                        + ((ArticleCommande) module).getAdresse().getIdAdresse() + coma
+                        + ((ArticleCommande) module).getAdresse().getIdAdresse() + coma
+                        + ((ArticleCommande) module).getProduct().getIdProduct() + coma
+                        + ((ArticleCommande) module).getTotalArticleCommande() + coma
+                        + qote + ((ArticleCommande) module).getReference() + qote + coma
+                        + ((ArticleCommande) module).getQuantite() + coma
+                        + qote + ((ArticleCommande) module).getStatus() + qote + coma
+                        + ((ArticleCommande) module).getDateModification() + coma
+                        + ((ArticleCommande) module).getVersion() + ")"+coma
+                        +Statement.RETURN_GENERATED_KEYS;
             } else if (module instanceof Commande) {
                 query = ((Commande) module).getTotalCommand() +
                         coma + ((Commande) module).getUser().getIdUtilisateur() + coma
@@ -396,7 +406,17 @@ public class DaoUtils {
                         + Modules.PRODUCT.getVersion() + equal + ((Product) module).getVersion() + " WHERE "
                         + Modules.PRODUCT.getIdProduit() + equal + ((Product) module).getIdProduct() + ";";
             } else if (module instanceof ArticleCommande) {
-
+                query = Modules.ARTICLE_COMMANDE.getIdUtilisateur() + equal + ((ArticleCommande) module).getUser().getIdUtilisateur() + coma
+                        + Modules.ARTICLE_COMMANDE.getIdCommande() + equal + ((ArticleCommande) module).getAdresse().getIdAdresse() + coma
+                        + Modules.ARTICLE_COMMANDE.getIdAdresse() + equal + ((ArticleCommande) module).getAdresse().getIdAdresse() + coma
+                        + Modules.ARTICLE_COMMANDE.getIdProduit() + equal + ((ArticleCommande) module).getProduct().getIdProduct() + coma
+                        + Modules.ARTICLE_COMMANDE.getTotalArticleCommande() + equal + ((ArticleCommande) module).getTotalArticleCommande() + coma
+                        + Modules.ARTICLE_COMMANDE.getReference() + equal + qote + ((ArticleCommande) module).getReference() + qote + coma
+                        + Modules.ARTICLE_COMMANDE.getQuantite() + equal + ((ArticleCommande) module).getQuantite() + coma
+                        + Modules.ARTICLE_COMMANDE.getStatut() + equal + qote + ((ArticleCommande) module).getStatus() + qote + coma
+                        + Modules.ARTICLE_COMMANDE.getDateModification() + equal + ((ArticleCommande) module).getDateModification() + coma
+                        + Modules.ARTICLE_COMMANDE.getVersion() + equal + ((ArticleCommande) module).getVersion() + " WHERE "
+                        + Modules.ARTICLE_COMMANDE.getIdArticleCommande() + ((ArticleCommande) module).getIdArticleCommande() + ";";
             } else if (module instanceof Commande) {
                 query = Modules.COMMANDE.getTotalCommande() + equal + ((Commande) module).getTotalCommand() +
                         coma + Modules.COMMANDE.getIdUtilisateur() + equal + ((Commande) module).getUser().getIdUtilisateur() + coma
