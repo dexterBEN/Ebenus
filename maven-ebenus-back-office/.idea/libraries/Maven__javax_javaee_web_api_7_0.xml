@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/javax/javaee-web-api/7.0/javaee-web-api-7.0-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/test/java" />
     </SOURCES>
   </library>
 </component>

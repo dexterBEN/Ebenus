@@ -2,85 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f270753-a929-48f0-bcff-1083e357e4bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/ebenus.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_cours_ebenus_maven_quest_ebenus_dao_jdbc_1_0_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_javaee_web_api_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_javaee_web_api_7_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maven-ebenus-back-office.iml" beforeDir="false" afterPath="$PROJECT_DIR$/maven-ebenus-back-office.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/artifacts/maven_quest_ebenus_dao_jdbc_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/artifacts/maven_quest_ebenus_dao_jdbc_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__com_ibatis_ibatis2_common_2_1_7_597.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__com_ibatis_ibatis2_common_2_1_7_597.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__junit_junit_4_10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__junit_junit_4_10.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__log4j_apache_log4j_extras_1_2_17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__log4j_apache_log4j_extras_1_2_17.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_41.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_41.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/maven-quest-ebenus-dao-jdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/maven-quest-ebenus-dao-jdbc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/script_base_test_junit_quest_ebenus.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/script_base_test_junit_quest_ebenus.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/ReadMe.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/ReadMe.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/ConnectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/ConnectionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/DriverManagerSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/DriverManagerSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/IDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/IDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/IRoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/IRoleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/IUtilisateurDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/IUtilisateurDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/entities/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/entities/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/entities/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/entities/Utilisateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/exception/EbenusException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/exception/EbenusException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/impl/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/impl/AbstractDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/impl/RoleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/dao/impl/UtilisateurDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/factory/AbstractDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/factory/AbstractDaoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/factory/DaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/factory/DaoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/service/IServiceFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/service/IServiceFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/service/ServiceFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/service/ServiceFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/RoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/RoleUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/UserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/UserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/test/java/com/cours/ebenus/dao/test/JUnitQuestEbenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/test/java/com/cours/ebenus/dao/test/JUnitQuestEbenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/src/test/java/com/cours/ebenus/dao/test/script_base_test_junit_quest_ebenus.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/test/java/com/cours/ebenus/dao/test/script_base_test_junit_quest_ebenus.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/ConnectionHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/ConnectionHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/DriverManagerSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/DriverManagerSingleton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/IDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/IDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/IRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/IRoleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/IUtilisateurDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/IUtilisateurDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/entities/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/entities/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/entities/Utilisateur.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/entities/Utilisateur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/exception/EbenusException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/exception/EbenusException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/impl/AbstractDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/impl/AbstractDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/impl/RoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/impl/RoleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/impl/UtilisateurDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/dao/impl/UtilisateurDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/factory/AbstractDaoFactory$FactoryDaoType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/factory/AbstractDaoFactory$FactoryDaoType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/factory/AbstractDaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/factory/AbstractDaoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/factory/DaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/factory/DaoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/service/IServiceFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/service/IServiceFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/service/ServiceFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/service/ServiceFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/RoleUtils$RoleLib.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/RoleUtils$RoleLib.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/RoleUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/RoleUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/UserUtils$UserLib.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/UserUtils$UserLib.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/UserUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/com/cours/ebenus/utils/UserUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/classes/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/maven-quest-ebenus-dao-jdbc-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/target/test-classes/com/cours/ebenus/dao/test/JUnitQuestEbenus.class" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/target/test-classes/com/cours/ebenus/dao/test/JUnitQuestEbenus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/Queries.java" beforeDir="false" afterPath="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc/src/main/java/com/cours/ebenus/utils/Queries.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,17 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="23" column="20" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -131,7 +51,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,16 +58,38 @@
               <item name="maven-ebenus-back-office" type="b2602c69:ProjectViewProjectNode" />
               <item name="maven-ebenus-back-office" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="maven-ebenus-back-office" type="b2602c69:ProjectViewProjectNode" />
+              <item name="maven-ebenus-back-office" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="maven-ebenus-back-office" type="b2602c69:ProjectViewProjectNode" />
+              <item name="maven-ebenus-back-office" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="maven-ebenus-back-office" type="b2602c69:ProjectViewProjectNode" />
+              <item name="maven-ebenus-back-office" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553633321247" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554304842947" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../maven-quest-ebenus-dao-jdbc" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -183,9 +124,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2582996" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27449393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -200,7 +140,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3285968" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -215,6 +155,9 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/maven-ebenus-back-office.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/maven-quest-ebenus-dao-jdbc.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -224,10 +167,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="23" column="20" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        <state relative-caret-position="374">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>unnamed</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11.0.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>maven-ebenus-back-office</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: javax:javaee-web-api:7.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
