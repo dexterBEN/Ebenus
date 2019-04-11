@@ -3,6 +3,7 @@ com\cours\ebenus\maven\ebenus\front\office\dao\CreateAccountDao.class
 com\cours\ebenus\maven\ebenus\front\office\web\AuthenticationPageServlet.class
 com\cours\ebenus\maven\ebenus\front\office\web\IndexPageServlet.class
 com\cours\ebenus\maven\ebenus\front\office\dao\LoginDao.class
+com\cours\ebenus\maven\ebenus\front\office\web\UpdateUserServlet.class
 com\cours\ebenus\maven\ebenus\front\office\web\LoginServlet.class
 com\cours\ebenus\maven\ebenus\front\office\web\CreateAccountServlet.class
 com\cours\ebenus\maven\ebenus\front\office\web\WebClientController.class

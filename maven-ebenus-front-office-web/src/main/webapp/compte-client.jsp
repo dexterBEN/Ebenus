@@ -142,7 +142,7 @@
                                         <div class="block-title"><strong><span>Mon compte</span></strong></div>
                                         <div class="block-content">
                                             <ul class="links">
-                                                <li><i class="icon-right-dir theme-color"></i><a href="#"
+                                                <li><i class="icon-right-dir theme-color"></i><a href="compte-client.jsp"
                                                         title="About us">Mon compte</a></li>
                                                 <li><i class="icon-right-dir theme-color"></i><a href="#"
                                                         title="About us">A props de nous</a></li>

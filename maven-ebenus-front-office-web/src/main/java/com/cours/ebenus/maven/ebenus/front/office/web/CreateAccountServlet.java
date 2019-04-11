@@ -56,16 +56,12 @@ public class CreateAccountServlet extends HttpServlet {
 			}
 
 			userData.setCivilite(userGenderValue);
-
 			userData.setRole(serviceFacade.getRoleDao().findRoleById(5));
-
 			userCreated = serviceFacade.getUtilisateurDao().createUtilisateur(userData);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
 
 		if (userCreated != null) {
 			req.setAttribute("userIdentifiant", userIdentifiant);

@@ -40,6 +40,14 @@ public class LoginServlet extends HttpServlet {
 			sessionUser.setAttribute("nom", user.getNom());
 			sessionUser.setAttribute("civilite", user.getCivilite());
 			sessionUser.setAttribute("password", user.getMotPasse());
+			sessionUser.setAttribute("idUtilisateur", user.getIdUtilisateur());
+
+			/*
+			 * Enumeration<String> attributes = req.getSession().getAttributeNames(); while
+			 * (attributes.hasMoreElements()) { String attribute = attributes.nextElement();
+			 * System.out.println(attribute + " : " +
+			 * req.getSession().getAttribute(attribute)); }
+			 */
 
 			rd.forward(req, res);
 

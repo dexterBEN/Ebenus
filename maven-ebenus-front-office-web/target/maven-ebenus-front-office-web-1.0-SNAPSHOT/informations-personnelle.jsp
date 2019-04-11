@@ -100,7 +100,7 @@
                                 </br>
                             </div>
 
-                            <form id="customer-info-form" method="post" action="#" class="row validate no-gutters">
+                            <form id="customer-info-form" method="post" action="update" class="row validate no-gutters">
                                 <fieldset class="col-md-6">
                                     <h2>Informations personnelles</h2>
                                     <label for="firstname">Prénom</label>
@@ -203,7 +203,7 @@
                                         <div class="block-title"><strong><span>Mon compte</span></strong></div>
                                         <div class="block-content">
                                             <ul class="links">
-                                                <li><i class="icon-right-dir theme-color"></i><a href="#"
+                                                <li><i class="icon-right-dir theme-color"></i><a href="compte-client.jsp"
                                                         title="About us">Mon compte</a></li>
                                                 <li><i class="icon-right-dir theme-color"></i><a href="#"
                                                         title="About us">A props de nous</a></li>
