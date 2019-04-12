@@ -12,10 +12,14 @@ import com.cours.ebenus.dao.entities.Adresse;
 import com.cours.ebenus.dao.entities.ArticleCommande;
 import com.cours.ebenus.dao.entities.Commande;
 import com.cours.ebenus.dao.entities.Product;
-import com.cours.ebenus.dao.impl.*;
+import com.cours.ebenus.dao.impl.AdresseDao;
+import com.cours.ebenus.dao.impl.ArticleCommandeDao;
+import com.cours.ebenus.dao.impl.CommandeDao;
+import com.cours.ebenus.dao.impl.ProductDao;
+import com.cours.ebenus.dao.impl.RoleDao;
+import com.cours.ebenus.dao.impl.UtilisateurDao;
 
 /**
- *
  * @author ElHadji
  */
 public class DaoFactory extends AbstractDaoFactory {
@@ -32,21 +36,25 @@ public class DaoFactory extends AbstractDaoFactory {
 
     @Override
     public IDao<Product> getProductDao() {
+        // TODO Auto-generated method stub
         return new ProductDao();
     }
 
     @Override
     public IDao<Adresse> getAdresseDao() {
+        // TODO Auto-generated method stub
         return new AdresseDao();
     }
 
     @Override
     public IDao<Commande> getCommandeDao() {
+        // TODO Auto-generated method stub
         return new CommandeDao();
     }
 
     @Override
     public IDao<ArticleCommande> getArticleCOmmande() {
+        // TODO Auto-generated method stub
         return new ArticleCommandeDao();
     }
 }

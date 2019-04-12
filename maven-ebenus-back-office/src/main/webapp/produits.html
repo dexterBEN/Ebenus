@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+  <title>Ebenus Admin</title>
+  <!-- Custom Fonts -->
+  <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="./assets/css/master.css">
+  
+</head>
+<body>
+  <div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="dashboard.html">Ebenus Admin</a>
+      </div>
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu message-dropdown">
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading">
+                      <strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-footer">
+              <a href="#">Read All New Messages</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu alert-dropdown">
+            <li>
+              <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#">View All</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+          <li class="active">
+            <a href="dashboard.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="utilisateurs.html"><i class="fa fa-users"></i> Utilisateurs</a>
+          </li>
+          <li>
+            <a href="roles.html"><i class="fa fa-user"></i> Rôles</a>
+          </li>
+          <li>
+            <a href="produits.html"><i class="fa fa-money"></i> Produits</a>
+          </li>
+          
+          <li>
+            <a href="commandes.html"><i class="fa fa-shopping-cart"></i> Commandes</a>
+          </li>
+          
+          <!-- <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Contenu <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demo" class="collapse">
+              <li>
+                <a href="slider.html">Slider</a>
+              </li>
+                           
+            </ul>
+          </li> -->
+
+        </ul>
+      </div>
+    <!-- /.navbar-collapse -->
+    </nav>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+         <!-- Page Heading -->
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">
+              Produits
+            </h1>
+            <ol class="breadcrumb">
+              <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+              </li>
+              <li class="active">
+                <i class="fa fa-edit"></i> Produits
+              </li>
+            </ol>
+          </div>
+        </div>
+        <!-- /.row -->
+         <div class="row">
+            <div class="well well-lg clearfix">
+              <form action="ajouter-produit.html">
+                <button class="btn btn-default btn-lg pull-right">
+                  Ajouter Produit
+                </button>
+              </form>
+            </div>
+         </div>
+          <!-- /.row -->
+          <div class="row">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-money"></i> Liste des Produits</h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="well well-sm col-lg-6"> 
+                    <form action="#" method="get">
+                    <div class="input-group">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Rechercher un produit" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                     </form>
+                  </div>
+                  <div class="col-lg-6 no-padding">
+                    <!-- Select Basic -->
+              <div class="form-group selectexport-box">
+         <div class="input-file-box"> 
+          <input type="file" name="file-2[]" id="file-2" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" multiple />
+          <label for="file-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Importer des produits à partir d'un fichier CSV</span></label>
+        </div>
+                <button type="button" class="btn btn-default">Import</button>
+              </div>
+                  </div>
+                </div>
+                <div class="table-responsive listProducts">
+                  <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th>Référence</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/360365.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Smartphone Apple iPhone 7 (or) - 32 Go</td>
+                        <td>DSD5454DFDEF-01</td>
+                        <td>639,00€</td>
+                        <td>13</td>
+                        <td>
+                          <a href="editer-produit-1.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                      </tr>
+                        <tr>
+                        <td>2</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/360591.350.350.jpg" alt="Lorem ipsum."></td>
+                        <td>Smartphone Apple iPhone 6s (or) - 32 Go</td>
+                        <td>DSD5454DFDEF-02</td>
+                        <td>529,00€</td>
+                        <td>20</td>
+                        <td><a href="editer-produit-2.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                        <tr>
+                        <td>3</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/194803.350.350.jpg" alt="Lorem ipsum."></td>
+                        <td>Apple Câble Lightning / USB</td>
+                        <td>DSD5454DFDEF-03</td>
+                        <td>27,95€</td>
+                        <td>10</td>
+                        <td><a href="editer-produit-3.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+
+                        <tr>
+                        <td>4</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/199301.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Chargeur secteur Belkin Chargeur secteur USB 2,1A</td>
+                        <td>DSD5454DFDEF-04</td>
+                        <td>27,95€</td>
+                        <td>05</td>
+                        <td><a href="editer-produit-4.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                        <tr>
+                        <td>5</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/398168.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Ordinateur portable Asus Zenbook Flip 58256-B - i5 - 8 Go - 256 Go SSD</td>
+                        <td>DSD5454DFDEF-05</td>
+                        <td>909,94€</td>
+                        <td>19</td>
+                        <td><a href="editer-produit-5.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+
+                      <tr>
+                        <td>6</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/391814.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>PC portable gamer MSI GS73 7RE-006FR - i7 - 8 Go - SSD - GTX 1050 Ti</td>
+                        <td>DSD5454DFDEF-06</td>
+                        <td>524,92€</td>
+                        <td>11</td>
+                        <td><a href="editer-produit-6.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>7</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/386236.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Ordinateur portable Acer Aspire E5-774-36WT - i3 - 4 Go - 1 To</td>
+                        <td>DSD5454DFDEF-07</td>
+                        <td>424,92€</td>
+                        <td>12</td>
+                        <td><a href="editer-produit-7.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>8</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/394824.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>PC portable gamer MSI GT75VR 7RE-064FR - i7 - 16 Go - SSD - GTX 1070</td>
+                        <td>DSD5454DFDEF-08</td>
+                        <td>599,90€</td>
+                        <td>07</td>
+                        <td><a href="editer-produit-8.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>9</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/375167.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Appareil photo Compact Canon Ixus 185 Noir</td>
+                        <td>DSD5454DFDEF-09</td>
+                        <td>99,00€</td>
+                        <td>99,00€</td>
+                        <td><a href="editer-produit-9.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>10</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/371176.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Appareil photo instantané Fujifilm Instax WIDE 300</td>
+                        <td>DSD5454DFDEF-10</td>
+                        <td>119,00€</td>
+                        <td>15</td>
+                        <td><a href="editer-produit-10.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>11</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/388557.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Appareil photo instantané Fujifilm Instax MINI 9 Blanc</td>
+                        <td>DSD5454DFDEF-11</td>
+                        <td>89,00€</td>
+                        <td>02</td>
+                        <td><a href="editer-produit-11.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>12</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/375168.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Appareil photo Compact Canon Ixus 185 Rouge</td>
+                        <td>DSD5454DFDEF-12</td>
+                        <td>99,00€ </td>
+                        <td>33</td>
+                        <td><a href="editer-produit-12.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                     
+                      <tr>
+                        <td>13</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/404588.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>PC Gamer MSI Vortex G25 8RD-028FR - i5 - 8 Go - GTX 1060 - SSD</td>
+                        <td>DSD5454DFDEF-13</td>
+                        <td>349,90€  </td>
+                        <td>18</td>
+                        <td><a href="editer-produit-13.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>14</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/408435.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>PC Gamer Materiel.net Level One XI par Canard PC [ Win10 - PC Gamer ]</td>
+                        <td>DSD5454DFDEF-14</td>
+                        <td>689,99€</td>
+                        <td>100</td>
+                        <td><a href="editer-produit-14.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>15</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/412572.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Souris gamer The G-Lab KULT#100</td>
+                        <td>DSD5454DFDEF-15</td>
+                        <td>19,90€</td>
+                        <td>120</td>
+                        <td><a href="editer-produit-15.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>16</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/387487.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>The G-Lab KORP#100</td>
+                        <td>DSD5454DFDEF-16</td>
+                        <td>19,90€</td>
+                        <td>130</td>
+                        <td><a href="editer-produit-16.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>17</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/412502.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Souris gamer Asus Cerberus Mouse - Noir</td>
+                        <td>DSD5454DFDEF-17</td>
+                        <td>29,90€</td>
+                        <td>150</td>
+                        <td><a href="editer-produit-17.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>18</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/30909.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Souris PC 3DConnexion SpaceNavigator</td>
+                        <td>DSD5454DFDEF-18</td>
+                        <td>139,90€ </td>
+                        <td>1000</td>
+                        <td><a href="editer-produit-18.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                       <tr>
+                        <td>19</td>
+                        <td><img class="admin__control-thumbnail" src="https://i2.cdscdn.com/pdt2/7/3/6/1/700x700/3dc4260016340736/rw/spacemouse-wireless-souris-laser-sans-fil-per.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Souris PC 3DConnexion SpaceNavigator</td>
+                        <td>DSD5454DFDEF-19</td>
+                        <td>139,90€</td>
+                        <td>1500</td>
+                        <td><a href="editer-produit-19.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>20</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/375301.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Smartphone Samsung Galaxy A5 2017 (noir)</td>
+                        <td>DSD5454DFDEF-20</td>
+                        <td>349,00€</td>
+                        <td>1200</td>
+                        <td><a href="editer-produit-20.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>21</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/375311.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Smartphone Samsung Galaxy A5 2017 (rose)</td>
+                        <td>DSD5454DFDEF-21</td>
+                        <td>349,00€</td>
+                        <td>170</td>
+                        <td><a href="editer-produit-21.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>22</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/396289.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Smartphone Samsung Galaxy J3 2017 (noir)</td>
+                        <td>DSD5454DFDEF-22</td>
+                        <td>199,00€</td>
+                        <td>1008</td>
+                        <td><a href="editer-produit-22.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>23</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/284771.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Mini-chaine Hi-Fi Bluetooth Denon CEOL Piccolo N4 Blanc</td>
+                        <td>DSD5454DFDEF-23</td>
+                        <td>349,00€</td>
+                        <td>109</td>
+                        <td><a href="editer-produit-23.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>24</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/284764.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Mini-chaine Hi-Fi Bluetooth Denon CEOL Piccolo N4 Noire</td>
+                        <td>DSD5454DFDEF-24</td>
+                        <td>349,00€</td>
+                        <td>180</td>
+                        <td><a href="editer-produit-24.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>25</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/350376.350.350.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>Mini-chaine Hi-Fi USB Philips BTB2370 Bluetooth Tuner FM Numérique et DAB</td>
+                        <td>DSD5454DFDEF-25</td>
+                        <td>159,00€</td>
+                        <td>190</td>
+                        <td><a href="editer-produit-25.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                      <tr>
+                        <td>26</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-1_1.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>BEKO Réfrigérateur 2 portes RED45DXP, 400L, Froid No Frost</td>
+                        <td>DSD5454DFDEF-26</td>
+                        <td>1800,00€</td>
+                        <td>160</td>
+                        <td><a href="editer-produit-26.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>27</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-1_2.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>SELECLINE Réfrigérateur 2 portes 180647, 216 L, Froid statique</td>
+                        <td>DSD5454DFDE-27F</td>
+                        <td>1800,00€</td>
+                        <td>1115</td>
+                        <td><a href="editer-produit-27.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>28</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-1_3.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>SAMSUNG Réfrigérateur 2 portes RT29K5030S9, 300 L, Froid Ventilé</td>
+                        <td>DSD5454DFDEF-28</td>
+                        <td>1800,00€</td>
+                        <td>1118</td>
+                        <td><a href="editer-produit-28.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                      <tr>
+                        <td>29</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-1_4.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>SELECLINE Réfrigérateur 2 portes 180470 , 253 L, Froid Statique</td>
+                        <td>DSD5454DFDEF-29</td>
+                        <td>1900,00€</td>
+                        <td>1006</td>
+                        <td><a href="editer-produit-29.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                      <tr>
+                        <td>30</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-2_1.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>BEKO Réfrigérateur Double porte RDNT360I20BS - 321 L - Froid No Frost</td>
+                        <td>DSD5454DFDEF-30</td>
+                        <td>1000,00€</td>
+                        <td>1066</td>
+                        <td><a href="editer-produit-30.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                      <tr>
+                        <td>31</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-2_2.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>CANDY  Réfrigérateur 2 portes CCDS 5142 WH, 204 L, Froid Statique</td>
+                        <td>DSD5454DFDEF-31</td>
+                        <td>800,00€</td>
+                        <td>1658</td>
+                        <td><a href="editer-produit-31.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                      <tr>
+                        <td>32</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/refrigerateur-2_3.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>INDESIT Réfrigérateur Double porte TIAA10SI.1 - 252 L - Froid Statique</td>
+                        <td>DSD5454DFDEF-32</td>
+                        <td>800,00€</td>
+                        <td>1658</td>
+                        <td><a href="editer-produit-32.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+                      <tr>
+                        <td>33</td>
+                        <td><img class="admin__control-thumbnail" src="./assets/images\products/1.jpg" alt="Lorem ipsum dolor."></td>
+                        <td>TV HD 32M4005, 100 PQI</td>
+                        <td>DSD5454DFDEF-33</td>
+                        <td>800,00€</td>
+                        <td>1458</td>
+                        <td><a href="editer-produit-33.html"><i class="fa fa-edit"></i></a>
+<button class="no-style-btn"><i class="fa fa-trash-o"></i></button></td>
+                      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+ <script src="./assets/js/bower.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./assets/js/application.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
